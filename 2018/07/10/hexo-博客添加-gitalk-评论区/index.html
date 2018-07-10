@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://github.com/lsinger8702/MarkdownPhotos/blob/master/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-07-10%2020.38.01.png?raw=true">
 <meta property="og:image" content="https://github.com/lsinger8702/MarkdownPhotos/blob/master/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-07-10%2019.31.42.png?raw=true">
 <meta property="og:image" content="https://github.com/lsinger8702/MarkdownPhotos/blob/master/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-07-10%2019.36.09.png?raw=true">
-<meta property="og:updated_time" content="2018-07-10T14:10:01.171Z">
+<meta property="og:updated_time" content="2018-07-10T14:16:42.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo 博客添加 gitalk 评论区">
 <meta name="twitter:description" content="添加 Gitalk准备注册 OAuth application https://github.com/settings/applications/new 部署修改下面几个文件">
@@ -317,15 +317,13 @@
 <p><img src="https://github.com/lsinger8702/MarkdownPhotos/blob/master/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-07-10%2020.38.01.png?raw=true" alt="屏幕快照 2018-07-10 20.38.01"></p>
 <h4 id="next-layout-third-party-comments-index-swig"><a href="#next-layout-third-party-comments-index-swig" class="headerlink" title="next/layout/_third-party/comments/index.swig"></a>next/layout/_third-party/comments/index.swig</h4><p>添加下面一句</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% include <span class="string">'gitalk.swig'</span> %&#125;</span><br></pre></td></tr></table></figure>
-<p>##其它</p>
-<p>一段时间没有写博客，执行 hexo 命令的时候出现了下面的错误</p>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>一段时间没有写博客，执行 hexo 命令的时候出现了下面的错误</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dyld: Library not loaded: /usr/<span class="built_in">local</span>/opt/icu4c/lib/libicui18n.61.dylib</span><br><span class="line">  Referenced from: /usr/<span class="built_in">local</span>/bin/node</span><br><span class="line">  Reason: image not found</span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/lsinger8702/MarkdownPhotos/blob/master/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-07-10%2019.31.42.png?raw=true" alt="屏幕快照 2018-07-10 19.31.42">解决办法</p>
+<p><img src="https://github.com/lsinger8702/MarkdownPhotos/blob/master/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-07-10%2019.31.42.png?raw=true" alt="屏幕快照 2018-07-10 19.31.42"><strong>解决办法</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
 <p>然后就可以正常使用了</p>
 <p><img src="https://github.com/lsinger8702/MarkdownPhotos/blob/master/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-07-10%2019.36.09.png?raw=true" alt="屏幕快照 2018-07-10 19.36.09"></p>
-<p>##参考</p>
-<p><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md" target="_blank" rel="noopener">https://github.com/gitalk/gitalk/blob/master/readme-cn.md</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md" target="_blank" rel="noopener">https://github.com/gitalk/gitalk/blob/master/readme-cn.md</a></p>
 <p><a href="https://github.com/iissnan/hexo-theme-next/pull/1814/files" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next/pull/1814/files</a></p>
 <p><a href="https://github.com/gitalk/gitalk/issues/102" target="_blank" rel="noopener">https://github.com/gitalk/gitalk/issues/102</a></p>
 
@@ -493,7 +491,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加-Gitalk"><span class="nav-number">1.</span> <span class="nav-text">添加 Gitalk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">1.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署"><span class="nav-number">1.2.</span> <span class="nav-text">部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#next-config-yml"><span class="nav-number">1.2.1.</span> <span class="nav-text">next/_config.yml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#next-layout-partials-comments-swig"><span class="nav-number">1.2.2.</span> <span class="nav-text">next/layout/_partials/comments.swig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#next-layout-third-party-comments-gitalk-swig"><span class="nav-number">1.2.3.</span> <span class="nav-text">next/layout/_third-party/comments/gitalk.swig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#next-layout-third-party-comments-index-swig"><span class="nav-number">1.2.4.</span> <span class="nav-text">next/layout/_third-party/comments/index.swig</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加-Gitalk"><span class="nav-number">1.</span> <span class="nav-text">添加 Gitalk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">1.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署"><span class="nav-number">1.2.</span> <span class="nav-text">部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#next-config-yml"><span class="nav-number">1.2.1.</span> <span class="nav-text">next/_config.yml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#next-layout-partials-comments-swig"><span class="nav-number">1.2.2.</span> <span class="nav-text">next/layout/_partials/comments.swig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#next-layout-third-party-comments-gitalk-swig"><span class="nav-number">1.2.3.</span> <span class="nav-text">next/layout/_third-party/comments/gitalk.swig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#next-layout-third-party-comments-index-swig"><span class="nav-number">1.2.4.</span> <span class="nav-text">next/layout/_third-party/comments/index.swig</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它"><span class="nav-number">2.</span> <span class="nav-text">其它</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
