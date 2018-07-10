@@ -80,12 +80,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Lsinger&#39; s blog">
-<meta property="og:url" content="http://yoursite.com/tags/hexo-next-gitalk-comment/index.html">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="Lsinger&#39; s blog">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-10T17:54:54.708Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lsinger&#39; s blog">
+<meta name="twitter:title" content="categories">
 
 
 
@@ -119,7 +120,7 @@
 
 
 
-  <title>Tag: hexo, next, gitalk, comment | Lsinger' s blog</title>
+  <title>categories | Lsinger' s blog</title>
   
 
 
@@ -138,7 +139,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -184,6 +185,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -212,54 +233,43 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>hexo, next, gitalk, comment<small>Tag</small>
-        </h1>
-      </div>
+	<h1 class="post-title" itemprop="name headline">categories</h1>
+
+
+
+</header>
 
       
+      
+      
+      <div class="post-body">
         
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/07/10/hexo-博客添加-gitalk-评论区/" itemprop="url">
-              
-                <span itemprop="name">hexo 博客添加 gitalk 评论区</span>
-              
-            </a>
+          <div class="category-all-page">
+            <div class="category-all-title">
+                2 categories in total
+            </div>
+            <div class="category-all">
+              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">3</span></li></ul>
+            </div>
+          </div>
         
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-10T21:43:58+08:00"
-              content="2018-07-10" >
-          07-10
-        </time>
       </div>
-
-    </header>
-  </article>
-
-
+      
+      
       
     </div>
-
+    
+    
+    
   </div>
-  
-  
-  
-
-  
 
 
           </div>
@@ -267,6 +277,14 @@
 
 
           
+
+  
+      <div id="gitalk-container"></div>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+       <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    
+
+
 
         </div>
         
@@ -310,15 +328,24 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
 
             
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">5</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -477,6 +504,10 @@ Visitors: <span id="busuanzi_value_site_uv"></span>
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -519,6 +550,65 @@ Visitors: <span id="busuanzi_value_site_uv"></span>
 
 
   
+    
+      <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+      <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+      <script>
+        //去除尾部匹配正则数组的字符串
+        String.prototype.trimEnd = function(regStr)
+        {
+            var result = this;
+            if(regStr==undefined||regStr==null||regStr=="")
+            {
+                return result;
+            }
+            var array = regStr.split(',');
+
+            if(array.length > 0){
+
+                var c = array.shift();
+                var str= this;
+                var i = str.length;
+                var rg = new RegExp(c);
+                var matchArr = str.match(rg);
+
+                if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+                {
+                  var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                                            .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                                            .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                                            .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                                            .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                                            .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                                            .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                                            .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                  matchStr = matchStr + '$';
+                  result = str.replace(new RegExp(matchStr), "");
+                }
+
+                if(array.length > 0){
+                    return result.trimEnd(array.join())
+                }
+                else{
+                    return result;
+                }
+            }
+        };
+      </script>
+      <script type="text/javascript">
+        const gitalk = new Gitalk({
+          clientID: '4493cd737a3f27c6f3e5',
+          clientSecret: '7ce74023dbfac13c266a0b522fab2b6edf40e2eb',
+          repo: 'lsinger8702.github.io',
+          owner: 'lsinger8702',
+          admin: 'lsinger8702'.split(','),
+          pagerDirection: 'first',
+          // facebook-like distraction free mode
+          distractionFreeMode: false,
+          id: md5(location.href.trimEnd(''))
+        })
+        gitalk.render('gitalk-container')
+      </script>
     
   
 
