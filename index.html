@@ -247,6 +247,582 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/《挑战程序设计竞赛》笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/03/《挑战程序设计竞赛》笔记/" itemprop="url">《挑战程序设计竞赛》笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-03T20:33:13+08:00">
+                2018-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/coding/" itemprop="url" rel="index">
+                    <span itemprop="name">coding</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/03/《挑战程序设计竞赛》笔记/" class="leancloud_visitors" data-flag-title="《挑战程序设计竞赛》笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="挑战程序设计竞赛"><a href="#挑战程序设计竞赛" class="headerlink" title="挑战程序设计竞赛"></a>挑战程序设计竞赛</h1><h2 id="第一章-准备篇"><a href="#第一章-准备篇" class="headerlink" title="第一章 准备篇"></a>第一章 准备篇</h2><h3 id="1-5-以高效的算法为目标"><a href="#1-5-以高效的算法为目标" class="headerlink" title="1.5 以高效的算法为目标"></a>1.5 以高效的算法为目标</h3><h4 id="1-5-1-什么是复杂度"><a href="#1-5-1-什么是复杂度" class="headerlink" title="1.5.1 什么是复杂度"></a>1.5.1 什么是复杂度</h4><ol>
+<li>复杂度的估算是非常重要的，因为我们不可能把每个想到的算法都去实现一遍看看是否足够快</li>
+<li>通常考虑复杂度与什么成正比，并称之为算法的阶</li>
+</ol>
+<h4 id="1-5-2-关于运行时间"><a href="#1-5-2-关于运行时间" class="headerlink" title="1.5.2 关于运行时间"></a>1.5.2 关于运行时间</h4><ol>
+<li>程序的运行时间不光取决于复杂度，也会受诸如循环体的复杂性等因素的影响</li>
+<li>但是，因此造成的差距多数情况下也就几十倍</li>
+<li>因此要缩短程序的运行时间，主要应该从复杂度入手</li>
+</ol>
+<p><strong>例如，考虑 O($n^2$) 时间的算法，假设题目描述中的限制条件为 n ≤ 1000，将 n=1000 代入 $n^2$ 就得到了 1000000.在这个数值的基础上，我们就可以结合下表进行判断了</strong></p>
+<p>假设时间限制为 1s</p>
+<table>
+<thead>
+<tr>
+<th>1000000</th>
+<th>游刃有余</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10000000</td>
+<td>勉勉强强</td>
+</tr>
+<tr>
+<td>100000000</td>
+<td>很悬，仅限循环体非常简单的情况</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-6-轻松热身"><a href="#1-6-轻松热身" class="headerlink" title="1.6 轻松热身"></a>1.6 轻松热身</h3><h4 id="1-6-1-简单题"><a href="#1-6-1-简单题" class="headerlink" title="1.6.1 简单题"></a>1.6.1 简单题</h4><ol>
+<li>自己写的</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">100001</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; n)&#123;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k=j+<span class="number">1</span>; k&lt;n; k++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (a[i]&gt;=a[j] &amp;&amp; a[i]&gt;=a[k] &amp;&amp; a[i]&lt;(a[j]+a[k])) &#123;</span><br><span class="line">                        <span class="keyword">if</span> ((a[i]+a[j]+a[k])&gt;max) &#123;</span><br><span class="line">                            max = a[i]+a[j]+a[k];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (a[j]&gt;=a[i] &amp;&amp; a[j]&gt;=a[k] &amp;&amp; a[j]&lt;(a[i]+a[k])) &#123;</span><br><span class="line">                        <span class="keyword">if</span> ((a[i]+a[j]+a[k])&gt;max) &#123;</span><br><span class="line">                            max = a[i]+a[j]+a[k];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (a[k]&gt;=a[i] &amp;&amp; a[k]&gt;=a[j] &amp;&amp; a[k]&lt;(a[i]+a[j])) &#123;</span><br><span class="line">                        <span class="keyword">if</span> ((a[i]+a[j]+a[k])&gt;max) &#123;</span><br><span class="line">                            max = a[i]+a[j]+a[k];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; max &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>题解版</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">100001</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; n)&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k=j+<span class="number">1</span>; k&lt;n; k++) &#123;</span><br><span class="line">                    <span class="keyword">int</span> len = a[i] + a[j] + a[k];</span><br><span class="line">                    <span class="keyword">int</span> maxlen = max(a[i], max(a[j], a[k]));</span><br><span class="line">                    <span class="keyword">int</span> rest = len - maxlen;</span><br><span class="line">                    <span class="keyword">if</span> (rest &gt; maxlen) &#123;</span><br><span class="line">                        ans = max(ans, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-6-2-POJ-No-1852"><a href="#1-6-2-POJ-No-1852" class="headerlink" title="1.6.2 POJ No.1852"></a>1.6.2 POJ No.1852</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include &lt;algorithm&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int L, n, x[<span class="number">1000001</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; L) &#123;</span><br><span class="line">        int minDist = <span class="number">0</span>, maxDist = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (int i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">            cin &gt;&gt; x[i];</span><br><span class="line">            minDist = max(minDist, min(L-x[i], x[i]));</span><br><span class="line">            maxDist = max(maxDist, max(L-x[i], x[i]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; minDist &lt;&lt; <span class="string">' '</span> &lt;&lt; maxDist &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-6-3-增加难度的抽签问题"><a href="#1-6-3-增加难度的抽签问题" class="headerlink" title="1.6.3 增加难度的抽签问题"></a>1.6.3 增加难度的抽签问题</h4><p><strong>抽签问题</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m, k[<span class="number">51</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m &amp;&amp; n!=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; k[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>; a&lt;n; a++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">0</span>; b&lt;n; b++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> c=<span class="number">0</span>; c&lt;n; c++)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> d=<span class="number">0</span>; d&lt;n; d++)&#123;</span><br><span class="line">                        <span class="keyword">if</span>((k[a]+k[b]+k[c]+k[d])==m) &#123;</span><br><span class="line">                            flag = <span class="literal">true</span>;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(flag) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>起初</p>
+<p>​    检查是否有 d 使得 $k_a+k_b+k_c+k_d = m$</p>
+<p>通过对式子移项，得到</p>
+<p>​    检查是否有 d 使得 $k_d = m-k_a-k_b-k_c$</p>
+<h5 id="1-二分搜索与-O-n-3logn-的算法"><a href="#1-二分搜索与-O-n-3logn-的算法" class="headerlink" title="1. 二分搜索与 $O(n^3logn)$ 的算法"></a>1. 二分搜索与 $O(n^3logn)$ 的算法</h5><p>记所要查找的值 $m-k_a-k_b-k_c$ 为 x，预先把数组 k 排好序，然后看 k 中央的数字，可知</p>
+<ul>
+<li>如果它比 x 小，x 只可能在它的后面半段</li>
+<li>如果它比 x 大，x 只可能在它的前面半段</li>
+</ul>
+<p>这样反复操作不断缩小 x 的存在区间，最终可以确定 x 存在与否</p>
+<p>要判断长度为 n 的有序数组 k 中是否有包含 x，只要反复执行约 $log_2n$ 次就完成了，所以二分查找的复杂度为 O($logn$) ，我们称这种阶的运行时间为对数时间，即使 n 变得很大时，对数时间的算法依然非常快速</p>
+<p>将最内侧的循环换成二分搜索算法之后，就变成</p>
+<ul>
+<li>排序 $O(nlogn)$</li>
+<li>循环 $O(n^3logn)$</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (r - l &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> i = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (k[i] == x) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (k[i] &lt; x) l = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> r = i;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    sort(k, k+n);</span><br><span class="line">    <span class="keyword">bool</span> f = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>; a&lt;n; a++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">0</span>; b&lt;n; b++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> c=<span class="number">0</span>; c&lt;n; c++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(binary_search(m-k[a]-k[b]-k[c])) f = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(f) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-O-n-2logn-的算法"><a href="#2-O-n-2logn-的算法" class="headerlink" title="2. $O(n^2logn)$ 的算法"></a>2. $O(n^2logn)$ 的算法</h5><ul>
+<li><p>将代入 n=1000 $n^3logn$ 发现依然远远不够，还需要对算法进行进一步优化</p>
+</li>
+<li><p>刚刚我们只着眼于四层循环中最内层的循环，接下来我们着眼于内侧的两个循环</p>
+</li>
+<li><p>与刚才同样的思路，内侧的两个循环是在</p>
+<p>检查是否有 c 使得 $k_c + k_d = m - k_a - k_b$</p>
+</li>
+<li><p>这种情况不能直接使用二分搜索，但是可以预先枚举出 $k_c + k_d$ 所得的 $n^2$ 个数字并排好序，便可以用二分搜索了</p>
+</li>
+<li><p>该算法</p>
+<ul>
+<li>排序 $O(n^2logn)$ 时间</li>
+<li>循环 $O(n^2logn)$ 时间</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> kab[MAX_N*MAX_N];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n*n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (r - l &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> i = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (kab[i] == x) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (kab[i] &lt; x) l = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> r = i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//int count = 0;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>; a&lt;n; a++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">0</span>; b&lt;n; b++)&#123;</span><br><span class="line">            <span class="comment">//kab[count++] = k[a] + k[b];</span></span><br><span class="line">            kab[a*n+b] = k[a] + k[b];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    sort(kab, kab+n*n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> f=<span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> c=<span class="number">0</span>; c&lt;n; c++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> d=<span class="number">0</span>; d&lt;n; d++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(binary_search(m-k[c]-k[d])) f = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(f) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>抽签问题急需要二分搜索这一基础算法知识，也需要将四个数分成两两考虑的想象力</li>
+<li>从复杂度高的算法出发，不断降低复杂度直到满足问题需求的过程，也是设计算法时常会经历的一个过程</li>
+</ol>
+<h2 id="第二章-初出茅庐——初级篇"><a href="#第二章-初出茅庐——初级篇" class="headerlink" title="第二章 初出茅庐——初级篇"></a>第二章 初出茅庐——初级篇</h2><h3 id="2-1-最基础的“穷竭搜索”"><a href="#2-1-最基础的“穷竭搜索”" class="headerlink" title="2.1 最基础的“穷竭搜索”"></a>2.1 最基础的“穷竭搜索”</h3><p>穷竭搜索是将所有的可能性罗列出来，在其中寻找答案的方法。这里我们主要介绍深度优先搜索和广度优先搜索这两种方法</p>
+<h4 id="2-1-1-递归函数"><a href="#2-1-1-递归函数" class="headerlink" title="2.1.1 递归函数"></a>2.1.1 递归函数</h4><ul>
+<li><p>递归函数：在一个函数中再次调用该函数自身的行为叫做递归，这样的函数称为递归函数</p>
+</li>
+<li><p>例如编写一个计算阶乘的函数，可以用循环来实现，也可以写成递推式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fact</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> n*fact(n<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在编写一个递归函数时，函数的停止条件是必须存在的，如果不存在函数就会无限地递归下去</p>
+</li>
+<li><p>编写计算斐波那契数列的函数</p>
+<ul>
+<li>$a_0=0$</li>
+<li>$a_1=1 $</li>
+<li>$a_n = a_{n-1}+a_{n-2}(n&gt;1)$</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> fib(n<span class="number">-1</span>)+fib(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实际使用递归函数时，需要花费相当长的时间（会按照指数级别扩展开来）</p>
+</li>
+<li><p>因此可以在计算一次之后，用数列将结果存储起来，便可优化之后的计算。这种方法是处于记忆化搜索或者动态规划的想法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> memo[MAX_N + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">if</span>(memo[n] != <span class="number">0</span>) <span class="keyword">return</span> memo[n];</span><br><span class="line">    <span class="keyword">return</span> memo[n] = fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2-1-2-栈"><a href="#2-1-2-栈" class="headerlink" title="2.1.2 栈"></a>2.1.2 栈</h4><ul>
+<li>栈（stack）是支持 push 和 pop 两种操作的数据结构。push 是在栈的顶端放入一组数据的操作。反之，pop 是从其顶端取出一组数据的操作。因此，最后进入栈的一组数据可以最先被取出（Last In First Out, LIFO）</li>
+<li>移除最顶端的数据：stack::pop 访问最顶端的数据：stack::top</li>
+<li></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/听力训练（初期）Day-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/03/听力训练（初期）Day-7/" itemprop="url">听力训练（初期）Day 7</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-03T17:31:06+08:00">
+                2018-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TOEFL/" itemprop="url" rel="index">
+                    <span itemprop="name">TOEFL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/03/听力训练（初期）Day-7/" class="leancloud_visitors" data-flag-title="听力训练（初期）Day 7">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>##TPO 10 Conversation 1</p>
+<ol start="2">
+<li><p>Professor Johnson, there is something <strong>that’s been on</strong> my mind.</p>
+<p>杰森教授，我一直在想一件事。</p>
+<p>been on 这种老是听不出来</p>
+</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/03/听力训练（初期）Day-7/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/2018-8-3-总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/03/2018-8-3-总结/" itemprop="url">2018-8-3 总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-03T10:14:18+08:00">
+                2018-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/每日总结/" itemprop="url" rel="index">
+                    <span itemprop="name">每日总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/03/2018-8-3-总结/" class="leancloud_visitors" data-flag-title="2018-8-3 总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/03/2018-8-3-总结/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/02/LeetCode-832-Flipping-an-Image/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1352,479 +1928,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/15/阅读训练（初期）Day-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/15/阅读训练（初期）Day-4/" itemprop="url">阅读训练（初期）Day 4</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-15T16:35:07+08:00">
-                2018-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TOEFL/" itemprop="url" rel="index">
-                    <span itemprop="name">TOEFL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/07/15/阅读训练（初期）Day-4/" class="leancloud_visitors" data-flag-title="阅读训练（初期）Day 4">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="TPO-32"><a href="#TPO-32" class="headerlink" title="TPO 32"></a>TPO 32</h2><p>###Reading 1（Time Cost：18 + 8 min）</p>
-<p>【paragraph 3】If colonizers produce short-lived reproductive propagules, then they must produce very large numbers unless they have an efficient means of dispersal to suitable new habitats. Many plants depend on wind for dispersal and produce abundant quantities of small, relatively short-lived seeds to compensate for the fact that wind is not always a reliable means of reaching the appropriate type of habitat. Alternative strategies have evolved in some plants, such as those that produce fewer but larger seeds that are dispersed to suitable sites by birds or small mammals or those that produce long-lived seeds. Many forest plants seem to exhibit the latter adaptation, and viable seeds of pioneer species can be found in large numbers on some forest floors. For example, as many as 1,125 viable seeds per square meter were found in a 100-year-old Douglas fir/western hemlock forest in coastal British Columbia. Nearly all the seeds that had germinated from this seed bank were from pioneer species. The rapid colonization of such sites after disturbance is undoubtedly in part a reflection of the large seed bank on the forest floor.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/15/阅读训练（初期）Day-4/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/15/2018-7-15-总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/15/2018-7-15-总结/" itemprop="url">2018-7-15 总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-15T16:34:25+08:00">
-                2018-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/每日总结/" itemprop="url" rel="index">
-                    <span itemprop="name">每日总结</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/07/15/2018-7-15-总结/" class="leancloud_visitors" data-flag-title="2018-7-15 总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/15/2018-7-15-总结/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/听力训练（初期）Day-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/14/听力训练（初期）Day-3/" itemprop="url">听力训练（初期）Day 3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-14T22:25:24+08:00">
-                2018-07-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TOEFL/" itemprop="url" rel="index">
-                    <span itemprop="name">TOEFL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/07/14/听力训练（初期）Day-3/" class="leancloud_visitors" data-flag-title="听力训练（初期）Day 3">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="TPO-3-Conversation-1"><a href="#TPO-3-Conversation-1" class="headerlink" title="TPO 3 Conversation 1"></a>TPO 3 Conversation 1</h2><ol start="2">
-<li><p>Excuse me, I’m supposed to be having my physics class in the science building, but <strong>no one’s in the</strong> classroom.</p>
-<p>太快没听清</p>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/14/听力训练（初期）Day-3/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1875,7 +1978,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1886,7 +1989,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1897,7 +2000,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

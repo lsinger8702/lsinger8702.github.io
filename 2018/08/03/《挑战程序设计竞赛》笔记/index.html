@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/myicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myfavicon32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myfavicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/mylogo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="coding,notes," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="挑战程序设计竞赛第一章 准备篇1.5 以高效的算法为目标1.5.1 什么是复杂度 复杂度的估算是非常重要的，因为我们不可能把每个想到的算法都去实现一遍看看是否足够快 通常考虑复杂度与什么成正比，并称之为算法的阶  1.5.2 关于运行时间 程序的运行时间不光取决于复杂度，也会受诸如循环体的复杂性等因素的影响 但是，因此造成的差距多数情况下也就几十倍 因此要缩短程序的运行时间，主要应该从复杂度入手">
+<meta name="keywords" content="coding,notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《挑战程序设计竞赛》笔记">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/《挑战程序设计竞赛》笔记/index.html">
+<meta property="og:site_name" content="Lsinger&#39; s blog">
+<meta property="og:description" content="挑战程序设计竞赛第一章 准备篇1.5 以高效的算法为目标1.5.1 什么是复杂度 复杂度的估算是非常重要的，因为我们不可能把每个想到的算法都去实现一遍看看是否足够快 通常考虑复杂度与什么成正比，并称之为算法的阶  1.5.2 关于运行时间 程序的运行时间不光取决于复杂度，也会受诸如循环体的复杂性等因素的影响 但是，因此造成的差距多数情况下也就几十倍 因此要缩短程序的运行时间，主要应该从复杂度入手">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-03T15:08:12.170Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《挑战程序设计竞赛》笔记">
+<meta name="twitter:description" content="挑战程序设计竞赛第一章 准备篇1.5 以高效的算法为目标1.5.1 什么是复杂度 复杂度的估算是非常重要的，因为我们不可能把每个想到的算法都去实现一遍看看是否足够快 通常考虑复杂度与什么成正比，并称之为算法的阶  1.5.2 关于运行时间 程序的运行时间不光取决于复杂度，也会受诸如循环体的复杂性等因素的影响 但是，因此造成的差距多数情况下也就几十倍 因此要缩短程序的运行时间，主要应该从复杂度入手">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>《挑战程序设计竞赛》笔记 | Lsinger' s blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lsinger' s blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Lsinger' s blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/《挑战程序设计竞赛》笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《挑战程序设计竞赛》笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-03T20:33:13+08:00">
+                2018-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/coding/" itemprop="url" rel="index">
+                    <span itemprop="name">coding</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/03/《挑战程序设计竞赛》笔记/" class="leancloud_visitors" data-flag-title="《挑战程序设计竞赛》笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="挑战程序设计竞赛"><a href="#挑战程序设计竞赛" class="headerlink" title="挑战程序设计竞赛"></a>挑战程序设计竞赛</h1><h2 id="第一章-准备篇"><a href="#第一章-准备篇" class="headerlink" title="第一章 准备篇"></a>第一章 准备篇</h2><h3 id="1-5-以高效的算法为目标"><a href="#1-5-以高效的算法为目标" class="headerlink" title="1.5 以高效的算法为目标"></a>1.5 以高效的算法为目标</h3><h4 id="1-5-1-什么是复杂度"><a href="#1-5-1-什么是复杂度" class="headerlink" title="1.5.1 什么是复杂度"></a>1.5.1 什么是复杂度</h4><ol>
+<li>复杂度的估算是非常重要的，因为我们不可能把每个想到的算法都去实现一遍看看是否足够快</li>
+<li>通常考虑复杂度与什么成正比，并称之为算法的阶</li>
+</ol>
+<h4 id="1-5-2-关于运行时间"><a href="#1-5-2-关于运行时间" class="headerlink" title="1.5.2 关于运行时间"></a>1.5.2 关于运行时间</h4><ol>
+<li>程序的运行时间不光取决于复杂度，也会受诸如循环体的复杂性等因素的影响</li>
+<li>但是，因此造成的差距多数情况下也就几十倍</li>
+<li>因此要缩短程序的运行时间，主要应该从复杂度入手</li>
+</ol>
+<p><strong>例如，考虑 O($n^2$) 时间的算法，假设题目描述中的限制条件为 n ≤ 1000，将 n=1000 代入 $n^2$ 就得到了 1000000.在这个数值的基础上，我们就可以结合下表进行判断了</strong></p>
+<p>假设时间限制为 1s</p>
+<table>
+<thead>
+<tr>
+<th>1000000</th>
+<th>游刃有余</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10000000</td>
+<td>勉勉强强</td>
+</tr>
+<tr>
+<td>100000000</td>
+<td>很悬，仅限循环体非常简单的情况</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-6-轻松热身"><a href="#1-6-轻松热身" class="headerlink" title="1.6 轻松热身"></a>1.6 轻松热身</h3><h4 id="1-6-1-简单题"><a href="#1-6-1-简单题" class="headerlink" title="1.6.1 简单题"></a>1.6.1 简单题</h4><ol>
+<li>自己写的</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">100001</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; n)&#123;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k=j+<span class="number">1</span>; k&lt;n; k++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (a[i]&gt;=a[j] &amp;&amp; a[i]&gt;=a[k] &amp;&amp; a[i]&lt;(a[j]+a[k])) &#123;</span><br><span class="line">                        <span class="keyword">if</span> ((a[i]+a[j]+a[k])&gt;max) &#123;</span><br><span class="line">                            max = a[i]+a[j]+a[k];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (a[j]&gt;=a[i] &amp;&amp; a[j]&gt;=a[k] &amp;&amp; a[j]&lt;(a[i]+a[k])) &#123;</span><br><span class="line">                        <span class="keyword">if</span> ((a[i]+a[j]+a[k])&gt;max) &#123;</span><br><span class="line">                            max = a[i]+a[j]+a[k];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (a[k]&gt;=a[i] &amp;&amp; a[k]&gt;=a[j] &amp;&amp; a[k]&lt;(a[i]+a[j])) &#123;</span><br><span class="line">                        <span class="keyword">if</span> ((a[i]+a[j]+a[k])&gt;max) &#123;</span><br><span class="line">                            max = a[i]+a[j]+a[k];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; max &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>题解版</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">100001</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; n)&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k=j+<span class="number">1</span>; k&lt;n; k++) &#123;</span><br><span class="line">                    <span class="keyword">int</span> len = a[i] + a[j] + a[k];</span><br><span class="line">                    <span class="keyword">int</span> maxlen = max(a[i], max(a[j], a[k]));</span><br><span class="line">                    <span class="keyword">int</span> rest = len - maxlen;</span><br><span class="line">                    <span class="keyword">if</span> (rest &gt; maxlen) &#123;</span><br><span class="line">                        ans = max(ans, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-6-2-POJ-No-1852"><a href="#1-6-2-POJ-No-1852" class="headerlink" title="1.6.2 POJ No.1852"></a>1.6.2 POJ No.1852</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include &lt;algorithm&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int L, n, x[<span class="number">1000001</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; L) &#123;</span><br><span class="line">        int minDist = <span class="number">0</span>, maxDist = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (int i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">            cin &gt;&gt; x[i];</span><br><span class="line">            minDist = max(minDist, min(L-x[i], x[i]));</span><br><span class="line">            maxDist = max(maxDist, max(L-x[i], x[i]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; minDist &lt;&lt; <span class="string">' '</span> &lt;&lt; maxDist &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-6-3-增加难度的抽签问题"><a href="#1-6-3-增加难度的抽签问题" class="headerlink" title="1.6.3 增加难度的抽签问题"></a>1.6.3 增加难度的抽签问题</h4><p><strong>抽签问题</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m, k[<span class="number">51</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m &amp;&amp; n!=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; k[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>; a&lt;n; a++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">0</span>; b&lt;n; b++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> c=<span class="number">0</span>; c&lt;n; c++)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> d=<span class="number">0</span>; d&lt;n; d++)&#123;</span><br><span class="line">                        <span class="keyword">if</span>((k[a]+k[b]+k[c]+k[d])==m) &#123;</span><br><span class="line">                            flag = <span class="literal">true</span>;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(flag) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>起初</p>
+<p>​    检查是否有 d 使得 $k_a+k_b+k_c+k_d = m$</p>
+<p>通过对式子移项，得到</p>
+<p>​    检查是否有 d 使得 $k_d = m-k_a-k_b-k_c$</p>
+<h5 id="1-二分搜索与-O-n-3logn-的算法"><a href="#1-二分搜索与-O-n-3logn-的算法" class="headerlink" title="1. 二分搜索与 $O(n^3logn)$ 的算法"></a>1. 二分搜索与 $O(n^3logn)$ 的算法</h5><p>记所要查找的值 $m-k_a-k_b-k_c$ 为 x，预先把数组 k 排好序，然后看 k 中央的数字，可知</p>
+<ul>
+<li>如果它比 x 小，x 只可能在它的后面半段</li>
+<li>如果它比 x 大，x 只可能在它的前面半段</li>
+</ul>
+<p>这样反复操作不断缩小 x 的存在区间，最终可以确定 x 存在与否</p>
+<p>要判断长度为 n 的有序数组 k 中是否有包含 x，只要反复执行约 $log_2n$ 次就完成了，所以二分查找的复杂度为 O($logn$) ，我们称这种阶的运行时间为对数时间，即使 n 变得很大时，对数时间的算法依然非常快速</p>
+<p>将最内侧的循环换成二分搜索算法之后，就变成</p>
+<ul>
+<li>排序 $O(nlogn)$</li>
+<li>循环 $O(n^3logn)$</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (r - l &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> i = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (k[i] == x) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (k[i] &lt; x) l = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> r = i;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    sort(k, k+n);</span><br><span class="line">    <span class="keyword">bool</span> f = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>; a&lt;n; a++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">0</span>; b&lt;n; b++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> c=<span class="number">0</span>; c&lt;n; c++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(binary_search(m-k[a]-k[b]-k[c])) f = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(f) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-O-n-2logn-的算法"><a href="#2-O-n-2logn-的算法" class="headerlink" title="2. $O(n^2logn)$ 的算法"></a>2. $O(n^2logn)$ 的算法</h5><ul>
+<li><p>将代入 n=1000 $n^3logn$ 发现依然远远不够，还需要对算法进行进一步优化</p>
+</li>
+<li><p>刚刚我们只着眼于四层循环中最内层的循环，接下来我们着眼于内侧的两个循环</p>
+</li>
+<li><p>与刚才同样的思路，内侧的两个循环是在</p>
+<p>检查是否有 c 使得 $k_c + k_d = m - k_a - k_b$</p>
+</li>
+<li><p>这种情况不能直接使用二分搜索，但是可以预先枚举出 $k_c + k_d$ 所得的 $n^2$ 个数字并排好序，便可以用二分搜索了</p>
+</li>
+<li><p>该算法</p>
+<ul>
+<li>排序 $O(n^2logn)$ 时间</li>
+<li>循环 $O(n^2logn)$ 时间</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> kab[MAX_N*MAX_N];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n*n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (r - l &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> i = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (kab[i] == x) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (kab[i] &lt; x) l = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> r = i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//int count = 0;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>; a&lt;n; a++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">0</span>; b&lt;n; b++)&#123;</span><br><span class="line">            <span class="comment">//kab[count++] = k[a] + k[b];</span></span><br><span class="line">            kab[a*n+b] = k[a] + k[b];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    sort(kab, kab+n*n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> f=<span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> c=<span class="number">0</span>; c&lt;n; c++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> d=<span class="number">0</span>; d&lt;n; d++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(binary_search(m-k[c]-k[d])) f = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(f) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>抽签问题急需要二分搜索这一基础算法知识，也需要将四个数分成两两考虑的想象力</li>
+<li>从复杂度高的算法出发，不断降低复杂度直到满足问题需求的过程，也是设计算法时常会经历的一个过程</li>
+</ol>
+<h2 id="第二章-初出茅庐——初级篇"><a href="#第二章-初出茅庐——初级篇" class="headerlink" title="第二章 初出茅庐——初级篇"></a>第二章 初出茅庐——初级篇</h2><h3 id="2-1-最基础的“穷竭搜索”"><a href="#2-1-最基础的“穷竭搜索”" class="headerlink" title="2.1 最基础的“穷竭搜索”"></a>2.1 最基础的“穷竭搜索”</h3><p>穷竭搜索是将所有的可能性罗列出来，在其中寻找答案的方法。这里我们主要介绍深度优先搜索和广度优先搜索这两种方法</p>
+<h4 id="2-1-1-递归函数"><a href="#2-1-1-递归函数" class="headerlink" title="2.1.1 递归函数"></a>2.1.1 递归函数</h4><ul>
+<li><p>递归函数：在一个函数中再次调用该函数自身的行为叫做递归，这样的函数称为递归函数</p>
+</li>
+<li><p>例如编写一个计算阶乘的函数，可以用循环来实现，也可以写成递推式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fact</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> n*fact(n<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在编写一个递归函数时，函数的停止条件是必须存在的，如果不存在函数就会无限地递归下去</p>
+</li>
+<li><p>编写计算斐波那契数列的函数</p>
+<ul>
+<li>$a_0=0$</li>
+<li>$a_1=1 $</li>
+<li>$a_n = a_{n-1}+a_{n-2}(n&gt;1)$</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> fib(n<span class="number">-1</span>)+fib(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实际使用递归函数时，需要花费相当长的时间（会按照指数级别扩展开来）</p>
+</li>
+<li><p>因此可以在计算一次之后，用数列将结果存储起来，便可优化之后的计算。这种方法是处于记忆化搜索或者动态规划的想法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> memo[MAX_N + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">if</span>(memo[n] != <span class="number">0</span>) <span class="keyword">return</span> memo[n];</span><br><span class="line">    <span class="keyword">return</span> memo[n] = fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2-1-2-栈"><a href="#2-1-2-栈" class="headerlink" title="2.1.2 栈"></a>2.1.2 栈</h4><ul>
+<li>栈（stack）是支持 push 和 pop 两种操作的数据结构。push 是在栈的顶端放入一组数据的操作。反之，pop 是从其顶端取出一组数据的操作。因此，最后进入栈的一组数据可以最先被取出（Last In First Out, LIFO）</li>
+<li>移除最顶端的数据：stack::pop 访问最顶端的数据：stack::top</li>
+<li></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/coding/" rel="tag"># coding</a>
+          
+            <a href="/tags/notes/" rel="tag"># notes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/03/听力训练（初期）Day-7/" rel="next" title="听力训练（初期）Day 7">
+                <i class="fa fa-chevron-left"></i> 听力训练（初期）Day 7
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+      <div id="gitalk-container"></div>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+       <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lsinger</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#挑战程序设计竞赛"><span class="nav-number">1.</span> <span class="nav-text">挑战程序设计竞赛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-准备篇"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 准备篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-以高效的算法为目标"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.5 以高效的算法为目标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-1-什么是复杂度"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1.5.1 什么是复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-2-关于运行时间"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">1.5.2 关于运行时间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-轻松热身"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.6 轻松热身</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-1-简单题"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1.6.1 简单题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-2-POJ-No-1852"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">1.6.2 POJ No.1852</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-3-增加难度的抽签问题"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">1.6.3 增加难度的抽签问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-二分搜索与-O-n-3logn-的算法"><span class="nav-number">1.1.2.3.1.</span> <span class="nav-text">1. 二分搜索与 $O(n^3logn)$ 的算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-O-n-2logn-的算法"><span class="nav-number">1.1.2.3.2.</span> <span class="nav-text">2. $O(n^2logn)$ 的算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.1.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-初出茅庐——初级篇"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 初出茅庐——初级篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-最基础的“穷竭搜索”"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 最基础的“穷竭搜索”</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-递归函数"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">2.1.1 递归函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-栈"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2.1.2 栈</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lixinge</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+Views: <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+Visitors: <span id="busuanzi_value_site_uv"></span>
+</div>
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://github.com/lsinger8702">GitHub Pages</a></div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+      <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+      <script>
+        //去除尾部匹配正则数组的字符串
+        String.prototype.trimEnd = function(regStr)
+        {
+            var result = this;
+            if(regStr==undefined||regStr==null||regStr=="")
+            {
+                return result;
+            }
+            var array = regStr.split(',');
+
+            if(array.length > 0){
+
+                var c = array.shift();
+                var str= this;
+                var i = str.length;
+                var rg = new RegExp(c);
+                var matchArr = str.match(rg);
+
+                if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+                {
+                  var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                                            .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                                            .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                                            .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                                            .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                                            .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                                            .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                                            .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                  matchStr = matchStr + '$';
+                  result = str.replace(new RegExp(matchStr), "");
+                }
+
+                if(array.length > 0){
+                    return result.trimEnd(array.join())
+                }
+                else{
+                    return result;
+                }
+            }
+        };
+      </script>
+      <script type="text/javascript">
+        const gitalk = new Gitalk({
+          clientID: '4493cd737a3f27c6f3e5',
+          clientSecret: '7ce74023dbfac13c266a0b522fab2b6edf40e2eb',
+          repo: 'lsinger8702.github.io',
+          owner: 'lsinger8702',
+          admin: 'lsinger8702'.split(','),
+          pagerDirection: 'first',
+          // facebook-like distraction free mode
+          distractionFreeMode: false,
+          id: md5(location.href.trimEnd(''))
+        })
+        gitalk.render('gitalk-container')
+      </script>
+    
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("5O4LsA6MmcNTu3W3WEWLEPB3-gzGzoHsz", "2TMHki8qGaVrx2LyC0jTSupa");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
