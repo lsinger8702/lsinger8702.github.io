@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/myicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myfavicon32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myfavicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/mylogo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="notes,专业书籍,data science,scrapy," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Python 网络数据采集遇到的问题汇总 查看所有进程 ps aux |grep mysql*  查看 pymysql socket sudo mysqladmin variables | grep socket  卸载 mysql https://blog.csdn.net/u012721519/article/details/55002626  查找文件 ls $(brew –prefix m">
+<meta name="keywords" content="notes,专业书籍,data science,scrapy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Python 网络数据采集》">
+<meta property="og:url" content="http://yoursite.com/2018/10/29/《Python-网络数据采集》/index.html">
+<meta property="og:site_name" content="Lsinger&#39; s blog">
+<meta property="og:description" content="Python 网络数据采集遇到的问题汇总 查看所有进程 ps aux |grep mysql*  查看 pymysql socket sudo mysqladmin variables | grep socket  卸载 mysql https://blog.csdn.net/u012721519/article/details/55002626  查找文件 ls $(brew –prefix m">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-29T06:33:50.719Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Python 网络数据采集》">
+<meta name="twitter:description" content="Python 网络数据采集遇到的问题汇总 查看所有进程 ps aux |grep mysql*  查看 pymysql socket sudo mysqladmin variables | grep socket  卸载 mysql https://blog.csdn.net/u012721519/article/details/55002626  查找文件 ls $(brew –prefix m">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>《Python 网络数据采集》 | Lsinger' s blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lsinger' s blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Lsinger' s blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/《Python-网络数据采集》/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Python 网络数据采集》</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-29T14:31:26+08:00">
+                2018-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记（专业书籍）/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记（专业书籍）</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/29/《Python-网络数据采集》/" class="leancloud_visitors" data-flag-title="《Python 网络数据采集》">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Python-网络数据采集"><a href="#Python-网络数据采集" class="headerlink" title="Python 网络数据采集"></a>Python 网络数据采集</h1><h2 id="遇到的问题汇总"><a href="#遇到的问题汇总" class="headerlink" title="遇到的问题汇总"></a>遇到的问题汇总</h2><ol>
+<li><p>查看所有进程</p>
+<p>ps aux |grep mysql*</p>
+</li>
+<li><p>查看 pymysql socket</p>
+<p>sudo mysqladmin variables | grep socket</p>
+</li>
+<li><p>卸载 mysql</p>
+<p><a href="https://blog.csdn.net/u012721519/article/details/55002626" target="_blank" rel="noopener">https://blog.csdn.net/u012721519/article/details/55002626</a></p>
+</li>
+<li><p>查找文件</p>
+<p>ls $(brew –prefix mysql)/support-files/my-*</p>
+</li>
+<li><p>[Errno 54] Connection reset by peer</p>
+<p>http -&gt; https</p>
+</li>
+<li><p>Navicat </p>
+<p>Failed to Connect to MySQL at ~:3306 with user root<br>Authentication plugin ‘caching_sha2_password’ cannot be loaded: dlopen(/usr/local/mysql/lib/plugin/caching_sha2_password.so, 2): image not found </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">USE mysql</span><br><span class="line">SELECT * FROM user;</span><br><span class="line">UPDATE user SET plugin = &apos;mysql_native_password&apos; WHERE User = &apos;root&apos;;</span><br></pre></td></tr></table></figure>
+<p>mysql.server restart</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE pages (id INT NOT NULL AUTO_INCREMENT, url VARCHAR(255) NOT NULL, created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (id));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mysql：终端出现  ‘&gt; </p>
+<p>漏了一个 ‘</p>
+</li>
+<li><p>postfix mac configuring </p>
+<p><a href="https://www.garron.me/en/mac/postfix-relay-gmail-mac-os-x-local-smtp.html" target="_blank" rel="noopener">https://www.garron.me/en/mac/postfix-relay-gmail-mac-os-x-local-smtp.html</a></p>
+</li>
+<li><p>postfix: error: to submit mail, use the Postfix sendmail command</p>
+<p>postfix: fatal: the postfix command is reserved for the superuser</p>
+<p>sudo postfix start</p>
+</li>
+<li><p>发送成功 (221, b’Bye’)</p>
+</li>
+<li><p>失败(221, b’2.0.0 Bye’)</p>
+</li>
+<li><p>wordObj = BeautifulSoup(xml_content.decode(‘utf-8’), ‘lxml’)</p>
+<p>print(wordObj)</p>
+<p>textStrings = wordObj.findAll(“w:t”)</p>
+<p>textStrings 为空</p>
+<p>wordObj = BeautifulSoup(xml_content.decode(‘utf-8’), ‘xml’)</p>
+</li>
+<li></li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/anaconda3/lib/python3.6/site-packages/selenium/webdriver/phantomjs/webdriver.py:49: UserWarning: Selenium support for PhantomJS has been deprecated, please use headless versions of Chrome or Firefox instead</span><br><span class="line">  warnings.warn(&apos;Selenium support for PhantomJS has been deprecated, please use headless &apos;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>使用 headless chrome 和 selenium</p>
+<ol>
+<li><p>安装 安装 Chrome Canary</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install Caskroom/versions/google-chrome-canary</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl: (6) Could not resolve host: dl.google.com</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置terminal的http代理解决：</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:1087;<span class="built_in">export</span> https_proxy=http://127.0.0.1:1087;</span><br></pre></td></tr></table></figure>
+<p>参考：<a href="https://github.com/mrdulin/blog/issues/18" target="_blank" rel="noopener">https://github.com/mrdulin/blog/issues/18</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.zshrc  </span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br><span class="line">curl ip.cn</span><br><span class="line">curl cip.cc</span><br><span class="line">proxy</span><br><span class="line">unproxy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载 chrome driver</p>
+<p><a href="https://chromedriver.storage.googleapis.com/index.html?path=2.42/" target="_blank" rel="noopener">https://chromedriver.storage.googleapis.com/index.html?path=2.42/</a></p>
+</li>
+<li><p>使用方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver = webdriver.Chrome(<span class="string">'/chromedriverPath/chromedriver'</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/notes/" rel="tag"># notes</a>
+          
+            <a href="/tags/专业书籍/" rel="tag"># 专业书籍</a>
+          
+            <a href="/tags/data-science/" rel="tag"># data science</a>
+          
+            <a href="/tags/scrapy/" rel="tag"># scrapy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/29/LeetCode-List系列/" rel="next" title="LeetCode List 系列">
+                <i class="fa fa-chevron-left"></i> LeetCode List 系列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/29/一些笔试题/" rel="prev" title="一些笔试题">
+                一些笔试题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+      <div id="gitalk-container"></div>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+       <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lsinger</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-网络数据采集"><span class="nav-number">1.</span> <span class="nav-text">Python 网络数据采集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的问题汇总"><span class="nav-number">1.1.</span> <span class="nav-text">遇到的问题汇总</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lixinge</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+Views: <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+Visitors: <span id="busuanzi_value_site_uv"></span>
+</div>
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://github.com/lsinger8702">GitHub Pages</a></div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+      <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+      <script>
+        //去除尾部匹配正则数组的字符串
+        String.prototype.trimEnd = function(regStr)
+        {
+            var result = this;
+            if(regStr==undefined||regStr==null||regStr=="")
+            {
+                return result;
+            }
+            var array = regStr.split(',');
+
+            if(array.length > 0){
+
+                var c = array.shift();
+                var str= this;
+                var i = str.length;
+                var rg = new RegExp(c);
+                var matchArr = str.match(rg);
+
+                if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+                {
+                  var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                                            .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                                            .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                                            .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                                            .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                                            .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                                            .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                                            .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                  matchStr = matchStr + '$';
+                  result = str.replace(new RegExp(matchStr), "");
+                }
+
+                if(array.length > 0){
+                    return result.trimEnd(array.join())
+                }
+                else{
+                    return result;
+                }
+            }
+        };
+      </script>
+      <script type="text/javascript">
+        const gitalk = new Gitalk({
+          clientID: '4493cd737a3f27c6f3e5',
+          clientSecret: '7ce74023dbfac13c266a0b522fab2b6edf40e2eb',
+          repo: 'lsinger8702.github.io',
+          owner: 'lsinger8702',
+          admin: 'lsinger8702'.split(','),
+          pagerDirection: 'first',
+          // facebook-like distraction free mode
+          distractionFreeMode: false,
+          id: md5(location.href.trimEnd(''))
+        })
+        gitalk.render('gitalk-container')
+      </script>
+    
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("5O4LsA6MmcNTu3W3WEWLEPB3-gzGzoHsz", "2TMHki8qGaVrx2LyC0jTSupa");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

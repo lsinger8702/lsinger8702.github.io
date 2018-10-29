@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/myicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myfavicon32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myfavicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/mylogo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="notes,专业书籍,大数据,云计算,Spark," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Spark 快速大数据分析Problem12lsinger:bin lixinge$ ./pysparkException in thread &quot;main&quot; java.lang.UnsupportedClassVersionError: org/apache/spark/launcher/Main : Unsupported major.minor version 52.0 Java 版本过低，只">
+<meta name="keywords" content="notes,专业书籍,大数据,云计算,Spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Spark快速大数据分析》">
+<meta property="og:url" content="http://yoursite.com/2018/10/29/《Spark快速大数据分析》/index.html">
+<meta property="og:site_name" content="Lsinger&#39; s blog">
+<meta property="og:description" content="Spark 快速大数据分析Problem12lsinger:bin lixinge$ ./pysparkException in thread &quot;main&quot; java.lang.UnsupportedClassVersionError: org/apache/spark/launcher/Main : Unsupported major.minor version 52.0 Java 版本过低，只">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-29T06:25:57.786Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Spark快速大数据分析》">
+<meta name="twitter:description" content="Spark 快速大数据分析Problem12lsinger:bin lixinge$ ./pysparkException in thread &quot;main&quot; java.lang.UnsupportedClassVersionError: org/apache/spark/launcher/Main : Unsupported major.minor version 52.0 Java 版本过低，只">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>《Spark快速大数据分析》 | Lsinger' s blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lsinger' s blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Lsinger' s blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/《Spark快速大数据分析》/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Spark快速大数据分析》</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-29T14:06:41+08:00">
+                2018-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记（专业书籍）/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记（专业书籍）</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/29/《Spark快速大数据分析》/" class="leancloud_visitors" data-flag-title="《Spark快速大数据分析》">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Spark-快速大数据分析"><a href="#Spark-快速大数据分析" class="headerlink" title="Spark 快速大数据分析"></a>Spark 快速大数据分析</h2><h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lsinger:bin lixinge$ ./pyspark</span><br><span class="line">Exception <span class="keyword">in</span> thread <span class="string">"main"</span> java.lang.UnsupportedClassVersionError: org/apache/spark/launcher/Main : Unsupported major.minor version 52.0</span><br></pre></td></tr></table></figure>
+<p>Java 版本过低，只支持 Java 8</p>
+<p>管理工具 jenv</p>
+<a id="more"></a>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>好用，由于高级 API 剥离了对集群本身的关注，可以专注于你所要做的计算本身</li>
+<li>很快，支持交互式使用和复杂算法</li>
+<li>是一个通用引擎，可以用它来完成各种各样的运算，包括 SQL 查询，文本处理，机器学习等</li>
+</ol>
+<h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><ol>
+<li>用来实现快速而通用的集群计算平台</li>
+<li>扩展了广泛使用的 MR 计算模型，而且高效地支持更多计算模式，包括交互式查询和流处理</li>
+<li>速度快：因此可以进行交互式的数据操作；能够在内存中进行计算，因而更快</li>
+<li>作为一个统一的框架支持批处理、迭代算法、交互式查询、流处理，使我们可以简单而低耗地把各种处理流程整合在一起，大大减轻了原先要对各种平台分别管理的负担</li>
+<li>接口非常丰富，除了提供基于 Python、Java、Scala 和 SQL 的简单易用的 API 以及内建的丰富的程序库以外，还能和其它大数据工具密切配合使用</li>
+<li>Spark 可以通过 Python、Java、Scala 或者 R 来使用</li>
+<li>Spark 本身是用 Scala 写的，运行在 Java 虚拟机（JVM）上</li>
+</ol>
+<h3 id="大一统的软件栈"><a href="#大一统的软件栈" class="headerlink" title="大一统的软件栈"></a>大一统的软件栈</h3><ol>
+<li><strong>Spark 的核心是一个对由很多计算任务组成的、运行在多个工作机器或者是一个计算集群上的应用进行调度、分发以及监控的计算引擎</strong></li>
+<li>各组件密切结合的设计原理<ol>
+<li>优点<ol>
+<li>软件栈中所有的程序库和高级组件都可以从下层的改进中获益</li>
+<li>运行整个软件栈的代价小</li>
+<li>能够构建出无缝整合不同处理模型的应用</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h4><ol>
+<li>实现了 Spark 的基本功能，包括任务调度、内存管理、错误修复、与存储系统 交互等模块</li>
+<li><strong>对弹性分布式数据集（RDD）：是 Spark 主要的编程抽象，表示分布在多个计算节点上可以进行并行操作的元素集合</strong></li>
+</ol>
+<h4 id="Spark-SQL"><a href="#Spark-SQL" class="headerlink" title="Spark SQL"></a>Spark SQL</h4><ol>
+<li>用来操作结构化数据的程序包，可以用 SQL 或者 HQL 来查询数据</li>
+<li>支持开发者将 SQL 和传统的 RDD 编程的数据操作方式结合</li>
+</ol>
+<h4 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h4><ol>
+<li>Spark 提供的对实时数据进行流式计算的组件</li>
+<li>支持与 Spark Core 同级别的容错性、吞吐量以及可伸缩性</li>
+</ol>
+<h4 id="MLlib"><a href="#MLlib" class="headerlink" title="MLlib"></a>MLlib</h4><ol>
+<li>提供常见的机器学习功能的程序库</li>
+</ol>
+<h4 id="GraphX"><a href="#GraphX" class="headerlink" title="GraphX"></a>GraphX</h4><ol>
+<li>用来操作图的数据库，可以进行并行的图计算</li>
+</ol>
+<h4 id="集群管理器"><a href="#集群管理器" class="headerlink" title="集群管理器"></a>集群管理器</h4><ol>
+<li>就底层而言，Spark 可以设计为高效地在一个计算节点到数千个计算节点之间伸缩计算</li>
+</ol>
+<h3 id="简史"><a href="#简史" class="headerlink" title="简史"></a>简史</h3><ol>
+<li>MR 在迭代计算和交互计算的任务上表现的效率低下，因此，Spark 一开始就是为交互式查询和迭代算法设计的，同时还支持内存式存储和高效的容错机制</li>
+</ol>
+<h3 id="存储层次"><a href="#存储层次" class="headerlink" title="存储层次"></a>存储层次</h3><ol>
+<li>可以将任何 Hadoop 分布式文件系统（HDFS）上的文件读取为分布式数据集，也可以支持其他支持 Hadoop接口的系统</li>
+</ol>
+<h3 id="RDD"><a href="#RDD" class="headerlink" title="RDD"></a>RDD</h3><ol>
+<li><p><strong>在 Spark 中，我们通过对分布式数据集的操作来表达我们的计算意图，这些计算会自动地在集群上并行进行，这样的数据集称为弹性分布式数据集，简称 RDD</strong></p>
+</li>
+<li><p>RDD 是 Spark 对分布式数据和计算的基本抽象；在 Spark 中，<strong>对数据的所有操作不外乎创建 RDD、转化已有 RDD 以及调用 RDD 操作进行求值</strong></p>
+</li>
+<li><p>RDD 就是不可变的分布式对象集合，可以包含 Python、Java、Scala 中任意类型的对象，甚至可以包含用户自定义的对象</p>
+</li>
+<li><p><strong>每个 RDD 都被分为多个分区，这些分区运行在集群的不同节点上</strong></p>
+</li>
+<li><p>用户创建 RDD</p>
+<ol>
+<li>读取一个外部数据集</li>
+<li>在驱动器程序里分发驱动器程序中的对象集合</li>
+</ol>
+</li>
+<li><p><strong>RDD 支持两种类型的操作</strong></p>
+<ol>
+<li><p>转化操作</p>
+<p>由一个 RDD 生成一个新的 RDD</p>
+</li>
+<li><p>行动操作</p>
+<p>会对 RDD 计算出一个结果，并把结果返回到驱动器程序中，或吧结果存储到外部存储系统（如 HDFS）中</p>
+</li>
+<li><p>区别</p>
+<p><strong>Spark 计算 RDD 的方式不同：定义新的 RDD 时，Spark 只会惰性计算这些 RDD，只有第一次在一个行动操作中用到时，才会真正计算</strong></p>
+</li>
+<li><p>默认情况下，Spark 的 RDD 会在你每次对它们进行行动操作时重新计算</p>
+</li>
+<li><p>如果想在多个行动中重用同一个 RDD，可以使用 <strong>RDD.persist()</strong> 让 Spark 把这个 RDD 缓存下来</p>
+</li>
+<li><p><strong>在任何时候都能够进行重算是我们把 RDD 描述为 “弹性” 的原因</strong>。当保存 RDD 数据的一台机器失败时，Spark 还可以使用这种特性来重算丢掉的分区，这一过程对用户是完全透明的</p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="创建-RDD"><a href="#创建-RDD" class="headerlink" title="创建 RDD"></a>创建 RDD</h4><ol>
+<li>两种方式<ol>
+<li>读取外部数据集</li>
+<li>在驱动器程序中对一个集合进行并行化</li>
+</ol>
+</li>
+<li>RDD 一旦创建就无法修改</li>
+</ol>
+<h4 id="RDD-操作"><a href="#RDD-操作" class="headerlink" title="RDD 操作"></a>RDD 操作</h4><ol>
+<li><p>支持两种操作</p>
+<ol>
+<li><p>转化操作</p>
+<p>返回一个新的 RDD 的操作，比如 map() 和 filter()</p>
+<p>可以操作任何数量的输入 RDD</p>
+</li>
+<li><p>行动操作</p>
+<p>向驱动器程序返回结果或把结果写入外部系统的操作，会触发实际的计算，比如 count() 和 first()</p>
+<p>每调用一个心得行动操作时，整个 RDD 都会从头开始计算，要避免这种低效行为，用户可以将中间结果持久化 persist()</p>
+</li>
+</ol>
+</li>
+<li><p><strong>判断方法</strong></p>
+<ol>
+<li>查看一个函数的返回类型<ol>
+<li>转化操作：返回 RDD</li>
+<li>行动操作：返回其他的数据类型</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>谱系图</p>
+<ol>
+<li>通过转化操作从已有 RDD 中派生出新的 RDD，<strong>Spark 会使用谱系图来记录这些不同 RDD 之间的依赖关系</strong></li>
+<li><strong>Spark 根据这些信息来按需计算每个 RDD</strong></li>
+<li>也可以依靠谱系图在持久化的 RDD 丢失部分数据时恢复所丢失的数据</li>
+</ol>
+</li>
+<li><p>take 函数获取 RDD 中的少量元素；collect() 获取整个 RDD 中的数据</p>
+</li>
+<li><p>惰性求值</p>
+<ol>
+<li>意味着当我们对 RDD 调用转化操作时，操作不会立即执行，而是在内部记录下索要执行的操作的相关信息</li>
+<li>我们应该把 RDD 看作是我们通过转化操作构建出来的，记录如何计算数据的指令列表，把数据读取到 RDD 的操作也是惰性的</li>
+<li><strong>Spark 使用惰性求值，就可以把这些操作合并到一起来减少计算数据的步骤</strong></li>
+</ol>
+</li>
+</ol>
+<h4 id="向-Spark-传递函数"><a href="#向-Spark-传递函数" class="headerlink" title="向 Spark 传递函数"></a>向 Spark 传递函数</h4><ol>
+<li>Spark 的大部分转化操作和一部分行动操作，都需要依赖用户传递的函数来计算，在我们支持的三种语言中，向 Spark 传递函数的方式略有差别</li>
+<li>Python  三种方式<ol>
+<li>lambda 表达式</li>
+<li>顶层函数</li>
+<li>定义的局部函数</li>
+</ol>
+</li>
+<li>Python 会在不经意间把函数所在的对象也序列化传出去，所以可以把所需字段从对象中拿出来放到一个局部变量中，然后传递这个局部变量</li>
+</ol>
+<h4 id="常见的转化操作和行动操作"><a href="#常见的转化操作和行动操作" class="headerlink" title="常见的转化操作和行动操作"></a>常见的转化操作和行动操作</h4><h5 id="基本-RDD"><a href="#基本-RDD" class="headerlink" title="基本 RDD"></a>基本 RDD</h5><ol>
+<li>针对各个元素的转化操作<ol>
+<li>map(): 接收一个函数，把这个函数用于 RDD 中的每个元素，将函数的返回结果作为结果 RDD 中对应元素的值；返回值类型不需要和输入类型一样</li>
+<li>filter(): 接受一个函数，并将 RDD 中满足该函数的元素放入新的 RDD 中返回</li>
+<li>flatmap(): 对每个输入元素生成多个输出元素，得到一个包含各个迭代器可以访问的所有元素的 RDD （注意 map 和 flatmap 的区别）</li>
+</ol>
+</li>
+<li>伪集合操作<ol>
+<li>RDD 支持许多数学上的集合操作，要求操作的 RDD 是相同数据类型的</li>
+<li>distinct()、substract() 和 intersection() 通过网络混洗 (shuffle) 数据来发现共有的元素，性能比较差</li>
+<li>union()</li>
+<li>cartesian(): 开销很大</li>
+</ol>
+</li>
+<li>行动操作<ol>
+<li>reduce(): 接受一个函数作为参数，这个函数操作两个相同元素类型的 RDD 数据并返回一个同样类型的新元素</li>
+<li>fold(): 类似 reduce()</li>
+<li>aggregate(): 返回值类型可以与所操作的 RDD 类型不同，需要提供我们期待返回的类型的初始值</li>
+<li>RDD 的一些行动操作会以集合或者值的形式将 RDD 的部分或全部数据返回驱动器程序中</li>
+<li>collect(): 把数据返回驱动器程序中最简单、最常见的操作，会将整个 RDD 的内容返回；要求所有数据必须能一同放入单台及其的内存中</li>
+<li>take(n): 返回 RDD 中的 n 个元素，并且尝试只访问尽量少的分区，因此该操作会得到一个不均衡的集合，返回元素的顺序可能与预期的不一样</li>
+<li>top(): 如果为数据定义了顺序，可以使用 top() 获取前几个元素</li>
+<li>takeSample(withReplacement, num, seed): 对数据进行采样</li>
+<li>foreach(): 对 RDD 中的每个元素进行操作，但是不需要把 RDD 返回本地</li>
+</ol>
+</li>
+</ol>
+<h5 id="在不同-RDD-类型间转换"><a href="#在不同-RDD-类型间转换" class="headerlink" title="在不同 RDD 类型间转换"></a>在不同 RDD 类型间转换</h5><ol>
+<li>在 Python 中，所有的函数都实现在基本的 RDD 类中，但如果操作对应的 RDD 数据类型不正确，就会导致运行时错误</li>
+</ol>
+<h4 id="持久化（缓存）"><a href="#持久化（缓存）" class="headerlink" title="持久化（缓存）"></a>持久化（缓存）</h4><ol>
+<li>Spark RDD 是惰性求值的，而有时我们希望多次重用同一个 RDD，如果简单地对 RDD 调用行动操作，Spark 每次会重算 RDD 以及它的所有依赖</li>
+<li>在迭代算法中消耗格外大，因为迭代算法常常会多次使用同一组数据</li>
+<li>为了避免多次计算同一个 RDD，可以让 Spark 对数据进行持久化</li>
+<li>Spark 持久化存储一个 RDD 时，计算出 RDD 的节点会分别保存它们所求出的分区数据</li>
+<li>如果一个有持久化数据的节点发生故障，Spark 会在需要用到缓存的数据时重算丢失的数据分区；也可以把数据备份到多个节点上，避免节点故障拖累执行速度</li>
+<li>处于不同的目的，可以为 RDD 选择不同的持久化级别</li>
+<li>在 Python 中，我们会始终序列化要持久化存储的数据，所以持久化级别默认值就是以序列化后的对象存储在 JVM 堆空间中</li>
+<li>在行动操作前就调用 persist() 方法，persist() 调用本身不会触发强制求值</li>
+<li>如果要缓存的数据太多，内存中放不下，Spark 会自动利用最近最少使用（LRU）的缓存策略把最老的分区从内存中移除</li>
+<li>unpersist(): 手动把持久化的 RDD 从缓存中移除</li>
+</ol>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><h4 id="驱动器程序"><a href="#驱动器程序" class="headerlink" title="驱动器程序"></a>驱动器程序</h4><ol>
+<li>从上层来看，每个 Spark 应用都由一个驱动器程序来发起集群上的各种并行操作</li>
+<li>驱动器程序包含应用的 main 函数，并且定义了集群上的分布式数据集，还对这些分布式数据集应用了相关操作</li>
+<li>实际的驱动器程序就是 Spark shell 本身</li>
+<li>要执行这些操作，驱动器程序一般要管理多个执行器节点，不同的节点执行任务的不同部分</li>
+</ol>
+<h4 id="SparkContext"><a href="#SparkContext" class="headerlink" title="SparkContext"></a>SparkContext</h4><ol>
+<li><strong>驱动器程序通过一个 SparkContext 对象来访问 Spark，这个对象代表对计算集群的一个连接</strong></li>
+<li>shell 启动时就已经创建了一个 SparkContext 对象，是一个交 sc 的变量</li>
+<li><strong>一旦有了 SparkContext 就可以用它来创建 RDD</strong>，如我们用 <code>sc.textFile()</code> 来创建一个代表文件中各行文本的 RDD</li>
+<li>创建 SparkContext 的最基本的方法<ol>
+<li>集群 URL：告诉 Spark 如何连接到集群上</li>
+<li>应用名：当连接到一个集群时，这个值可以帮助我们在集群管理器的用户界面中找到我的应用</li>
+</ol>
+</li>
+</ol>
+<h3 id="键值对操作"><a href="#键值对操作" class="headerlink" title="键值对操作"></a>键值对操作</h3><h4 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h4><ol>
+<li>pair RDD：包含键值对类型的 RDD，提供了并行操作各个键或跨节点重新进行数据分组的操作接口</li>
+</ol>
+<h4 id="创建-Pair-RDD"><a href="#创建-Pair-RDD" class="headerlink" title="创建 Pair RDD"></a>创建 Pair RDD</h4><ol>
+<li>很多存储键值对的数据格式会在读取时直接返回由其键值对数据组成的 pair RDD</li>
+<li>当需要把一个普通 RDD 转化为 pair RDD 时，可以调用 map() 函数来实现，传递的函数需要返回键值对</li>
+</ol>
+<h4 id="Pair-RDD-的转换操作"><a href="#Pair-RDD-的转换操作" class="headerlink" title="Pair RDD 的转换操作"></a>Pair RDD 的转换操作</h4><ol>
+<li>可以使用所有标准 RDD 上的可用的转化操作，传递函数的规则也适用于 pair RDD</li>
+<li>mapValues(): 类似于 map(case (x, y): (x, func(y)))</li>
+</ol>
+<h5 id="聚合操作"><a href="#聚合操作" class="headerlink" title="聚合操作"></a>聚合操作</h5><ol>
+<li><p>Spark 有一组可以组合具有相同键的值的操作，这些操作返回 RDD，因此它们是转化操作不是行动操作</p>
+</li>
+<li><p>reduceByKey(): 会为数据集中的每个键进行并行的归约操作，每个归约操作会将键相同的值合并起来</p>
+</li>
+<li><p>foldByKey(): 与 fold() 类似</p>
+</li>
+<li><p>countByValue()</p>
+</li>
+<li><p>combineByKey(): 最为常用的基于键进行聚合的函数。和 aggregate() 一样，它可以让用户返回与输入数据的类型不同的返回值</p>
+<p>会遍历分区中的每个元素，</p>
+<p>每个元素的键要么还没遇到过，combineByKey() 会使用一个叫做 createCombiner()</p>
+<p> 的函数来创建那个键对应的累加器的初始值。这个个过程会在每个分区中第一次出现各个键的时候发生</p>
+<p>要么和之前的某个元素的键相同，那么它会使用 mergeValue() 方法将该键的累加器对应的当前值与这个新值合并</p>
+<p>如果两个或者多个分区都有对应同一个键的累加器，那么需要使用用户提供的 mergeCombiners() 方法将各个分区的结果进行合并</p>
+</li>
+</ol>
+<h6 id="并行度调优"><a href="#并行度调优" class="headerlink" title="并行度调优"></a>并行度调优</h6><ol>
+<li>每个 RDD 都有固定数目的分区，分区数决定了在 RDD 上执行操作时的并行度</li>
+<li>本章讨论的大多数操作符都能接受第二个参数，用来指定分组或聚合结果的 RDD 的分区数</li>
+<li>repartipation() / coalesce(): 把数据通过网络进行混洗，并创建出新的分区集合，代价大</li>
+<li>getNumPartitions(): 查看 RDD 的分区数</li>
+</ol>
+<h5 id="数据分组"><a href="#数据分组" class="headerlink" title="数据分组"></a>数据分组</h5><ol>
+<li>groupByKey(): 可以用于成对或者未成对的数据上，也可以根据除键相同以外的条件进行分组。他可以接收一个函数，对源 RDD 中的每个元素使用该函数，将返回结果作为键再进行分组</li>
+<li>cogroup(): 对多个共享一个键的 RDD 进行分组</li>
+</ol>
+<h5 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h5><ol>
+<li>方式：右外连接，左外连接，交叉连接，内连接</li>
+<li>join(): 表示普通的内连接，只有在两个 pair RDD 中都存在的键才叫输出</li>
+<li>leftOuterJoin(other)：产生的 pair RDD中，源 RDD 的每一个键都有对应的记录</li>
+<li>rightOuterJoin(other)：产生的 pair RDD中，第二个 RDD 的每一个键都有对应的记录</li>
+</ol>
+<h5 id="数据排序"><a href="#数据排序" class="headerlink" title="数据排序"></a>数据排序</h5><ol>
+<li>sortByKey(): 接收 ascending 参数（true or false），还可以自定义比较函数</li>
+</ol>
+<h4 id="Pair-RDD-的行动操作"><a href="#Pair-RDD-的行动操作" class="headerlink" title="Pair RDD  的行动操作"></a>Pair RDD  的行动操作</h4><ol>
+<li>所有基础 RDD 支持的传统行动操作也可以在 pair RDD 上使用</li>
+<li>countByKey(): 对每个键对应的元素个数计数</li>
+<li>collectAsMap(): 将结果以映射表的形式返回，以便查询</li>
+<li>lookup(key): 返回给定键对应的所有值</li>
+</ol>
+<h4 id="数据分区（进阶）"><a href="#数据分区（进阶）" class="headerlink" title="**数据分区（进阶）"></a>**数据分区（进阶）</h4><ol>
+<li>Spark 特性：对数据集在节点间的分区进行控制</li>
+<li>在分布式程序中，通信的开销是很大的，因此控制数据分布以获得最少的网络传输可以极大地提升整体性能</li>
+<li>Spark 可以通过控制 RDD 分区方式来减少通信开销</li>
+<li>默认情况下，连接操作会将两个数据集中<strong>所有键的哈希值都求出来，将该哈希值相同的记录通过网络传到同一台机器上</strong>，然后在那台机器上对所有键相同的记录进行连接操作</li>
+<li>partitionBy(): 转化操作，将表转化为哈希分区，注意要对创建出的新 RDD 进行持久化</li>
+</ol>
+<h5 id="获取-RDD-的分区方式"><a href="#获取-RDD-的分区方式" class="headerlink" title="获取 RDD 的分区方式"></a>获取 RDD 的分区方式</h5><ol>
+<li>在 Scala 和 Java 中，可以使用 RDD 的 partitioner 的属性来获取 RDD 的分区方式</li>
+</ol>
+<h5 id="从分区中获益的操作"><a href="#从分区中获益的操作" class="headerlink" title="从分区中获益的操作"></a>从分区中获益的操作</h5><ol>
+<li><p>引入了将数据根据键跨节点进行混洗过程的操作都从数据分区中获益</p>
+<p>cogroup(), groupwith(), join(), leftOuterJoin(), rightOuterJoin(), groupByKey(), reduceByKey(), combineByKey(), lookup()</p>
+</li>
+</ol>
+<h5 id="影响分区方式的操作"><a href="#影响分区方式的操作" class="headerlink" title="影响分区方式的操作"></a>影响分区方式的操作</h5><ol>
+<li><p>会未生成的结果 RDD 设好分区的操作</p>
+<p>cogroup(), groupwith(), join(), leftOuterJoin(), rightOuterJoin(), groupByKey(), reduceByKey(), combineByKey(), partitionBy(), sort(), mapValues()（如果父分区有分区方式的话）, flatMapValues()（如果父分区有分区方式的话）,filter()（如果父分区有分区方式的话）</p>
+</li>
+<li><p>对于二元操作，输出数据的分区方式取决于父 RDD 的分区方式；如果两个 父 RDD 都设置过分区方式，那么结果 RDD 会采用第一个父 RDD 的分区方式</p>
+</li>
+</ol>
+<h5 id="自定义分区方式"><a href="#自定义分区方式" class="headerlink" title="自定义分区方式"></a>自定义分区方式</h5><ol>
+<li><p>Spark 提供 HashPartitioner 与 RangePartitioner，还允许用户通过自定义的 Partitioner 对象来控制 RDD 的分区方式</p>
+</li>
+<li><p>在 Python 中，不需要扩展 Partitioner 类，只需要把一个特定的哈希函数作为一个额外的参数传给 RDD.PartitionBy() 函数</p>
+<p>如果想要对多个 RDD 使用同样的分区方式，就应该使用同一个函数对象，比如一个全局函数，而不是为每个 RDD 创建一个新的函数对象</p>
+</li>
+</ol>
+<h3 id="数据读取与保存"><a href="#数据读取与保存" class="headerlink" title="数据读取与保存"></a>数据读取与保存</h3><h4 id="动机-1"><a href="#动机-1" class="headerlink" title="动机"></a>动机</h4><ol>
+<li><p>数据量可能大到无法放到一台机器中</p>
+</li>
+<li><p>Spark 支持很多种输入输出源</p>
+<p>可以通过 Hadoop MapReduce 所以使用的 InputFormat 和 OutputFormat 接口访问数据，而大部分常见的文件格式与存储系统都支持这种接口</p>
+</li>
+<li><p>三类常见的数据源</p>
+<ol>
+<li><p>文件格式与文件系统</p>
+<p>对于存储在本地文件系统或分布式文件系统（比如 NFS、HDFS、Amazon S3 等）中的数据，可以访问多种不同的文件格式，包括 文本文件、JSON、SequenceFile 以及 Protocol buffer</p>
+</li>
+<li><p>Spark SQL 中的结构化数据</p>
+<p>针对包括 JSON 和 Apache Hive 在内的结构化数据源，提供了一套更加简洁高效的 API</p>
+</li>
+<li><p>数据库与键值存储</p>
+<p>概述 Spark 自带的库和一些第三方库，它们可以用来连接 Cassandra、HBase、Elasticsearch 以及 JDBC 源</p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h4><ol>
+<li>Spark 会根据文件扩展名选择对应的处理方式，这一过程是封装好的，对用户透明</li>
+</ol>
+<h5 id="文本文件"><a href="#文本文件" class="headerlink" title="文本文件"></a>文本文件</h5><ol>
+<li>当我们将一个文本文件读取为 RDD 时<ol>
+<li>输入的每一行都会成为 RDD 的一个元素</li>
+<li>也可以将多个完整的文本文件一次性读取为一个 pair RDD，其中键是文件名，值是文件内容</li>
+</ol>
+</li>
+<li>读取文本文件<ol>
+<li>只需要使用文件路径作为参数调用 SparkContext 的 textFile() 函数，就可以读取一个文本文件</li>
+<li>如果要控制分区数的话，可以指定 minParititions</li>
+<li>如果多个输入文件以一个包含数据所有部分的目录的形式出现，可以用两种方式来处理<ol>
+<li>textFile(): 传递目录为参数，这样他会把各部分都读取到 RDD 中</li>
+<li>SparkContext.wholeTextFiles(): 有时候有必要知道数据的各部分来自哪个文件，有时候希望同时处理整个文件，如果文件足够小，可以使用SparkContext.wholeTextFiles() 方法。该方法返回一个 pair RDD，其中键是输入文件的文件名</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>保存文本文件<ol>
+<li>saveAsTextFile():<ol>
+<li>接收一个路径，并将 RDD 中的内容都输入到路径对应的文件中</li>
+<li>Spark 将传入的路径当做目录看待，会在那个目录下输出多个文件，这样就可以从多个节点上并行输出，这种方法不能控制数据的哪一部分输出到哪个文件中</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h5 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h5><ol>
+<li>JSON 是一种使用广泛的半结构化数据格式</li>
+<li>读取 JSON 最简单的方法是作为文本文件读取<ol>
+<li>使用 JSON 解析器来对 RDD 中的值进行映射操作</li>
+<li>也可以使用 JSON 序列化库来将数据转为字符串，并将其写出去</li>
+<li>在 Java 和 Scala 中也可以使用一个自定义 Hadoop 格式来操作 JSON 数据</li>
+</ol>
+</li>
+<li>读取 JSON<ol>
+<li>将数据作为文本文件读取<ol>
+<li>假设文件每一行都是一条 JSON 记录</li>
+<li>如果有跨行的 JSON 数据，就只能读入整个文件，然后对每个文件进行解析</li>
+<li>mapPartitions 可以重用解析器</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>保存 JSON<ol>
+<li>使用将字符串 RDD 转为解析好的 JSON 数据的库，将由数据化结构组成的 RDD 转为字符串 RDD，然后使用 Spark 的文本文件 API 写出去</li>
+</ol>
+</li>
+</ol>
+<h5 id="逗号分隔值与制表符分割值"><a href="#逗号分隔值与制表符分割值" class="headerlink" title="逗号分隔值与制表符分割值"></a>逗号分隔值与制表符分割值</h5><ol>
+<li>逗号分隔值（CSV）文件每行都有固定数目的字段，字段间用逗号隔开</li>
+<li>制表符分隔值（TSV）文件用制表符隔开</li>
+<li>记录通常是一行一条，有时也可以跨行；每条记录都没有相关联的字段名，需要手动组合和分解特定字段</li>
+<li>读取 CSV<ol>
+<li>先把文件当做普通文本文件来读取数据，再对数据进行处理</li>
+<li>如果所有数据字段中均没有换行符，可以使用 textFile() 读取并解析数据</li>
+<li>如果在字段中嵌有换行符，就需要完整读入每个文件，然后解析各段</li>
+</ol>
+</li>
+<li>保存 CSV<ol>
+<li>通过重用输出编码器来加速</li>
+<li>由于在 CSV 中我们不会在每条记录中输出字段名，因此为了使输出保持一致，需要创建一种映射关系</li>
+</ol>
+</li>
+</ol>
+<h5 id="SequenceFile"><a href="#SequenceFile" class="headerlink" title="SequenceFile"></a>SequenceFile</h5><ol>
+<li>SequenceFile 是由没有相对关系结构的键值对文件组成的常用 Hadoop 格式</li>
+<li>有同步标记，Spark 可以用它来定位到文件中的某个点，然后再与记录的边界对齐。这个可以让 Spark 使用多个节点高效地并行读取 SequenceFile 文件</li>
+<li>SequenceFile 也是 Hadoop MapReduce 作业中常用的输入输出格式</li>
+<li>由于 Hadoop 使用了一套自定义的序列化框架，因此 SequenceFile 是由实现 Hadoop 的 Writable 接口的元素组成</li>
+<li>读取 SequenceFile<ol>
+<li>Spark 有专门用来读取 SequenceFile 的接口</li>
+<li>在 SparkContext 中，可以调用 SequenceFile(path, keyClass, valueClass, minParititions)</li>
+<li>由于 SequenceFile 使用 Writable 类，因此 keyClass 和 valueClass 参数都必须使用正确的 Writable 类</li>
+</ol>
+</li>
+<li>保存 SequenceFile <ol>
+<li>由于 SequenceFile 存储的是键值对，所以需要创建一个由可以写出到 SequenceFile 的类型构成的 PairRDD</li>
+<li>如果要写出的是 Scala 的原生类型，可以直接调用 saveSequenceFile(path) 保存 pairRDD</li>
+<li>如果不能自动转为 Wirtable 类型，就可以对数据进行映射操作，在保存之前进行类型转换</li>
+</ol>
+</li>
+</ol>
+<h5 id="对象文件"><a href="#对象文件" class="headerlink" title="对象文件"></a>对象文件</h5><ol>
+<li>对象文件看起来就像是对 SequenceFile 的封装，它允许存储只包含值的 RDD</li>
+<li>对象文件是使用 Java 序列化写出的</li>
+</ol>
+<h4 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h4><h4 id="本地-“常规”-文件系统"><a href="#本地-“常规”-文件系统" class="headerlink" title="本地 / “常规” 文件系统"></a>本地 / “常规” 文件系统</h4><ol>
+<li>Spark 支持从本地文件系统中读取文件，不过它要求文件在集群中所有节点的相同路径下都可以找到</li>
+<li>一些像 NFS、AFS 以及 MapR 的 NFS layer 这样的网络文件系统会把文件以常规文件系统形式暴露给用户，如果数据已在这些系统中，那么只需要指定输入为一个 file:// 路径，只要这个文件系统挂载在每个节点的同一个路径下，Spark 就会自动处理</li>
+<li>如果文件没有房子集群中的所有节点上，你可以在驱动器程序中从本地读取该文件而无需使用整个集群，然后再调用 parallelize 将内容分发给工作节点</li>
+<li>这种方式较慢，推荐的方法是将文件先放到像 HDFS、NFS、S3 等共享文件系统上</li>
+</ol>
+<h5 id="Amazon-S3"><a href="#Amazon-S3" class="headerlink" title="Amazon S3"></a>Amazon S3</h5><h5 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h5><ol>
+<li>Hadoop 分布式文件系统（HDFS）是一种广泛使用的文件系统，能够弹性的应对节点失败，同时提供高吞吐量</li>
+<li>只需要将输入输出路径指定为 hdfs://master:port/path</li>
+</ol>
+<h4 id="Spark-SQL-中的结构化数据"><a href="#Spark-SQL-中的结构化数据" class="headerlink" title="Spark SQL 中的结构化数据"></a>Spark SQL 中的结构化数据</h4><ol>
+<li>Spark 中最受欢迎的操作结构化和半结构化数据的方式</li>
+<li>结构化数据：有结构信息的数据，所有的数据记录具有一致字段结构的集合</li>
+<li>我们把一条 SQL 查询给 Spark SQL，让它对一个数据源执行查询，然后得到由 Row 对象组成的 RDD，每个 Row 对象表示一条记录</li>
+</ol>
+<h5 id="Apache-Hive"><a href="#Apache-Hive" class="headerlink" title="Apache Hive"></a>Apache Hive</h5><ol>
+<li>Hive 是 Hadoop 上一种常见的结构化数据源</li>
+<li>Hive 可以在 HDFS 内或者在其他存储系统上存储多种格式的表</li>
+<li>Spark SQL 可以读取 Hive 支持的任何表</li>
+<li>要把 Spark SQL 连接到已有的 Hive 上，需要提供 Hive 的配置文件，然后创建出 HiveContext 对象，也就是 Spark SQL 的入口，然后就可以使用 Hive 的查询语言 HQL 来对表进行查询，并以由行组成的 RDD 的形式拿到返回数据</li>
+</ol>
+<h5 id="JSON-1"><a href="#JSON-1" class="headerlink" title="JSON"></a>JSON</h5><ol>
+<li>如果有记录间结构一致的 JSON 数据，Spark SQL 也可以自动推断出它们的结构信息，并将这些数据读取为记录，这样就可以使得提取字段的操作变得很简单</li>
+<li>首先要创建 HiveContext （不过不需要安装 Hive），然后使用 HiveContext.jsonFile 方法来从整个文件中获取由 Row 对象组成的 RDD</li>
+</ol>
+<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><p>通过数据库提供的 Hadoop 连接器或者自定义的 Spark 连接器，Spark 可以访问一些常用的数据库系统</p>
+<h5 id="Java-数据库连接"><a href="#Java-数据库连接" class="headerlink" title="Java 数据库连接"></a>Java 数据库连接</h5><ol>
+<li>Spark 可以从任何支持 Java 数据库连接（JDBC）的关系型数据库中读取数据</li>
+<li>要访问这些数据，首先要构建一个 org.apache.rdd.JdbcRDD， 将 SparkContext 和其它参数一起传给他</li>
+</ol>
+<h5 id="Cassandra"><a href="#Cassandra" class="headerlink" title="Cassandra"></a>Cassandra</h5><h5 id="HBase"><a href="#HBase" class="headerlink" title="HBase"></a>HBase</h5><ol>
+<li>Spark 可以通过 Hadoop 输入格式访问 HBase</li>
+</ol>
+<h3 id="Spark-编程进阶"><a href="#Spark-编程进阶" class="headerlink" title="Spark 编程进阶"></a>Spark 编程进阶</h3><ol>
+<li><p>共享变量</p>
+<p>一种可以在 Spark 任务中使用的特殊类型的变量</p>
+</li>
+<li><p><strong>两种类型的共享变量</strong></p>
+<ol>
+<li><p>累加器</p>
+<p>用来对消息进行聚合</p>
+</li>
+<li><p>广播变量</p>
+<p>用来高效分发较大的对象</p>
+</li>
+</ol>
+</li>
+<li><p>当任务需要很长时间进行配置，比如需要创建数据库连接或者随机数生成器时，在多个数据元素间共享一次配置会比较有效率</p>
+</li>
+</ol>
+<h4 id="累加器"><a href="#累加器" class="headerlink" title="累加器"></a>累加器</h4><ol>
+<li>提供了将工作节点的值聚合到驱动器程序中的简单语法</li>
+<li>常见用途：在调试时对作业执行过程中的事件进行计数</li>
+<li>用法<ol>
+<li>通过驱动器程序中调用 SparkContext.accumulator(initialValue) 方法，创建出有初始值的累加器，返回值为 org.apache.Spark.Accumulator[T] 对象，其中 T 是初始值 initialValue 的类型</li>
+<li>Spark 闭包里的执行器代码可以使用累加器的 += 方法增加累加器的值</li>
+<li>驱动器程序可以调用累加器的 value 属性来访问累加器的值</li>
+</ol>
+</li>
+<li>工作节点上的任务不能访问累加器的值，从这些任务的角度来看，累加器是一个只写变量。在这种模式下，累加器的实现可以更加高效，因为不需要对每次更新操作进行复杂的通信</li>
+<li>累计器的值只有在驱动器中可以访问，检查也在驱动器中完成</li>
+</ol>
+<h5 id="累加器与容错性"><a href="#累加器与容错性" class="headerlink" title="累加器与容错性"></a>累加器与容错性</h5><ol>
+<li>Spark 会自动重新执行失败的或较慢的任务来应对有错误的或者比较慢的机器<ol>
+<li>如果对某分区执行 map() 操作的节点失败了，Spark 会在另一个节点上重新运行该任务</li>
+<li>即使该节点没有崩溃，而只是处理速度比其他节点慢得多，Spark 也可以抢占式地在另一个节点上启用一个投机型的任务副本，如果该任务可以更早结束就可以直接获取结果</li>
+<li>因此，同一个函数可能对同一个数据运行了多次</li>
+</ol>
+</li>
+<li>对于要在行动操作中使用的累加器，Spark 只会把每个任务对各累加器的修改应用一次。因此，如果想要一个无论在失败还是重复计算时都绝对可靠的累加器，我们必须把它放在 foreach() 这样的行动操作中</li>
+<li>对于在 RDD 转化操作中使用的累加器，就可能发生不止一次更新，因而转化操作中累加器通常只用于调试</li>
+</ol>
+<h5 id="自定义累加器"><a href="#自定义累加器" class="headerlink" title="自定义累加器"></a>自定义累加器</h5><ol>
+<li>Spark 直接支持 Int、Double、Long 和 Float 型的累加器</li>
+<li>除此之外，还引入了自定义累加器和聚合操作的 API</li>
+<li>自定义累加器需要扩展 AccumulatorParam</li>
+</ol>
+<h4 id="广播变量"><a href="#广播变量" class="headerlink" title="广播变量"></a>广播变量</h4><ol>
+<li>可以让程序高效地向所有工作节点发送一个较大的只读值，以供一个或多个 Spark 使用</li>
+<li>是类型为 spark.broadcast.Broadcast[T] 的一个对象，其中存放这类型为 T 的值</li>
+<li>可以在任务中通过对 Broadcast 对象调用 value 来获取该对象的值，这个值只会被发送到各节点一次，使用的是一种高效的类似 BitTorrent 的通信机制 </li>
+<li>使用方法<ol>
+<li>通过对一个类型 T 的对象调用 SparkContext.broadcast 创建出一个 Broadcast[T] 对象。任何可序列化的类型都可以这么实现</li>
+<li>通过 value 属性访问该对象的值</li>
+<li>变量只会被发送到各节点一次，应作为只读值处理</li>
+</ol>
+</li>
+<li>除了在驱动器程序中可以修改广播变量的值外，无法修改</li>
+</ol>
+<h5 id="广播的优化"><a href="#广播的优化" class="headerlink" title="广播的优化"></a>广播的优化</h5><ol>
+<li><p>优化序列化方式</p>
+<p>当广播一个较大的值时，选择既快又好的序列化格式是很重要的，因为如果序列化对象的时间很长或者穿送花费的时间太久，这段时间很容易成为性能瓶颈</p>
+</li>
+</ol>
+<h4 id="基于分区进行操作"><a href="#基于分区进行操作" class="headerlink" title="基于分区进行操作"></a>基于分区进行操作</h4><ol>
+<li>基于分区进行操作可以让我们避免为每个数据元素进行重复的配置工作</li>
+<li>Spark 提供基于分区 map 和 foreach，让部分代码只对 RDD 的每个分区运行一次，帮助降低这些操作的代价</li>
+<li>使用 mapPartitions 函数获得输入 RDD 的每个分区中的元素迭代器，而需要返回的是执行结果的序列的迭代器</li>
+</ol>
+<h4 id="与外部程序间的管道"><a href="#与外部程序间的管道" class="headerlink" title="与外部程序间的管道"></a>与外部程序间的管道</h4><ol>
+<li><p>如果 Scala、Java 以及 Python 都不能实现你需要的功能，那么 Spark 也为这种情况提供了一种通用机制，可以将数据通过管道传送给用其他语言编写的程序，比如 R 语言脚本</p>
+</li>
+<li><p>Spark 在 RDD 上提供 pipe() 方法</p>
+<ol>
+<li><p>可以让我们使用任意一种语言实现 Spark 作业中的部分逻辑，只要他能读写 Unix 标准流就行</p>
+</li>
+<li><p>RDD 的转化操作过程</p>
+<p>通过 pipe() 可以将 RDD 中的各元素从标准输入流中以字符串的形式读出，并对这些元素执行任何你需要的操作，然后把结果以字符串的形式写入标准输出</p>
+</li>
+</ol>
+</li>
+<li><p>通过 SparkContext.addFile(path) 可以构建一个文件列表，让每个工作节点在 Spark 作业中下载表中的文件，当作业中的行动操作被触发时，这些文件就会被各节点下载</p>
+</li>
+<li><p>一旦脚本可以访问，RDD 的 pipe() 方法就可以让 RDD 中的元素很容易通过脚本管道</p>
+</li>
+</ol>
+<h4 id="数值-RDD-的操作"><a href="#数值-RDD-的操作" class="headerlink" title="数值 RDD 的操作"></a>数值 RDD 的操作</h4><ol>
+<li>Spark 的数值操作是通过流式算法实现的，允许以每次一个元素的方式构建出模型</li>
+<li>这些统计数据都会在调用 stats() 是通过一次遍历数据计算出来，并以 StatsCounter 对象返回</li>
+<li></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/notes/" rel="tag"># notes</a>
+          
+            <a href="/tags/专业书籍/" rel="tag"># 专业书籍</a>
+          
+            <a href="/tags/大数据/" rel="tag"># 大数据</a>
+          
+            <a href="/tags/云计算/" rel="tag"># 云计算</a>
+          
+            <a href="/tags/Spark/" rel="tag"># Spark</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/29/《Hadoop-权威指南》/" rel="next" title="《Hadoop 权威指南》">
+                <i class="fa fa-chevron-left"></i> 《Hadoop 权威指南》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/29/LeetCode-List系列/" rel="prev" title="LeetCode List 系列">
+                LeetCode List 系列 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+      <div id="gitalk-container"></div>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+       <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lsinger</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-快速大数据分析"><span class="nav-number">1.</span> <span class="nav-text">Spark 快速大数据分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem"><span class="nav-number">1.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">1.2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#是什么"><span class="nav-number">1.3.</span> <span class="nav-text">是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大一统的软件栈"><span class="nav-number">1.4.</span> <span class="nav-text">大一统的软件栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spark-Core"><span class="nav-number">1.4.1.</span> <span class="nav-text">Spark Core</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spark-SQL"><span class="nav-number">1.4.2.</span> <span class="nav-text">Spark SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spark-Streaming"><span class="nav-number">1.4.3.</span> <span class="nav-text">Spark Streaming</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MLlib"><span class="nav-number">1.4.4.</span> <span class="nav-text">MLlib</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphX"><span class="nav-number">1.4.5.</span> <span class="nav-text">GraphX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集群管理器"><span class="nav-number">1.4.6.</span> <span class="nav-text">集群管理器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简史"><span class="nav-number">1.5.</span> <span class="nav-text">简史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储层次"><span class="nav-number">1.6.</span> <span class="nav-text">存储层次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDD"><span class="nav-number">1.7.</span> <span class="nav-text">RDD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-RDD"><span class="nav-number">1.7.1.</span> <span class="nav-text">创建 RDD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD-操作"><span class="nav-number">1.7.2.</span> <span class="nav-text">RDD 操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向-Spark-传递函数"><span class="nav-number">1.7.3.</span> <span class="nav-text">向 Spark 传递函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的转化操作和行动操作"><span class="nav-number">1.7.4.</span> <span class="nav-text">常见的转化操作和行动操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本-RDD"><span class="nav-number">1.7.4.1.</span> <span class="nav-text">基本 RDD</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在不同-RDD-类型间转换"><span class="nav-number">1.7.4.2.</span> <span class="nav-text">在不同 RDD 类型间转换</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#持久化（缓存）"><span class="nav-number">1.7.5.</span> <span class="nav-text">持久化（缓存）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心概念"><span class="nav-number">1.8.</span> <span class="nav-text">核心概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#驱动器程序"><span class="nav-number">1.8.1.</span> <span class="nav-text">驱动器程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SparkContext"><span class="nav-number">1.8.2.</span> <span class="nav-text">SparkContext</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#键值对操作"><span class="nav-number">1.9.</span> <span class="nav-text">键值对操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#动机"><span class="nav-number">1.9.1.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-Pair-RDD"><span class="nav-number">1.9.2.</span> <span class="nav-text">创建 Pair RDD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pair-RDD-的转换操作"><span class="nav-number">1.9.3.</span> <span class="nav-text">Pair RDD 的转换操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#聚合操作"><span class="nav-number">1.9.3.1.</span> <span class="nav-text">聚合操作</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#并行度调优"><span class="nav-number">1.9.3.1.1.</span> <span class="nav-text">并行度调优</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据分组"><span class="nav-number">1.9.3.2.</span> <span class="nav-text">数据分组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#连接"><span class="nav-number">1.9.3.3.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据排序"><span class="nav-number">1.9.3.4.</span> <span class="nav-text">数据排序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pair-RDD-的行动操作"><span class="nav-number">1.9.4.</span> <span class="nav-text">Pair RDD  的行动操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据分区（进阶）"><span class="nav-number">1.9.5.</span> <span class="nav-text">**数据分区（进阶）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#获取-RDD-的分区方式"><span class="nav-number">1.9.5.1.</span> <span class="nav-text">获取 RDD 的分区方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#从分区中获益的操作"><span class="nav-number">1.9.5.2.</span> <span class="nav-text">从分区中获益的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#影响分区方式的操作"><span class="nav-number">1.9.5.3.</span> <span class="nav-text">影响分区方式的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义分区方式"><span class="nav-number">1.9.5.4.</span> <span class="nav-text">自定义分区方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据读取与保存"><span class="nav-number">1.10.</span> <span class="nav-text">数据读取与保存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#动机-1"><span class="nav-number">1.10.1.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件格式"><span class="nav-number">1.10.2.</span> <span class="nav-text">文件格式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文本文件"><span class="nav-number">1.10.2.1.</span> <span class="nav-text">文本文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSON"><span class="nav-number">1.10.2.2.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#逗号分隔值与制表符分割值"><span class="nav-number">1.10.2.3.</span> <span class="nav-text">逗号分隔值与制表符分割值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SequenceFile"><span class="nav-number">1.10.2.4.</span> <span class="nav-text">SequenceFile</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对象文件"><span class="nav-number">1.10.2.5.</span> <span class="nav-text">对象文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件系统"><span class="nav-number">1.10.3.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地-“常规”-文件系统"><span class="nav-number">1.10.4.</span> <span class="nav-text">本地 / “常规” 文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Amazon-S3"><span class="nav-number">1.10.4.1.</span> <span class="nav-text">Amazon S3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HDFS"><span class="nav-number">1.10.4.2.</span> <span class="nav-text">HDFS</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spark-SQL-中的结构化数据"><span class="nav-number">1.10.5.</span> <span class="nav-text">Spark SQL 中的结构化数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Apache-Hive"><span class="nav-number">1.10.5.1.</span> <span class="nav-text">Apache Hive</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSON-1"><span class="nav-number">1.10.5.2.</span> <span class="nav-text">JSON</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库"><span class="nav-number">1.10.6.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Java-数据库连接"><span class="nav-number">1.10.6.1.</span> <span class="nav-text">Java 数据库连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cassandra"><span class="nav-number">1.10.6.2.</span> <span class="nav-text">Cassandra</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HBase"><span class="nav-number">1.10.6.3.</span> <span class="nav-text">HBase</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark-编程进阶"><span class="nav-number">1.11.</span> <span class="nav-text">Spark 编程进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#累加器"><span class="nav-number">1.11.1.</span> <span class="nav-text">累加器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#累加器与容错性"><span class="nav-number">1.11.1.1.</span> <span class="nav-text">累加器与容错性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义累加器"><span class="nav-number">1.11.1.2.</span> <span class="nav-text">自定义累加器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#广播变量"><span class="nav-number">1.11.2.</span> <span class="nav-text">广播变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#广播的优化"><span class="nav-number">1.11.2.1.</span> <span class="nav-text">广播的优化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于分区进行操作"><span class="nav-number">1.11.3.</span> <span class="nav-text">基于分区进行操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与外部程序间的管道"><span class="nav-number">1.11.4.</span> <span class="nav-text">与外部程序间的管道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数值-RDD-的操作"><span class="nav-number">1.11.5.</span> <span class="nav-text">数值 RDD 的操作</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lixinge</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+Views: <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+Visitors: <span id="busuanzi_value_site_uv"></span>
+</div>
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://github.com/lsinger8702">GitHub Pages</a></div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+      <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+      <script>
+        //去除尾部匹配正则数组的字符串
+        String.prototype.trimEnd = function(regStr)
+        {
+            var result = this;
+            if(regStr==undefined||regStr==null||regStr=="")
+            {
+                return result;
+            }
+            var array = regStr.split(',');
+
+            if(array.length > 0){
+
+                var c = array.shift();
+                var str= this;
+                var i = str.length;
+                var rg = new RegExp(c);
+                var matchArr = str.match(rg);
+
+                if(matchArr != undefined && matchArr != null && matchArr.length > 0)
+                {
+                  var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+                                            .replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+                                            .replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+                                            .replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                                            .replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+                                            .replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+                                            .replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+                                            .replace(/\./g, "\\.").replace(/\&/g, "\\&");
+                  matchStr = matchStr + '$';
+                  result = str.replace(new RegExp(matchStr), "");
+                }
+
+                if(array.length > 0){
+                    return result.trimEnd(array.join())
+                }
+                else{
+                    return result;
+                }
+            }
+        };
+      </script>
+      <script type="text/javascript">
+        const gitalk = new Gitalk({
+          clientID: '4493cd737a3f27c6f3e5',
+          clientSecret: '7ce74023dbfac13c266a0b522fab2b6edf40e2eb',
+          repo: 'lsinger8702.github.io',
+          owner: 'lsinger8702',
+          admin: 'lsinger8702'.split(','),
+          pagerDirection: 'first',
+          // facebook-like distraction free mode
+          distractionFreeMode: false,
+          id: md5(location.href.trimEnd(''))
+        })
+        gitalk.render('gitalk-container')
+      </script>
+    
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("5O4LsA6MmcNTu3W3WEWLEPB3-gzGzoHsz", "2TMHki8qGaVrx2LyC0jTSupa");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
