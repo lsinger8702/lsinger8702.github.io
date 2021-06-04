@@ -1,37 +1,417 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="TPO 27Reading 1（Time Cost：19 + 6 min）【paragraph 5】Because the surface of the water table is not flat but instead rises and falls with topography, groundwater is affected by gravity in the same fashion">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阅读训练（初期）Day 2">
+<meta property="og:url" content="http://yoursite.com/2018/07/13/%E9%98%85%E8%AF%BB%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-2/index.html">
+<meta property="og:site_name" content="Lsinger&#39; s blog">
+<meta property="og:description" content="TPO 27Reading 1（Time Cost：19 + 6 min）【paragraph 5】Because the surface of the water table is not flat but instead rises and falls with topography, groundwater is affected by gravity in the same fashion">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-07-13T07:31:44.000Z">
+<meta property="article:modified_time" content="2018-07-13T15:41:10.740Z">
+<meta property="article:author" content="Lsinger">
+<meta property="article:tag" content="Reading">
+<meta property="article:tag" content="TOEFL">
+<meta property="article:tag" content="训练初期">
+<meta property="article:tag" content="TPO 27">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2018/07/13/%E9%98%85%E8%AF%BB%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;default&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;07&#x2F;13&#x2F;%E9%98%85%E8%AF%BB%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-2&#x2F;&quot;,&quot;path&quot;:&quot;2018&#x2F;07&#x2F;13&#x2F;阅读训练（初期）Day-2&#x2F;&quot;,&quot;title&quot;:&quot;阅读训练（初期）Day 2&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>阅读训练（初期）Day 2 | Lsinger' s blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lsinger' s blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Lsinger' s blog</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TPO-27"><span class="nav-number">1.</span> <span class="nav-text">TPO 27</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reading-1%EF%BC%88Time-Cost%EF%BC%9A19-6-min%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">Reading 1（Time Cost：19 + 6 min）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reading-3%EF%BC%88Time-Cost%EF%BC%9A20-4-min%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">Reading 3（Time Cost：20 + 4 min）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E9%A2%91%E7%94%9F%E8%AF%8D"><span class="nav-number">2.</span> <span class="nav-text">高频生词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A7%A3%E6%9E%90%E6%9D%A5%E6%BA%90"><span class="nav-number">3.</span> <span class="nav-text">题目解析来源</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lsinger</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/%E9%98%85%E8%AF%BB%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          阅读训练（初期）Day 2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2018-07-13 15:31:44 / Modified: 23:41:10" itemprop="dateCreated datePublished" datetime="2018-07-13T15:31:44+08:00">2018-07-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/TOEFL/" itemprop="url" rel="index"><span itemprop="name">TOEFL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="TPO-27"><a href="#TPO-27" class="headerlink" title="TPO 27"></a>TPO 27</h2><h3 id="Reading-1（Time-Cost：19-6-min）"><a href="#Reading-1（Time-Cost：19-6-min）" class="headerlink" title="Reading 1（Time Cost：19 + 6 min）"></a>Reading 1（Time Cost：19 + 6 min）</h3><p>【paragraph 5】Because the surface of the water table is not flat but instead rises and falls with topography, groundwater is affected by gravity in the same fashion as surface water. Groundwater flows downhill to topographic lows. **If the water table intersects the land surface, groundwater will flow out onto the surface at springs, either to be collected there or to subsequently flow farther along a drainage. **Groundwater commonly collects in stream drainages but may remain entirely beneath the surface of dry stream-beds in arid regions. In particularly wet years, short stretches of an otherwise dry stream-bed may have flowing water because the water table rises to intersect the land surface.</p>
+<span id="more"></span> 
+
+<ol start="11">
+<li>Which of the sentences below best expresses the essential information in the highlighted sentence in the passage? Incorrect choices change the meaning in important ways or leave out essential information.</li>
+</ol>
+<ul>
+<li>Groundwater only flows out of the ground if the water table intersects the land surface.</li>
+<li>If the land surface and the water table intersect, groundwater can flow underground.</li>
+<li>Groundwater may be drained if springs occur where the water table intersects the land surface.</li>
+<li>Where the water table meets the land surface, groundwater flows out through surface springs.</li>
+</ul>
+<p><strong>题目解析</strong> : 高亮句包含的主要信息是如果地下水位与地表相交，地下水将以喷泉的形式流出地面。 A 选项缺少了 spring 这个信息； B 选项说反了，原文是说 groundwater flow out，不是 flow underground 。 C 选项漏掉了关键信息，即地下水会流到地表，至于流到地表后会怎样，是细节内容，不是主要信息。 D 包含了原文所有的主要信息，为答案。</p>
+<p><strong>错误原因</strong>：错选 C。没有分清楚主要信息和细节</p>
+<p><strong>解决办法</strong>：多练</p>
+<p>###Reading 2（Time Cost：21 + 20 min）</p>
+<p>错了一半，太心塞了</p>
+<p>【paragraph 1】The Sahara is a highly diverse, albeit dry, region that has undergone major climatic changes since 10,000 B.C. As recently as 6,000 B.C., the southern frontier of the desert was far to the north of where it is now, while semiarid grassland and shallow freshwater lakes covered much of what are now arid plains. This was a landscape where antelope of all kinds abounded — along with Bosprimigenius, a kind of oxen that has become extinct. The areas that are now desert were, like all arid regions, very susceptible to cycles of higher and lower levels of rainfall, resulting in major, sudden changes in distributions of plants and animals. The people who hunted the sparse desert animals responded to drought by managing the wild resources they hunted and gathered, especially wild oxen, which had to have regular water supplies to survive.</p>
+<ol>
+<li>According to paragraph 1, what was true of the Sahara region around 6,000 B.C.?</li>
+</ol>
+<ul>
+<li>Much less of it was desert than is now the case.</li>
+<li>Most areas that are now grassland were covered by shallow lakes.</li>
+<li>It had just undergone a major climatic change.</li>
+<li>Wild oxen and antelopes lived in separate parts of the region.</li>
+</ul>
+<p><strong>题目解析</strong> :  原文第二句提到公元前 6000 年沙漠南部边界在现在的沙漠的北方，并且指出现在是 arid plains 的地方之前是 semiarid grassland and shallow freshwater lakes 。所以 A，当时沙漠要比现在少，正确。B 选项不对，现在大部分地区并不是 grassland。C 也不对，原文并没说气候改变是在公元前 6000 年发生的。 D 选项不对，通过原文第三句的 along with 可以知道这两种动物是生活在一起的。</p>
+<p><strong>错误原因</strong>：错选 C。不知道选项 A 的意思。其实在 A 和 C 中犹豫，没找到 C 为什么对，但是看不懂 A 是什么意思</p>
+<p><strong>解决办法</strong>：我是不是该学下语法</p>
+<ol start="2">
+<li>The word “albeit” in the passage is closest in meaning to</li>
+</ol>
+<ul>
+<li>usually</li>
+<li>almost</li>
+<li>though</li>
+<li>rather</li>
+</ul>
+<p><strong>题目解析</strong> :   albeit 尽管。A 通常，B 几乎，C 虽然，D 相当。C 选项的意思最接近，为答案。</p>
+<p><strong>错误原因</strong>：错选 C。不知道 albeit 的意思</p>
+<p><strong>解决办法</strong>：大概只能背单词了吧</p>
+<ol start="3">
+<li>According to paragraph 1, which of the following is true of all arid regions? </li>
+</ol>
+<ul>
+<li>They include at least some freshwater lakes.</li>
+<li>They have similar distributions of plants and animals.</li>
+<li>They are greatly affected by changes in the amount of rain they receive.</li>
+<li>They have frequent droughts that make it difficult to manage the wild resources.</li>
+</ul>
+<p><strong>题目解析</strong> :   该题对应第一段倒数第二句，原文说 The areas that are now desert were, like all arid regions, very susceptible to higher and lower levels of rainfall ，即容易受降水的影响，C 正确。对应原文 while semiarid grassland and shallow freshwater lakes covered much of what are now arid plains ，即 freshwater lakes 是以前的，现在是 arid plains ，A 项与原文不一致。B 也不对，原文虽然提到了 distribution of plants ，但是并没说所有的干燥地区这一点都是相似的。D 错误，最后一句说人们因此而开始 manage resources 。</p>
+<p><strong>错误原因</strong>：错选 D。在 C 和 D 之间纠结了以下，然后就选了错误的答案</p>
+<p><strong>解决办法</strong>：二选一的时候错过正确答案要怎么办？</p>
+<p>【paragraph 4】It is still unclear whether domesticated cattle were tamed independently in northern Africa or introduced to the continent from Southwest Asia. **Whatever the source of the original tamed herds might have been, it seems entirely likely that much the same process of juxtaposition (living side by side) and control occurred in both southwest Asia and northern Africa, and even in Europe, among peoples who had an intimate knowledge of the behavior of wild cattle. **The experiments with domestication probably occurred in many places, as people living in ever-drier environments cast around for more predictable food supplies.</p>
+<ol start="8">
+<li>Which of the sentences below best expresses the essential information in the highlighted sentence in the passage? Incorrect choices change the meaning in important ways or leave out essential information.</li>
+</ol>
+<ul>
+<li>Regardless of where the first tamed herds came from, people tried to control them by living in juxtaposition with them.</li>
+<li>5Regardless of where the first tamed herds came from, they resulted from the same process of juxtaposition and control by people who understood the behavior of wild cattle.</li>
+<li>People who had an intimate knowledge of the behavior of wild cattle moved closer together to cooperate in taming the herd, regardless of where they found them.</li>
+<li>The process of taming herds was certainly the same in southwest Asia, northern Africa, and Europe because people knew a lot about the behavior of wild cattle, regardless of where they lived.</li>
+</ul>
+<p><strong>题目解析</strong> :   高亮句子的主要内容是，不管驯化动物从哪起源的，在不同的地区，各民族之间驯化动物都是用同样的方法： juxtaposition，control 。 A 选项前半句没问题，后半句和原文内容不符。 B 选项正确，包括了所有主干部分。 C 选项不对，原文只是提到掌握牛群习性的不同民族，并没有说他们会迁移到一起。 D 选项不对，原文并没有指出这种因果关系。</p>
+<p><strong>错误原因</strong>：错选 D。juxtaposition、result from 的意思不知道，我觉得 D 看起来好像包含了所有重点</p>
+<p><strong>解决办法</strong>：高亮题又错了，或许该专项练一下</p>
+<p>【paragraph 6】About 3,500 B.C., climatic conditions again deteriorated. The Sahara slowly became drier and lakes vanished. On the other hand, rainfall increased in the interior of western Africa, and the northern limit of the tsetse fly, an insect fatal to cattle, moved south. So the herders shifted south, following the major river systems into savanna regions. By this time, the Saharan people were probably using domestic crops, experimenting with such summer rainfall crops as sorghum and millet as they move out of areas where they could grow wheat, barley, and other Mediterranean crops.</p>
+<ol start="11">
+<li>The word “deteriorated” in the passage is closest in meaning to</li>
+</ol>
+<ul>
+<li>became unstable</li>
+<li>caused hardship</li>
+<li>changed completely</li>
+<li>got worse</li>
+</ul>
+<p><strong>题目解析</strong> : deteriorated 指的是恶化。 A 变得不稳定， B 导致困苦， C 完全改变， D 变糟糕。 D 最接近 deteriorated 的含义。</p>
+<p><strong>错误原因</strong>：错选 A。我记得我背过这个单词，然后我记得的意思是不稳定的、动荡的，我应该是搞混了</p>
+<p><strong>解决办法</strong>：单词题也是一错再错，还是要背单词啊背单词</p>
+<ol start="12">
+<li>According to paragraph 6, what allowed the herders to shift south into the savanna regions after about 3,500 B.C.?</li>
+</ol>
+<ul>
+<li>They could easily grow Mediterranean crops in those regions.</li>
+<li>They could more easily domesticated sorghum and millet in those regions.</li>
+<li>The tsetse fly was no longer a problem in those regions.</li>
+<li>The river systems in those regions provided reliable sources of water in the summer.</li>
+</ul>
+<p><strong>题目解析</strong> : 该题对应第三句，原文说西部降水变多了，并且 northern limit of the tsetse fly moved south ，所以牛群也 move south 。对应了 C 选项。 D 可能是个迷惑选项，但是按原文的意思，只是 following the major river systems 来迁徙，但不是迁徙的原因。</p>
+<p><strong>错误原因</strong>：错选 D。不知道 northern limit of the tsetse fly moved south 是什么意思</p>
+<p><strong>解决办法</strong>：又是因为看不懂原文或者选项选错了，要怎么提升。。</p>
+<p>【paragraph 3】Smith believes that the hunters were well aware of the more disciplined ways in which their prey behaved.■Instead of following the cattle on their annual migrations, the hunters began to prevent the herd from moving from one spot to another.■At first, they controlled the movement of the herd while ensuring continuance of their meat diet.■But soon they also gained genetic control of the animals, which led to rapid physical changes in the herd.■South African farmers who maintain herds of wild eland (large African antelopes with short, twisted horns) report that the offspring soon diminish in size, unless wild bulls are introduced constantly from outside. The same effects of inbreeding may have occurred in controlled cattle populations, with some additional, and perhaps unrecognized, advantages. The newly domesticated animals behaved better, were easier to control, and may have enjoyed a higher birth rate, which in turn yielded greater milk supplies. We know from rock paintings deep in the Sahara that the herders were soon selecting breeding animals to produce offspring with different horn shapes and hide colors.</p>
+<p>Look at the four squares [■] that indicate where the following sentence could be added to the passage.</p>
+<p><strong>This knowledge enabled the hunters to adopt a different approach to hunting.</strong></p>
+<p>Where would the sentence best fit?</p>
+<p><strong>题目解析</strong> :  需要插入的句子说“这个知识使得猎人改变了打猎的方法”。那么前面应该说猎人得到了什么知识，后面应该说这个方法怎么改变了。所以应该将句子插入第一个空。</p>
+<p><strong>错误原因</strong>：错选 D。最后没时间了，做的太匆忙，第一句都没仔细看</p>
+<p><strong>解决办法</strong>：认真看清楚一次过</p>
+<h3 id="Reading-3（Time-Cost：20-4-min）"><a href="#Reading-3（Time-Cost：20-4-min）" class="headerlink" title="Reading 3（Time Cost：20 + 4 min）"></a>Reading 3（Time Cost：20 + 4 min）</h3><p>【paragraph 1】A conspicuous sign indicating the presence of white-tailed deer in a woodlot is a buck rub. A male deer makes a buck rub by striping the bark (outer layer) of a small tree with its antlers. When completed, the buck rub is an obvious visual signal to us and presumable to other deer in the area. A rub is usually located at the shoulder height of a deer (one meter or less above the ground) on a smooth-barked, small-diameter (16-25 millimeters) tree. The smooth bark of small red maples makes this species ideal for buck rubs in the forests of the mid-eastern United States.</p>
+<ol>
+<li>The word “conspicuous” in the passage is closest in meaning to</li>
+</ol>
+<ul>
+<li>noticeable</li>
+<li>common</li>
+<li>strange</li>
+<li>particular</li>
+</ul>
+<p><strong>题目解析</strong> : conspicuous 明显的。 A 明显的， B 共同的， C 奇怪的， D 特指的。 A 选项意思最接近，为答案。</p>
+<p><strong>错误原因</strong>：错选 D。我觉得 D 没问题呢，这种解析真是看了和没看一样</p>
+<p><strong>解决办法</strong>：又是单词题，背单词背单词</p>
+<h2 id="高频生词"><a href="#高频生词" class="headerlink" title="高频生词"></a>高频生词</h2><p><a target="_blank" rel="noopener" href="https://quizlet.com/_51hkrc">https://quizlet.com/_51hkrc</a></p>
+<h2 id="题目解析来源"><a href="#题目解析来源" class="headerlink" title="题目解析来源"></a>题目解析来源</h2><p><a target="_blank" rel="noopener" href="http://www.langlib.com/Mokao/TOEFL/Answer/28?s=Reading">http://www.langlib.com/Mokao/TOEFL/Answer/28?s=Reading</a></p>
+<p><a target="_blank" rel="noopener" href="http://top.zhan.com/toefl/read/alltpo28.html">http://top.zhan.com/toefl/read/alltpo28.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Reading/" rel="tag"># Reading</a>
+              <a href="/tags/TOEFL/" rel="tag"># TOEFL</a>
+              <a href="/tags/%E8%AE%AD%E7%BB%83%E5%88%9D%E6%9C%9F/" rel="tag"># 训练初期</a>
+              <a href="/tags/TPO-27/" rel="tag"># TPO 27</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/07/13/%E5%90%AC%E5%8A%9B%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-1/" rel="prev" title="听力训练（初期）Day 1">
+                  <i class="fa fa-chevron-left"></i> 听力训练（初期）Day 1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/07/14/%E5%90%AC%E5%8A%9B%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-2/" rel="next" title="听力训练（初期）Day 2">
+                  听力训练（初期）Day 2 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lsinger</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

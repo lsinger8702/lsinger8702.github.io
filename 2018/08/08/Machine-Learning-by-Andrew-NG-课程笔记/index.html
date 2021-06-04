@@ -1,37 +1,1441 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Machine Learning by Andrew NG 课程笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning by Andrew NG 课程笔记">
+<meta property="og:url" content="http://yoursite.com/2018/08/08/Machine-Learning-by-Andrew-NG-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Lsinger&#39; s blog">
+<meta property="og:description" content="Machine Learning by Andrew NG 课程笔记">
+<meta property="og:locale">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdly1ftv6zyby92j31640ns48v.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdly1ftv6zrl9lqj31640ls7dd.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdly1ftv70uejw0j31680lgtgw.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdly1ftv73u4s44j31580kc7iw.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdly1ftv73ofzghj314w0k6aof.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdly1ftv79sjvhpj31680nqjw7.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdly1ftv7c5trlfj30he0nemz4.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1ftv7qxgr7lj30vm102n48.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdly1ftv7s23wi0j30vm108tgg.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1ftv83uhycmj318q0pgag1.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1ftvcy8532zj318y0pkqao.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1ftvd810ihsj318y0pswkf.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdly1ftvdamfrnlj318w0poae5.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdly1ftvdc8owg6j318y0poq85.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdly1ftvdccdyt5j318s0pmdl7.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwb7fdjbqj30w8114dps.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1ftwbdczfqzj30w810y7ba.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwbs42sfrj30x611utke.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1ftwc1suinzj312i0eagon.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1ftwc25orjoj31200jmtfs.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwc5ajfo9j31440my432.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1ftwc63b5jbj30wk11845m.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1ftwcnivt10j312a0k241v.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwcv1lnwkj31460n2k00.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwcy7zmyrj31460mwwl5.jpg">
+<meta property="og:image" content="http://yoursite.com/Users/lixinge/Desktop/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-08-03%2011.37.53.png">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1ftwd10um6lj31420msgqg.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwd23s99tj30ww11owpk.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1ftwdi9q7hrj30zw0kw7cc.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1ftwdjv7i0jj30xm0gejv8.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwdptyrryj313g0mmn26.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1ftwdrvx6sdj313a0mgq8n.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1ftwducmu4rj313a0mgn0n.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1ftwdvfmdngj30xe1247e5.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1ftwdyc6x0qj30y412ydxk.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1fu252rvwb8j31600o60zs.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1fu254vek0rj315o0noahi.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2556x72lj315o0nutgh.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu28o14aolj315q0nsq9m.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu28qi9btoj315q0nwqbh.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu28vlp4zcj315q0nutci.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1fu28vs1ywdj315o0ns0yq.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu28vvd56gj315q0nutci.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu28yti6x5j315u0nudjx.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1fu28zyztjkj30x411wwn5.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2970km49j30z80e2n0e.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1fu298veauvj31400deq5y.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1fu29fq2wq8j30zy0cojvg.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu29jxtzouj315u0nyanj.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2a8ui3jrj315w0o00xr.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2aa34ejqj315s0nm451.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2aapyw4pj315u0nsahf.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2abu44kdj315q0nu780.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2ad7mks1j315s0nswi4.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2adyq1o1j315u0nygq2.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2aezib85j315m0nstfn.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2ai8dhz1j315o0nswk4.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2arofpsdj315o0o0jxz.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1fu2arj18vrj315s0nw0xt.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2asi6lrzj315q0nsgqa.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1fu2auvuhpwj315q0nstdu.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2awqwwh2j315u0nw0wv.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2b2uzbi9j313g0f0te2.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2b6f6zl3j311m0d6goz.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2bbtsd50j315o0nswit.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2beyplt3j315m0nwq86.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1fu2bmg80bgj315q0nqwjz.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1fu2bucjrerj315w0nsjxi.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2bzmn8mhj315u0nw0xu.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2c1ep3plj315m0nw7ay.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2c3eco8rj31620o8tdl.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1fu2c6h26zyj315m0nyjvf.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2c7hg02kj315q0ns79i.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2crjx23sj315y0nstd7.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2cua44m6j315u0nu77m.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2cv3xu46j315q0nsgp5.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2cw4lwzrj315s0nsdkh.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2d4mlcmtj315w0nuwja.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2d5z49zzj315o0nujz6.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu3mn9l0f6j30ym0js0y4.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fu3monotydj30yo0jq0wb.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu3mwpr5gaj30ys0k4n5s.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu3mxj8md1j30yo0js42n.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu3n4976c3j30xe128n7q.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fu4oavbvyjj314i0n8jv6.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4per81iaj314o0n841l.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4pfb9rwyj314g0n4771.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fu4ppxxhbxj314i0n47a8.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fu4q6jhavij314g0n6jv3.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4q7kk1qtj314g0n4goi.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4q9zh74tj314k0n2q5w.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4qb9c9e1j314i0n4wj0.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4qd2xtj8j314q0n677h.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fu4qdjc3xwj314i0naq78.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fu4qeabs2oj314i0n8tna.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fu4qkql5kjj314i0n8tcc.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4ql1un4vj314g0n443a.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fu4qlru0bij314k0nctc0.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fu4qmfa8j8j314m0netk6.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fu4qnr8e6nj314i0n6dip.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4r0c125uj314i0n2jvq.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fu4r0muo1hj314k0n2aeg.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fu4r1xbd4rj314g0n00y0.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4r3a5k9xj314e0n0427.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4r9x4ke3j314e0my7bx.jpg">
+<meta property="article:published_time" content="2018-08-08T03:06:07.000Z">
+<meta property="article:modified_time" content="2018-08-10T10:07:11.430Z">
+<meta property="article:author" content="Lsinger">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="mooc">
+<meta property="article:tag" content="coursera">
+<meta property="article:tag" content="course notes">
+<meta property="article:tag" content="Andrew NG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/0069RVTdly1ftv6zyby92j31640ns48v.jpg">
+
+
+<link rel="canonical" href="http://yoursite.com/2018/08/08/Machine-Learning-by-Andrew-NG-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;default&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;08&#x2F;08&#x2F;Machine-Learning-by-Andrew-NG-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0&#x2F;&quot;,&quot;path&quot;:&quot;2018&#x2F;08&#x2F;08&#x2F;Machine-Learning-by-Andrew-NG-课程笔记&#x2F;&quot;,&quot;title&quot;:&quot;Machine Learning by Andrew NG 课程笔记&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Machine Learning by Andrew NG 课程笔记 | Lsinger' s blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lsinger' s blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Lsinger' s blog</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Machine-Learning-by-Andrew-NG-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">Machine Learning by Andrew NG 课程笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-1-Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Lecture 1 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-machine-learning"><span class="nav-number">1.1.1.</span> <span class="nav-text">What is machine learning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Machine-Learning-definition"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Machine Learning definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Machine-learning-algorithms"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">Machine learning algorithms</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction-Supervised-Learning"><span class="nav-number">1.1.2.</span> <span class="nav-text">Introduction Supervised Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction-Unsupervised-Learning"><span class="nav-number">1.1.3.</span> <span class="nav-text">Introduction Unsupervised Learning</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-2-Linear-regression-with-one-variable"><span class="nav-number">1.2.</span> <span class="nav-text">Lecture 2 Linear regression with one variable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-representation"><span class="nav-number">1.2.1.</span> <span class="nav-text">Model representation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function"><span class="nav-number">1.2.2.</span> <span class="nav-text">Cost function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-Descent"><span class="nav-number">1.2.3.</span> <span class="nav-text">Gradient Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-descent-algorithm"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Gradient descent algorithm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-descent-for-linear-regression"><span class="nav-number">1.2.4.</span> <span class="nav-text">Gradient descent for linear regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-descent-algorithm-1"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">Gradient descent algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%9CBatch%E2%80%9D-Gradient-Descent"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">“Batch”  Gradient Descent</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-3-Linear-Algebra-review"><span class="nav-number">1.3.</span> <span class="nav-text">Lecture 3 Linear Algebra review</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrices-and-vectors"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">Matrices and vectors</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Additon-and-scalar-multplication"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">Additon and scalar multplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix%C2%AD%E2%80%90vector-multplication"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">Matrix­‐vector multplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix%C2%AD-matrix-multplication"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">Matrix­-matrix multplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix-multplication-properties"><span class="nav-number">1.3.0.5.</span> <span class="nav-text">Matrix multplication properties</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Inverse-and-transpose"><span class="nav-number">1.3.0.6.</span> <span class="nav-text">Inverse and transpose</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-4-Linear-Regression-with-multiple-variables"><span class="nav-number">1.4.</span> <span class="nav-text">Lecture 4 Linear Regression with multiple variables</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Multiple-features"><span class="nav-number">1.4.1.</span> <span class="nav-text">Multiple features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-descent-for-multiple-variables"><span class="nav-number">1.4.2.</span> <span class="nav-text">Gradient descent for multiple variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-descent-in-practice-I-Feature-Scaling"><span class="nav-number">1.4.3.</span> <span class="nav-text">Gradient descent in practice I: Feature Scaling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Feature-Scaling"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">Feature Scaling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mean-normalization"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">Mean normalization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-descent-in-practice-II-Learning-rate"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">Gradient descent in practice II: Learning rate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-descent"><span class="nav-number">1.4.3.4.</span> <span class="nav-text">Gradient descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Making-sure-gradient-descent-is-working-correctly"><span class="nav-number">1.4.3.5.</span> <span class="nav-text">Making sure gradient descent is working correctly</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Features-and-polynomial-regression"><span class="nav-number">1.4.4.</span> <span class="nav-text">Features and polynomial regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Polynomial-regression"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">Polynomial regression</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Normal-equation"><span class="nav-number">1.4.5.</span> <span class="nav-text">Normal equation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Intuition"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-Descent-amp-Normal-Equation"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">Gradient Descent &amp; Normal Equation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Normal-equation-and-non-invertiblility"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">Normal equation and non-invertiblility</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-5-Octave-Tutorial"><span class="nav-number">1.5.</span> <span class="nav-text">Lecture 5 Octave Tutorial</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-6-Logistic-Regression"><span class="nav-number">1.6.</span> <span class="nav-text">Lecture 6 Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Classification"><span class="nav-number">1.6.1.</span> <span class="nav-text">Classification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hypothesis-Representation"><span class="nav-number">1.6.2.</span> <span class="nav-text">Hypothesis Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-Regression-Model"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">Logistic Regression Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Interpretation-of-Hypothesis-Output"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">Interpretation of Hypothesis Output</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-boundary"><span class="nav-number">1.6.3.</span> <span class="nav-text">Decision boundary</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-regression"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">Logistic regression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Decision-Boundary"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">Decision Boundary</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function-1"><span class="nav-number">1.6.4.</span> <span class="nav-text">Cost function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simplified-cost-function-and-gradient-descent"><span class="nav-number">1.6.5.</span> <span class="nav-text">Simplified cost function and gradient descent</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-regression-cost-function"><span class="nav-number">1.6.5.1.</span> <span class="nav-text">Logistic regression cost function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-Descent-1"><span class="nav-number">1.6.5.2.</span> <span class="nav-text">Gradient Descent</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-optimization"><span class="nav-number">1.6.6.</span> <span class="nav-text">Advanced optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Optimization-algorithm"><span class="nav-number">1.6.6.1.</span> <span class="nav-text">Optimization algorithm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-class-classification-One-vs-all"><span class="nav-number">1.6.7.</span> <span class="nav-text">Multi-class classification One-vs-all</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Multiclass-classification"><span class="nav-number">1.6.7.1.</span> <span class="nav-text">Multiclass classification</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#One-vs-all-One-vs-rest"><span class="nav-number">1.6.7.2.</span> <span class="nav-text">One-vs-all(One-vs-rest)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-7-Regularization"><span class="nav-number">1.7.</span> <span class="nav-text">Lecture 7 Regularization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-problem-of-overfitting"><span class="nav-number">1.7.1.</span> <span class="nav-text">The problem of overfitting</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Addressing-overfitting"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">Addressing overfitting</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function-2"><span class="nav-number">1.7.2.</span> <span class="nav-text">Cost function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Intuition-1"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Regularization"><span class="nav-number">1.7.2.2.</span> <span class="nav-text">Regularization</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regularized-linear-regression"><span class="nav-number">1.7.3.</span> <span class="nav-text">Regularized linear regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Regularized-linear-regression-1"><span class="nav-number">1.7.3.1.</span> <span class="nav-text">Regularized linear regression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-descent-1"><span class="nav-number">1.7.3.2.</span> <span class="nav-text">Gradient descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Normal-equation-1"><span class="nav-number">1.7.3.3.</span> <span class="nav-text">Normal equation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regularized-logistic-regression"><span class="nav-number">1.7.4.</span> <span class="nav-text">Regularized logistic regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Regularized-logistic-regression-1"><span class="nav-number">1.7.4.1.</span> <span class="nav-text">Regularized logistic regression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-descent-2"><span class="nav-number">1.7.4.2.</span> <span class="nav-text">Gradient descent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Advanced-optimization-1"><span class="nav-number">1.7.4.3.</span> <span class="nav-text">Advanced optimization</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-8-Neural-Networks-Representation"><span class="nav-number">1.8.</span> <span class="nav-text">Lecture 8 Neural Networks: Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-linear-hypotheses"><span class="nav-number">1.8.1.</span> <span class="nav-text">Non-linear hypotheses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neurons-and-the-brain"><span class="nav-number">1.8.2.</span> <span class="nav-text">Neurons and the brain</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Neural-Networks"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">Neural Networks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-representation-I"><span class="nav-number">1.8.3.</span> <span class="nav-text">Model representation I</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Neuron-model-Logistic-unit"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">Neuron model: Logistic unit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Neural-Network"><span class="nav-number">1.8.3.2.</span> <span class="nav-text">Neural Network</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-representation-II"><span class="nav-number">1.8.4.</span> <span class="nav-text">Model representation II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Forward-propagation-Vectorized-implementation"><span class="nav-number">1.8.4.1.</span> <span class="nav-text">Forward propagation: Vectorized implementation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Other-network-architectures"><span class="nav-number">1.8.4.2.</span> <span class="nav-text">Other network architectures</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples-and-intuitions-I"><span class="nav-number">1.8.5.</span> <span class="nav-text">Examples and intuitions I</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Non-linear-classification-example-XOR-XNOR"><span class="nav-number">1.8.5.1.</span> <span class="nav-text">Non-linear classification example: XOR&#x2F;XNOR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Simple-example-AND"><span class="nav-number">1.8.5.2.</span> <span class="nav-text">Simple example: AND</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-OR-function"><span class="nav-number">1.8.5.3.</span> <span class="nav-text">Example: OR function</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples-and-intuitions-II"><span class="nav-number">1.8.6.</span> <span class="nav-text">Examples and intuitions II</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-class-classification"><span class="nav-number">1.8.7.</span> <span class="nav-text">Multi-class classification</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Multiple-output-units-One-vs-all"><span class="nav-number">1.8.7.1.</span> <span class="nav-text">Multiple output units: One-vs-all</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-9-Neural-Networks-Learning"><span class="nav-number">1.9.</span> <span class="nav-text">Lecture 9 Neural Networks Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function-3"><span class="nav-number">1.9.1.</span> <span class="nav-text">Cost function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Neural-Network-Classification"><span class="nav-number">1.9.1.1.</span> <span class="nav-text">Neural Network(Classification)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cost-function-4"><span class="nav-number">1.9.1.2.</span> <span class="nav-text">Cost function</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backpropagation-algorithm"><span class="nav-number">1.9.2.</span> <span class="nav-text">Backpropagation algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gradient-computation"><span class="nav-number">1.9.2.1.</span> <span class="nav-text">Gradient computation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backpropagation-intuition"><span class="nav-number">1.9.3.</span> <span class="nav-text">Backpropagation intuition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Forward-Propagation"><span class="nav-number">1.9.3.1.</span> <span class="nav-text">Forward Propagation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#What-is-backpropagation-doing"><span class="nav-number">1.9.3.2.</span> <span class="nav-text">What is backpropagation doing?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementation-note-Unrolling-parameters"><span class="nav-number">1.9.4.</span> <span class="nav-text">Implementation note: Unrolling parameters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Advanced-optimization-2"><span class="nav-number">1.9.4.1.</span> <span class="nav-text">Advanced optimization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Numerical-estimation-of-gradients"><span class="nav-number">1.9.4.2.</span> <span class="nav-text">Numerical estimation of gradients</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Parameter-vector-theta"><span class="nav-number">1.9.4.3.</span> <span class="nav-text">Parameter vector $\theta$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Implementation-Note"><span class="nav-number">1.9.4.4.</span> <span class="nav-text">Implementation Note:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-initialization"><span class="nav-number">1.9.5.</span> <span class="nav-text">Random initialization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Initial-value-of-Theta"><span class="nav-number">1.9.5.1.</span> <span class="nav-text">Initial value of $\Theta$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Zero-initialization"><span class="nav-number">1.9.5.2.</span> <span class="nav-text">Zero initialization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Random-initialization-Symmetry-breaking"><span class="nav-number">1.9.5.3.</span> <span class="nav-text">Random initialization: Symmetry breaking</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Putting-it-together"><span class="nav-number">1.9.6.</span> <span class="nav-text">Putting it together</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-10-Advice-for-applying-machine-learning"><span class="nav-number">1.10.</span> <span class="nav-text">Lecture 10 Advice for applying machine learning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Machine-learning-diagnostic"><span class="nav-number">1.10.0.1.</span> <span class="nav-text">Machine learning diagnostic</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluating-a-hypothesis"><span class="nav-number">1.10.1.</span> <span class="nav-text">Evaluating a hypothesis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Training-testing-procedure-for-linear-regression"><span class="nav-number">1.10.1.1.</span> <span class="nav-text">Training&#x2F;testing procedure for linear regression</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-selection-and-training-validation-test-sets"><span class="nav-number">1.10.2.</span> <span class="nav-text">Model selection and training&#x2F;validation&#x2F;test sets</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Overfitting-example"><span class="nav-number">1.10.2.1.</span> <span class="nav-text">Overfitting example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Model-selection"><span class="nav-number">1.10.2.2.</span> <span class="nav-text">Model selection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Evaluating-your-hypothesis"><span class="nav-number">1.10.2.3.</span> <span class="nav-text">Evaluating your hypothesis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Train-validation-test-error"><span class="nav-number">1.10.2.4.</span> <span class="nav-text">Train&#x2F;validation&#x2F;test error</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Diagnosing-bias-vs-variance"><span class="nav-number">1.10.3.</span> <span class="nav-text">Diagnosing bias vs. variance</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bias-variance"><span class="nav-number">1.10.3.1.</span> <span class="nav-text">Bias&#x2F;variance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Diagnosing-bias-vs-variance-1"><span class="nav-number">1.10.3.2.</span> <span class="nav-text">Diagnosing bias vs. variance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regularization-and-bias-variance"><span class="nav-number">1.10.4.</span> <span class="nav-text">Regularization and bias&#x2F;variance</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linear-regression-with-regularization"><span class="nav-number">1.10.4.1.</span> <span class="nav-text">Linear regression with regularization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Choosing-the-regularization-parameter-lambda"><span class="nav-number">1.10.4.2.</span> <span class="nav-text">Choosing the regularization parameter $\lambda$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bias-variance-as-a-function-of-the-regularization-parameter-lambda"><span class="nav-number">1.10.4.3.</span> <span class="nav-text">Bias&#x2F;variance as a function of the regularization parameter $\lambda$</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-curves"><span class="nav-number">1.10.5.</span> <span class="nav-text">Learning curves</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Learning-curves-1"><span class="nav-number">1.10.5.1.</span> <span class="nav-text">Learning curves</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High-bias"><span class="nav-number">1.10.5.2.</span> <span class="nav-text">High bias</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High-variance"><span class="nav-number">1.10.5.3.</span> <span class="nav-text">High variance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deciding-what-to-try-next"><span class="nav-number">1.10.6.</span> <span class="nav-text">Deciding what to try next</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Neural-networks-and-overfitting"><span class="nav-number">1.10.6.1.</span> <span class="nav-text">Neural networks and overfitting</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-11-Machine-learning-system-design"><span class="nav-number">1.11.</span> <span class="nav-text">Lecture 11 Machine learning system design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prioritizing-what-to-work-on-Spam-classification-example"><span class="nav-number">1.11.1.</span> <span class="nav-text">Prioritizing what to work on: Spam classification example</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Building-a-spam-classifier"><span class="nav-number">1.11.1.1.</span> <span class="nav-text">Building a spam classifier</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-analysis"><span class="nav-number">1.11.2.</span> <span class="nav-text">Error analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Recommended-approach"><span class="nav-number">1.11.2.1.</span> <span class="nav-text">Recommended approach</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-Analysis"><span class="nav-number">1.11.2.2.</span> <span class="nav-text">Error Analysis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-importance-of-numerical-evaluation"><span class="nav-number">1.11.2.3.</span> <span class="nav-text">The importance of numerical evaluation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-metrics-for-skewed-classes"><span class="nav-number">1.11.3.</span> <span class="nav-text">Error metrics for skewed classes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cancer-classification-example"><span class="nav-number">1.11.3.1.</span> <span class="nav-text">Cancer classification example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Precision-Recall"><span class="nav-number">1.11.3.2.</span> <span class="nav-text">Precision&#x2F;Recall</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trading-off-precision-and-recall"><span class="nav-number">1.11.4.</span> <span class="nav-text">Trading off precision and recall</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Trading-off-precision-and-recall-1"><span class="nav-number">1.11.4.1.</span> <span class="nav-text">Trading off precision and recall</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#F-1-Score-F-score"><span class="nav-number">1.11.4.2.</span> <span class="nav-text">$F_1$ Score(F score)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-for-machine-learning"><span class="nav-number">1.11.5.</span> <span class="nav-text">Data for machine learning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Designing-a-high-accuracy-learning-system"><span class="nav-number">1.11.5.1.</span> <span class="nav-text">Designing a high accuracy learning system</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Large-data-rationale"><span class="nav-number">1.11.5.2.</span> <span class="nav-text">Large data rationale</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-12-Support-Vector-Machines"><span class="nav-number">1.12.</span> <span class="nav-text">Lecture 12 Support Vector Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-objective"><span class="nav-number">1.12.1.</span> <span class="nav-text">Optimization objective</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Alternative-view-of-logistic-regression"><span class="nav-number">1.12.1.1.</span> <span class="nav-text">Alternative view of logistic regression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Support-vector-machine"><span class="nav-number">1.12.1.2.</span> <span class="nav-text">Support vector machine</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Large-Margin-Intuition"><span class="nav-number">1.12.2.</span> <span class="nav-text">Large Margin Intuition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Support-Vector-Machine"><span class="nav-number">1.12.2.1.</span> <span class="nav-text">Support Vector Machine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVM-Decision-Boundary"><span class="nav-number">1.12.2.2.</span> <span class="nav-text">SVM Decision Boundary</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVM-Decision-Boundary-Linearly-separable-case"><span class="nav-number">1.12.2.3.</span> <span class="nav-text">SVM Decision Boundary: Linearly separable case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Large-margin-classi%EF%AC%81er-in-presence-of-outliers"><span class="nav-number">1.12.2.4.</span> <span class="nav-text">Large margin classiﬁer in presence of outliers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-mathematics-behind-large-margin-classi%EF%AC%81cation"><span class="nav-number">1.12.3.</span> <span class="nav-text">The mathematics behind large margin classiﬁcation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vector-Inner-Product"><span class="nav-number">1.12.3.1.</span> <span class="nav-text">Vector Inner Product</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVM-Decision-Boundary-1"><span class="nav-number">1.12.3.2.</span> <span class="nav-text">SVM Decision Boundary</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kernels-I"><span class="nav-number">1.12.4.</span> <span class="nav-text">Kernels I</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Non-%C2%AD%E2%80%90linear-Decision-Boundary"><span class="nav-number">1.12.4.1.</span> <span class="nav-text">Non-­‐linear Decision Boundary</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kernel"><span class="nav-number">1.12.4.2.</span> <span class="nav-text">Kernel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kernels-and-Similarity"><span class="nav-number">1.12.4.3.</span> <span class="nav-text">Kernels and Similarity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.12.4.4.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kernels-II"><span class="nav-number">1.12.5.</span> <span class="nav-text">Kernels II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Choosing-the-landmarks"><span class="nav-number">1.12.5.1.</span> <span class="nav-text">Choosing the landmarks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVM-with-Kernels"><span class="nav-number">1.12.5.2.</span> <span class="nav-text">SVM with Kernels</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVM-parameters"><span class="nav-number">1.12.5.3.</span> <span class="nav-text">SVM parameters</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-an-SVM"><span class="nav-number">1.12.6.</span> <span class="nav-text">Using an SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Other-choices-of-kernel"><span class="nav-number">1.12.6.1.</span> <span class="nav-text">Other choices of kernel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-class-classification-1"><span class="nav-number">1.12.6.2.</span> <span class="nav-text">Multi-class classification</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-regression-vs-SVMs"><span class="nav-number">1.12.6.3.</span> <span class="nav-text">Logistic regression vs. SVMs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-13-Clustering"><span class="nav-number">1.13.</span> <span class="nav-text">Lecture 13 Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unsupervised-learning-introduction"><span class="nav-number">1.13.1.</span> <span class="nav-text">Unsupervised learning introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Supervised-learning"><span class="nav-number">1.13.1.1.</span> <span class="nav-text">Supervised learning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Applications-of-clustering"><span class="nav-number">1.13.1.2.</span> <span class="nav-text">Applications of clustering</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#K-means-algorithm"><span class="nav-number">1.13.2.</span> <span class="nav-text">K-means algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-objective-1"><span class="nav-number">1.13.3.</span> <span class="nav-text">Optimization objective</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#K-means-optimization-objective"><span class="nav-number">1.13.3.1.</span> <span class="nav-text">K-means optimization objective</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-initialization-1"><span class="nav-number">1.13.4.</span> <span class="nav-text">Random initialization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Local-optima"><span class="nav-number">1.13.4.1.</span> <span class="nav-text">Local optima</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Choosing-the-number-of-clusters"><span class="nav-number">1.13.5.</span> <span class="nav-text">Choosing the number of clusters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Choosing-the-value-of-K"><span class="nav-number">1.13.5.1.</span> <span class="nav-text">Choosing the value of K</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-14-Dimensionality-Reduction"><span class="nav-number">1.14.</span> <span class="nav-text">Lecture 14 Dimensionality Reduction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Motivation-I-Data-Compression"><span class="nav-number">1.14.0.1.</span> <span class="nav-text">Motivation I: Data Compression</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation-II-Data-Visualization"><span class="nav-number">1.14.1.</span> <span class="nav-text">Motivation II: Data Visualization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Visualization"><span class="nav-number">1.14.1.1.</span> <span class="nav-text">Data Visualization</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Principal-Component-Analysis-problem-formulation"><span class="nav-number">1.14.2.</span> <span class="nav-text">Principal Component Analysis problem formulation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Principal-Component-Analysis-algorithm"><span class="nav-number">1.14.3.</span> <span class="nav-text">Principal Component Analysis algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-preprocessing"><span class="nav-number">1.14.3.1.</span> <span class="nav-text">Data preprocessing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Principal-Component-Analysis-algorithm-1"><span class="nav-number">1.14.3.2.</span> <span class="nav-text">Principal Component Analysis algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Principal-Component-Analysis-algorithm-summary"><span class="nav-number">1.14.3.3.</span> <span class="nav-text">Principal Component Analysis algorithm summary</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reconstruction-from-compressed-representation"><span class="nav-number">1.14.4.</span> <span class="nav-text">Reconstruction from compressed representation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Choosing-the-number-of-principal-components"><span class="nav-number">1.14.5.</span> <span class="nav-text">Choosing the number of principal components</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Choosing-k-number-of-principal-components"><span class="nav-number">1.14.5.1.</span> <span class="nav-text">Choosing k (number of principal components)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advice-for-applying-PCA"><span class="nav-number">1.14.6.</span> <span class="nav-text">Advice for applying PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Supervised-learning-speedup"><span class="nav-number">1.14.6.1.</span> <span class="nav-text">Supervised learning speedup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Application-of-PCA"><span class="nav-number">1.14.6.2.</span> <span class="nav-text">Application of PCA</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lsinger</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/08/Machine-Learning-by-Andrew-NG-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Machine Learning by Andrew NG 课程笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-08-08 11:06:07" itemprop="dateCreated datePublished" datetime="2018-08-08T11:06:07+08:00">2018-08-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2018-08-10 18:07:11" itemprop="dateModified" datetime="2018-08-10T18:07:11+08:00">2018-08-10</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Machine-Learning-by-Andrew-NG-课程笔记"><a href="#Machine-Learning-by-Andrew-NG-课程笔记" class="headerlink" title="Machine Learning by Andrew NG 课程笔记"></a>Machine Learning by Andrew NG 课程笔记</h1><span id="more"></span> 
+
+<h2 id="Lecture-1-Introduction"><a href="#Lecture-1-Introduction" class="headerlink" title="Lecture 1 Introduction"></a>Lecture 1 Introduction</h2><h3 id="What-is-machine-learning"><a href="#What-is-machine-learning" class="headerlink" title="What is machine learning"></a>What is machine learning</h3><h4 id="Machine-Learning-definition"><a href="#Machine-Learning-definition" class="headerlink" title="Machine Learning definition"></a>Machine Learning definition</h4><ol>
+<li>Arthur Samuel(1959): Field of study that gives computers the ability to learn without being explicitly programmed.</li>
+<li>Tom Mitchell(1998): A computer program is said to learn from experience E with respect to some task T and some performance on T, as measured by P, improves with experience E.</li>
+</ol>
+<h4 id="Machine-learning-algorithms"><a href="#Machine-learning-algorithms" class="headerlink" title="Machine learning algorithms"></a>Machine learning algorithms</h4><ol>
+<li>Supervised learning</li>
+<li>Unsupervised learning</li>
+<li>Others: Reinforcement learning, recommender systems</li>
+</ol>
+<h3 id="Introduction-Supervised-Learning"><a href="#Introduction-Supervised-Learning" class="headerlink" title="Introduction Supervised Learning"></a>Introduction Supervised Learning</h3><ol>
+<li>Supervised Learning “right answers” given</li>
+<li>Regression: Predict continuous valued output</li>
+<li>Classification: Discrete valued output</li>
+</ol>
+<h3 id="Introduction-Unsupervised-Learning"><a href="#Introduction-Unsupervised-Learning" class="headerlink" title="Introduction Unsupervised Learning"></a>Introduction Unsupervised Learning</h3><p>Unsupervised Learning <strong>no</strong> “right answers” given</p>
+<h2 id="Lecture-2-Linear-regression-with-one-variable"><a href="#Lecture-2-Linear-regression-with-one-variable" class="headerlink" title="Lecture 2 Linear regression with one variable"></a>Lecture 2 Linear regression with one variable</h2><h3 id="Model-representation"><a href="#Model-representation" class="headerlink" title="Model representation"></a>Model representation</h3><ol>
+<li>Supervised Learning <ol>
+<li>Given “right answers” for each example in the data</li>
+</ol>
+</li>
+<li>Regression Problem<ol>
+<li>Predict real-valued output</li>
+</ol>
+</li>
+<li>Notation:<ol>
+<li>m = Number of training examples</li>
+<li>x’s = “input” variable/features</li>
+<li>y’s = “output” variable / “target” variable</li>
+</ol>
+</li>
+<li>model<ol>
+<li>Training Set -&gt; Learning Algorithm -&gt; hypothesis</li>
+<li>Hypothesis: $h_\theta(x) = \theta_0 + \theta_1x$</li>
+<li>h maps from x’s to y’s</li>
+</ol>
+</li>
+</ol>
+<h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><ol>
+<li>Hypothesis: $h_\theta(x) = \theta_0 + \theta_1x$</li>
+<li>Parameters:  $\theta_0, \theta_1$</li>
+<li>how to choose parameters $\theta_i’s$<ol>
+<li>Idea: Choose $\theta_0, \theta_1$ so that $h_\theta(x)$ is close to y for our training examples(x, y)</li>
+</ol>
+</li>
+<li>Cost Function: $J(\theta_0, \theta_1) = \frac{1}{2m}\sum_{i=1}^m (h_\theta(x^i) - y^i)^2$ (squared  error function)</li>
+<li>Goal: minimize $J(\theta_0, \theta_1)$<ol>
+<li>fixed $\theta$ -&gt; function of x</li>
+<li>compute J</li>
+<li>plot the function of $J(\theta)$</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://ws4.sinaimg.cn/large/0069RVTdly1ftv6zyby92j31640ns48v.jpg"></p>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdly1ftv6zrl9lqj31640ls7dd.jpg"></p>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdly1ftv70uejw0j31680lgtgw.jpg"></p>
+<h3 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h3><ul>
+<li>Have some function $J(\theta_0, \theta_1)$</li>
+<li>Want min $J(\theta_0, \theta_1)$</li>
+<li>Outline<ul>
+<li>Start with some $\theta_0, \theta_1$</li>
+<li>Keep changing $\theta_0, \theta_1$ to reduce $J(\theta_0, \theta_1)$ until we hopefully end up at a minimum</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/0069RVTdly1ftv73u4s44j31580kc7iw.jpg"></p>
+<p><img src="https://ws4.sinaimg.cn/large/0069RVTdly1ftv73ofzghj314w0k6aof.jpg"></p>
+<h4 id="Gradient-descent-algorithm"><a href="#Gradient-descent-algorithm" class="headerlink" title="Gradient descent algorithm"></a>Gradient descent algorithm</h4><ul>
+<li>repeat until convergence<ul>
+<li>$\theta_j := \theta_j - \alpha \frac{\partial}{\partial\theta_j} J(\theta_0, \theta_1)$ for (j=0 and j=1)  for (j=0 and j=1) </li>
+</ul>
+</li>
+<li>Correct: Simultaneous update<ul>
+<li>$temp0 := \theta_0 - \alpha \frac{\partial}{\partial\theta_0} J(\theta_0, \theta_1)$ </li>
+<li>$temp1 := \theta_1 - \alpha \frac{\partial}{\partial\theta_1} J(\theta_0, \theta_1)$ </li>
+<li>$\theta_0:= temp0$ </li>
+<li>$\theta_1:= temp1$ </li>
+</ul>
+</li>
+<li>Incorrect<ul>
+<li>$temp0 := \theta_0 - \alpha \frac{\partial}{\partial\theta_0} J(\theta_0, \theta_1)$</li>
+<li>$\theta_0:= temp0$</li>
+<li>$temp1 := \theta_1 - \alpha \frac{\partial}{\partial\theta_1} J(\theta_0, \theta_1)$  </li>
+<li>$\theta_1:= temp1$ </li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdly1ftv79sjvhpj31680nqjw7.jpg"></p>
+<ul>
+<li><p>learning rate $\alpha$</p>
+<ul>
+<li><p>If $\alpha$ is too small, gradient descent can be slow</p>
+</li>
+<li><p>If $\alpha$ is too large, gradient descent can overshoot the minimum. It may fail to converge, or even diverge</p>
+<p><img src="https://ws4.sinaimg.cn/large/0069RVTdly1ftv7c5trlfj30he0nemz4.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>Gradient descent can converge to a local minimum, even with the learning rate $\alpha$ fixed</p>
+<ul>
+<li>As we approach a local minimum, gradient descent will automatically take smaller steps. So, no need to decrease learning rate over time.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Gradient-descent-for-linear-regression"><a href="#Gradient-descent-for-linear-regression" class="headerlink" title="Gradient descent for linear regression"></a>Gradient descent for linear regression</h3><h4 id="Gradient-descent-algorithm-1"><a href="#Gradient-descent-algorithm-1" class="headerlink" title="Gradient descent algorithm"></a>Gradient descent algorithm</h4><ul>
+<li>repeat until convergence<ul>
+<li>$\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^i)-y^i)$</li>
+<li>$\theta_1 := \theta_1 - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^i)-y^i) x^i$</li>
+<li>update $\theta_0$ and $\theta_1$ simultaneously</li>
+</ul>
+</li>
+</ul>
+<h4 id="“Batch”-Gradient-Descent"><a href="#“Batch”-Gradient-Descent" class="headerlink" title="“Batch”  Gradient Descent"></a>“Batch”  Gradient Descent</h4><ul>
+<li>“Batch”: Each step of gradient descent uses all the training examples</li>
+</ul>
+<h2 id="Lecture-3-Linear-Algebra-review"><a href="#Lecture-3-Linear-Algebra-review" class="headerlink" title="Lecture 3 Linear Algebra review"></a>Lecture 3 Linear Algebra review</h2><h4 id="Matrices-and-vectors"><a href="#Matrices-and-vectors" class="headerlink" title="Matrices and vectors"></a>Matrices and vectors</h4><ul>
+<li>Dimensions of matrix: number of rows $\times$ number of columns</li>
+<li>$A_(ij)$ = ‘i, j entry’ in the $i^{th}$ row, $j^{th}$column</li>
+</ul>
+<h4 id="Additon-and-scalar-multplication"><a href="#Additon-and-scalar-multplication" class="headerlink" title="Additon and scalar multplication"></a>Additon and scalar multplication</h4><ul>
+<li>Matrix Addition</li>
+<li>Scalar Multiplication</li>
+<li>Combination of Operands</li>
+</ul>
+<h4 id="Matrix­‐vector-multplication"><a href="#Matrix­‐vector-multplication" class="headerlink" title="Matrix­‐vector multplication"></a>Matrix­‐vector multplication</h4><p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1ftv7qxgr7lj30vm102n48.jpg"></p>
+<h4 id="Matrix­-matrix-multplication"><a href="#Matrix­-matrix-multplication" class="headerlink" title="Matrix­-matrix multplication"></a>Matrix­-matrix multplication</h4><p><img src="https://ws3.sinaimg.cn/large/0069RVTdly1ftv7s23wi0j30vm108tgg.jpg"></p>
+<h4 id="Matrix-multplication-properties"><a href="#Matrix-multplication-properties" class="headerlink" title="Matrix multplication properties"></a>Matrix multplication properties</h4><ul>
+<li>Not commutative: $A \times B \neq B \times A$</li>
+<li>Identity Matrix:<ul>
+<li>For any matrix A,</li>
+<li>A*I = I*A = A</li>
+</ul>
+</li>
+</ul>
+<h4 id="Inverse-and-transpose"><a href="#Inverse-and-transpose" class="headerlink" title="Inverse and transpose"></a>Inverse and transpose</h4><ul>
+<li>Matrix inverse <ul>
+<li>If A is an m x m matrix, and if it has an inverse,</li>
+<li>$AA^{-1} = A^{-1}A = I$</li>
+<li>Matrices that don’t have an inverse are “singular” or “degenerate”</li>
+</ul>
+</li>
+<li>Matrix Transpose<ul>
+<li>Let A be an m x n matrix, and let $B = A^T$ </li>
+<li>Then B is an n x m matrix, and</li>
+<li>$B_{ij} = A_{ji}$</li>
+</ul>
+</li>
+</ul>
+<h2 id="Lecture-4-Linear-Regression-with-multiple-variables"><a href="#Lecture-4-Linear-Regression-with-multiple-variables" class="headerlink" title="Lecture 4 Linear Regression with multiple variables"></a>Lecture 4 Linear Regression with multiple variables</h2><h3 id="Multiple-features"><a href="#Multiple-features" class="headerlink" title="Multiple features"></a>Multiple features</h3><ul>
+<li>Notation<ul>
+<li>n = number of features</li>
+<li>$x^{(i)}$ = input (features) of $i^{th}$ training example</li>
+<li>$x_j^{(i)}$ = value of feature j in  $i^{th}$ training example</li>
+</ul>
+</li>
+<li>Hypothesis<ul>
+<li>$h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2x_2 + …  + \theta_nx_n$</li>
+<li>For convenience of notation, deﬁne $x_0 = 1$</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1ftv83uhycmj318q0pgag1.jpg"></p>
+<h3 id="Gradient-descent-for-multiple-variables"><a href="#Gradient-descent-for-multiple-variables" class="headerlink" title="Gradient descent for multiple variables"></a>Gradient descent for multiple variables</h3><ul>
+<li><p>Hypothesis: $h_\theta(x) = \theta^Tx = \theta_0 + \theta_1x_1 + \theta_2x_2 + …  + \theta_nx_n$</p>
+</li>
+<li><p>parameters: $\theta_0, \theta_1, …, \theta_n$</p>
+</li>
+<li><p>Cost function:$J(\theta_0, \theta_1, …, \theta_n) = \frac{1}{2m} \sum_{i=1}^m(h(x^{(i)}-y^{(i)}))^2$</p>
+</li>
+<li><p>Gradient descent: </p>
+<ul>
+<li>$\theta_j := \theta_j - \alpha \frac{\partial}{\partial\theta_j}J(\theta_0, \theta_1, …, \theta_n)$  (simultaneously update for every j = 0, …, n)</li>
+<li>$\theta_j := \theta_j - \alpha \frac{1}{m}\sum_{i=1}^m(h(x^{(i)}-y^{(i)}))x_j^{(i)}$</li>
+<li>$x_0^{i} = 1$</li>
+</ul>
+</li>
+</ul>
+<h3 id="Gradient-descent-in-practice-I-Feature-Scaling"><a href="#Gradient-descent-in-practice-I-Feature-Scaling" class="headerlink" title="Gradient descent in practice I: Feature Scaling"></a>Gradient descent in practice I: Feature Scaling</h3><h4 id="Feature-Scaling"><a href="#Feature-Scaling" class="headerlink" title="Feature Scaling"></a>Feature Scaling</h4><ul>
+<li>Idea: Make sure features are on a similar scale</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1ftvcy8532zj318y0pkqao.jpg"></p>
+<h4 id="Mean-normalization"><a href="#Mean-normalization" class="headerlink" title="Mean normalization"></a>Mean normalization</h4><ul>
+<li>Replace $x_i$ with $x_i - \mu$ to make features have approximately zero mean (Do not apply to $x_0 =1$)</li>
+<li>Mean normalization: $\frac{x_i - \mu}{max - min}$</li>
+</ul>
+<h4 id="Gradient-descent-in-practice-II-Learning-rate"><a href="#Gradient-descent-in-practice-II-Learning-rate" class="headerlink" title="Gradient descent in practice II: Learning rate"></a>Gradient descent in practice II: Learning rate</h4><h4 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h4><ul>
+<li>$\theta_j := \theta_j - \alpha \frac{\partial}{\partial\theta_j}J(\theta_0, \theta_1, …, \theta_n)$ </li>
+<li>“Debugging”: How to make sure gradient descent is working correctly</li>
+<li>How to choose learning rate</li>
+</ul>
+<h4 id="Making-sure-gradient-descent-is-working-correctly"><a href="#Making-sure-gradient-descent-is-working-correctly" class="headerlink" title="Making sure gradient descent is working correctly"></a>Making sure gradient descent is working correctly</h4><p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1ftvd810ihsj318y0pswkf.jpg"></p>
+<ul>
+<li><p>For sufficiently small $\alpha$, $J(\theta)$ should decrease on every iteration</p>
+</li>
+<li><p>But if $\alpha$ is too small, gradient desent can be slow to converge</p>
+</li>
+<li><p>If $\alpha$ is too large, may not decrease on every iteration; may not converge</p>
+</li>
+<li><p>To choose $\alpha$, try</p>
+<p>…, 0.001, …, 0.01, …, 0.1,  …, 1, ….</p>
+</li>
+</ul>
+<h3 id="Features-and-polynomial-regression"><a href="#Features-and-polynomial-regression" class="headerlink" title="Features and polynomial regression"></a>Features and polynomial regression</h3><h4 id="Polynomial-regression"><a href="#Polynomial-regression" class="headerlink" title="Polynomial regression"></a>Polynomial regression</h4><p><img src="https://ws1.sinaimg.cn/large/0069RVTdly1ftvdamfrnlj318w0poae5.jpg"></p>
+<h3 id="Normal-equation"><a href="#Normal-equation" class="headerlink" title="Normal equation"></a>Normal equation</h3><ul>
+<li>Normal equation: Method to solve for $\theta$ analytically</li>
+</ul>
+<h4 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h4><p><img src="https://ws4.sinaimg.cn/large/0069RVTdly1ftvdc8owg6j318y0poq85.jpg"></p>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdly1ftvdccdyt5j318s0pmdl7.jpg"></p>
+<ul>
+<li>Normal equation: $\theta = (X^{T}X)^{-1}X^Ty$<ul>
+<li>$ (X^{T}X)^{-1}$ is inverse of matrix $X^{T}X$</li>
+<li>Octave/matlab: pinv(X’*X)*X’*y</li>
+</ul>
+</li>
+</ul>
+<h4 id="Gradient-Descent-amp-Normal-Equation"><a href="#Gradient-Descent-amp-Normal-Equation" class="headerlink" title="Gradient Descent &amp; Normal Equation"></a>Gradient Descent &amp; Normal Equation</h4><table>
+<thead>
+<tr>
+<th>Gradient Descent</th>
+<th>Normal Equation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Need to choose $\alpha$</td>
+<td>No need to choose $\alpha$</td>
+</tr>
+<tr>
+<td>Needs many iterations</td>
+<td>Don’t need to iterate</td>
+</tr>
+<tr>
+<td>Works well even when n is large</td>
+<td>Slow if n is very large: need to compute $ (X^{T}X)^{-1}$</td>
+</tr>
+</tbody></table>
+<h4 id="Normal-equation-and-non-invertiblility"><a href="#Normal-equation-and-non-invertiblility" class="headerlink" title="Normal equation and non-invertiblility"></a>Normal equation and non-invertiblility</h4><ul>
+<li>Normal equation: $\theta = (X^{T}X)^{-1}X^Ty$</li>
+<li>What if $ (X^{T}X)^{-1}$ is non-invertible?<ul>
+<li>Redundant features(linearly dependent)</li>
+<li>Too many features(m $\leq$ n)<ul>
+<li>Delete some features, or use regularization</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Octave/matlab: pinv(X’*X)*X’*y</li>
+</ul>
+<h2 id="Lecture-5-Octave-Tutorial"><a href="#Lecture-5-Octave-Tutorial" class="headerlink" title="Lecture 5 Octave Tutorial"></a>Lecture 5 Octave Tutorial</h2><h2 id="Lecture-6-Logistic-Regression"><a href="#Lecture-6-Logistic-Regression" class="headerlink" title="Lecture 6 Logistic Regression"></a>Lecture 6 Logistic Regression</h2><h3 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h3><ul>
+<li>y ∈ {0, 1}<ul>
+<li>0: “Negative class”</li>
+<li>1: “Positive class”</li>
+</ul>
+</li>
+<li>Threshold classifier output $h_\theta(x)$ at 0.5:<ul>
+<li>$h_\theta(x) \geq 0.5$, predict “y=1”</li>
+<li>$h_\theta(x) &lt; 0.5$, predict “y=0”</li>
+</ul>
+</li>
+<li>classification: y = 0 or y = 1</li>
+<li>$h_\theta(x)$ can be &gt; 1 or &lt; 0</li>
+<li>Logistic Regression: 0 $\leq h_\theta(x) \leq$ 1</li>
+</ul>
+<h3 id="Hypothesis-Representation"><a href="#Hypothesis-Representation" class="headerlink" title="Hypothesis Representation"></a>Hypothesis Representation</h3><h4 id="Logistic-Regression-Model"><a href="#Logistic-Regression-Model" class="headerlink" title="Logistic Regression Model"></a>Logistic Regression Model</h4><ul>
+<li>Want 0 $\leq h_\theta(x) \leq$ 1</li>
+<li>Sigmoid function(Logistic function)<ul>
+<li>$h_\theta(x) = \frac{1}{1 + e^{-\theta^Tx}}$</li>
+</ul>
+</li>
+</ul>
+<h4 id="Interpretation-of-Hypothesis-Output"><a href="#Interpretation-of-Hypothesis-Output" class="headerlink" title="Interpretation of Hypothesis Output"></a>Interpretation of Hypothesis Output</h4><ul>
+<li>$h_\theta(x)$ = estimated probability that y = 1 on input x</li>
+</ul>
+<h3 id="Decision-boundary"><a href="#Decision-boundary" class="headerlink" title="Decision boundary"></a>Decision boundary</h3><h4 id="Logistic-regression"><a href="#Logistic-regression" class="headerlink" title="Logistic regression"></a>Logistic regression</h4><ul>
+<li>$h_\theta(x) = g(\theta^Tx)$      $g(z) = \frac{1}{1 + e^{-z}}$</li>
+<li>Suppose predict “y=1” if  $h_\theta(x) \geq 0.5$<ul>
+<li>$\theta^Tx \geq 0$</li>
+</ul>
+</li>
+<li>predict “y=0” if $h_\theta(x) &lt; 0.5$<ul>
+<li>$\theta^Tx &lt; 0$</li>
+</ul>
+</li>
+</ul>
+<h4 id="Decision-Boundary"><a href="#Decision-Boundary" class="headerlink" title="Decision Boundary"></a>Decision Boundary</h4><p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwb7fdjbqj30w8114dps.jpg"></p>
+<h3 id="Cost-function-1"><a href="#Cost-function-1" class="headerlink" title="Cost function"></a>Cost function</h3><ul>
+<li>How to choose parameters $\theta$ ?</li>
+<li>$Cost(h_\theta(x), y) = $<ul>
+<li>$-log(h_\theta(x))$  if y = 1</li>
+<li>$-log(1 - h_\theta(x))$  if y = 0</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1ftwbdczfqzj30w810y7ba.jpg"></p>
+<h3 id="Simplified-cost-function-and-gradient-descent"><a href="#Simplified-cost-function-and-gradient-descent" class="headerlink" title="Simplified cost function and gradient descent"></a>Simplified cost function and gradient descent</h3><h4 id="Logistic-regression-cost-function"><a href="#Logistic-regression-cost-function" class="headerlink" title="Logistic regression cost function"></a>Logistic regression cost function</h4><ul>
+<li><p>$J(\theta) = \frac{1}{m}\sum_{i=1}^mCost(h_\theta(x^{(i)}, y^{(i)}))$</p>
+</li>
+<li><p>$Cost(h_\theta(x), y) = $</p>
+<ul>
+<li>$-log(h_\theta(x))$  if y = 1</li>
+<li>$-log(1 - h_\theta(x))$  if y = 0</li>
+</ul>
+</li>
+<li><p>$J(\theta) = \frac{1}{m}\sum_{i=1}^mCost(h_\theta(x^{(i)}, y^{(i)})) $</p>
+<p>$= -\frac{1}{m}[\sum_{i=1}^my^{(i)}logh_\theta(x^{(i)}) + (1 - y^{(i)})log(1 - h_\theta(x^{(i)}))]$</p>
+</li>
+<li><p>To fit parameters $\theta$</p>
+<ul>
+<li>min $J(\theta)$</li>
+</ul>
+</li>
+<li><p>To make a prediction given new x</p>
+<ul>
+<li>Output $h_\theta(x) = \frac{1}{1 + e^{-\theta^Tx}}$</li>
+</ul>
+</li>
+</ul>
+<h4 id="Gradient-Descent-1"><a href="#Gradient-Descent-1" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h4><ul>
+<li>$J(\theta) = -\frac{1}{m}[\sum_{i=1}^my^{(i)}logh_\theta(x^{(i)}) + (1 - y^{(i)})log(1 - h_\theta(x^{(i)}))]$</li>
+<li>Want min $J(\theta)$<ul>
+<li>Repeate $\theta_j := \theta_j - \alpha\frac{\partial}{\partial\theta_j}J(\theta)$ (simultaneously update all $\theta_j$)</li>
+<li>$\theta_j := \theta_j - \alpha\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)}$</li>
+</ul>
+</li>
+<li>Algorithms looks identical to linear regression!</li>
+</ul>
+<h3 id="Advanced-optimization"><a href="#Advanced-optimization" class="headerlink" title="Advanced optimization"></a>Advanced optimization</h3><h4 id="Optimization-algorithm"><a href="#Optimization-algorithm" class="headerlink" title="Optimization algorithm"></a>Optimization algorithm</h4><ul>
+<li><p>Cost function $J(\theta)$. Want $min_\theta J(\theta)$</p>
+</li>
+<li><p>Given $\theta$,  we have code that compute</p>
+<ul>
+<li>$J(\theta)$</li>
+<li>$\frac{\partial}{\partial\theta_j}J(\theta)$</li>
+</ul>
+</li>
+<li><p>Gradient descent</p>
+<ul>
+<li>Repeate $\theta_j := \theta_j - \alpha\frac{\partial}{\partial\theta_j}J(\theta)$ (simultaneously update all $\theta_j$)</li>
+</ul>
+</li>
+<li><p>Optimization algorithms</p>
+<ul>
+<li>Gradient descent</li>
+<li>Conjugate gradient</li>
+<li>BFGS</li>
+<li>L-BFGS</li>
+</ul>
+</li>
+<li><p>Advantages </p>
+<ul>
+<li>No need to manually pick learning rate</li>
+<li>Often faster than gradient descent</li>
+</ul>
+</li>
+<li><p>Disavantages</p>
+<ul>
+<li>More complex</li>
+</ul>
+</li>
+<li><p>Example</p>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwbs42sfrj30x611utke.jpg"></p>
+</li>
+</ul>
+<h3 id="Multi-class-classification-One-vs-all"><a href="#Multi-class-classification-One-vs-all" class="headerlink" title="Multi-class classification One-vs-all"></a>Multi-class classification One-vs-all</h3><h4 id="Multiclass-classification"><a href="#Multiclass-classification" class="headerlink" title="Multiclass classification"></a>Multiclass classification</h4><ul>
+<li>Example<ul>
+<li>Email foldering: Work, Friends, Family</li>
+<li>Medical diagrams: Not ill, Cold, Flu</li>
+<li>Weather: Sunny, Cloudy, Rain</li>
+</ul>
+</li>
+</ul>
+<h4 id="One-vs-all-One-vs-rest"><a href="#One-vs-all-One-vs-rest" class="headerlink" title="One-vs-all(One-vs-rest)"></a>One-vs-all(One-vs-rest)</h4><ul>
+<li>$h_\theta^{(i)}(x) = P(y = i|x;\theta) (i=1,2,3,…,n)$</li>
+<li>Train a logistic regression classifier $h_\theta^{(i)}(x)$ for each class i to predict the probability that $y = i$</li>
+<li>On a new input x, to make a prediction, pick the class i that maximizes $max_{i}  h_\theta^{(i)}(x)$</li>
+</ul>
+<h2 id="Lecture-7-Regularization"><a href="#Lecture-7-Regularization" class="headerlink" title="Lecture 7 Regularization"></a>Lecture 7 Regularization</h2><h3 id="The-problem-of-overfitting"><a href="#The-problem-of-overfitting" class="headerlink" title="The problem of overfitting"></a>The problem of overfitting</h3><p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1ftwc1suinzj312i0eagon.jpg"></p>
+<p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1ftwc25orjoj31200jmtfs.jpg"></p>
+<ul>
+<li>Overfitting: If we have too many features, the learned hypothesis may fit the training set very well ($J(\theta) \approx 0$), but fail to generate to new examples</li>
+</ul>
+<h4 id="Addressing-overfitting"><a href="#Addressing-overfitting" class="headerlink" title="Addressing overfitting"></a>Addressing overfitting</h4><ul>
+<li>Options<ul>
+<li>Reduce number of features<ul>
+<li>Manually select which features to keep</li>
+<li>Model selection algorithm</li>
+</ul>
+</li>
+<li>Regularization<ul>
+<li>Keep all the features, but reduce magnitude/values of parameters $\theta_j$</li>
+<li>Works well when we have a lot of features, each of which contributes a bit to predicting y</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Cost-function-2"><a href="#Cost-function-2" class="headerlink" title="Cost function"></a>Cost function</h3><h4 id="Intuition-1"><a href="#Intuition-1" class="headerlink" title="Intuition"></a>Intuition</h4><p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwc5ajfo9j31440my432.jpg"></p>
+<h4 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h4><p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1ftwc63b5jbj30wk11845m.jpg"></p>
+<ul>
+<li><p>In regularized linear regression, we choose $\theta$ to minimize</p>
+<p>$J(\theta) = \frac{1}{2m} [\sum_{i=1}^m(h(x^{(i)}-y^{(i)}))^2 + \lambda\sum_{j=1}^n\theta_j^2]$</p>
+</li>
+<li><p>What if $\lambda$ is set to an extremely large value?</p>
+<ul>
+<li>Algorithm works fine; setting $\lambda$ to be very large can’t hurt it</li>
+<li>Algorithms fails to eliminate overfitting</li>
+<li>Algorithm results in underfitting(Fails to fit even training data well)</li>
+<li>Gradient descent will fail to converge</li>
+</ul>
+</li>
+</ul>
+<h3 id="Regularized-linear-regression"><a href="#Regularized-linear-regression" class="headerlink" title="Regularized linear regression"></a>Regularized linear regression</h3><h4 id="Regularized-linear-regression-1"><a href="#Regularized-linear-regression-1" class="headerlink" title="Regularized linear regression"></a>Regularized linear regression</h4><p>$J(\theta) = \frac{1}{2m} [\sum_{i=1}^m(h(x^{(i)}-y^{(i)}))^2 + \lambda\sum_{j=1}^n\theta_j^2]$</p>
+<h4 id="Gradient-descent-1"><a href="#Gradient-descent-1" class="headerlink" title="Gradient descent"></a>Gradient descent</h4><ul>
+<li>Repeate<ul>
+<li>$\theta_0 := \theta_0 - \alpha \frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)}-y^{(i)}))x_0^{(i)}$</li>
+<li>$\theta_j := \theta_j(1-\alpha\frac{\lambda}{m}) - \alpha \frac{1}{m}\sum_{i=1}^m(h(x^{(i)}-y^{(i)}))x_j^{(i)}$</li>
+</ul>
+</li>
+</ul>
+<h4 id="Normal-equation-1"><a href="#Normal-equation-1" class="headerlink" title="Normal equation"></a>Normal equation</h4><p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1ftwcnivt10j312a0k241v.jpg"></p>
+<h3 id="Regularized-logistic-regression"><a href="#Regularized-logistic-regression" class="headerlink" title="Regularized logistic regression"></a>Regularized logistic regression</h3><h4 id="Regularized-logistic-regression-1"><a href="#Regularized-logistic-regression-1" class="headerlink" title="Regularized logistic regression"></a>Regularized logistic regression</h4><p>$J(\theta) = -\frac{1}{m}[\sum_{i=1}^my^{(i)}logh_\theta(x^{(i)}) + (1 - y^{(i)})log(1 - h_\theta(x^{(i)}))] + \frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$</p>
+<h4 id="Gradient-descent-2"><a href="#Gradient-descent-2" class="headerlink" title="Gradient descent"></a>Gradient descent</h4><ul>
+<li>Repeat<ul>
+<li>$\theta_0 := \theta_0 - \alpha\frac{\partial}{\partial\theta_j}\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)} - y^{(i)})x_0^{(i)}$</li>
+<li>$\theta_j := \theta_j - \alpha[\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} +\frac{\lambda}{m}\theta_j]$, (j = 1, 2, 3, …, n)</li>
+</ul>
+</li>
+</ul>
+<h4 id="Advanced-optimization-1"><a href="#Advanced-optimization-1" class="headerlink" title="Advanced optimization"></a>Advanced optimization</h4><p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwcv1lnwkj31460n2k00.jpg"></p>
+<h2 id="Lecture-8-Neural-Networks-Representation"><a href="#Lecture-8-Neural-Networks-Representation" class="headerlink" title="Lecture 8 Neural Networks: Representation"></a>Lecture 8 Neural Networks: Representation</h2><h3 id="Non-linear-hypotheses"><a href="#Non-linear-hypotheses" class="headerlink" title="Non-linear hypotheses"></a>Non-linear hypotheses</h3><p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwcy7zmyrj31460mwwl5.jpg"></p>
+<h3 id="Neurons-and-the-brain"><a href="#Neurons-and-the-brain" class="headerlink" title="Neurons and the brain"></a>Neurons and the brain</h3><h4 id="Neural-Networks"><a href="#Neural-Networks" class="headerlink" title="Neural Networks"></a>Neural Networks</h4><ul>
+<li>Origins: Algorithms that try to mimic the brain.</li>
+<li>Was very widely used in 80s and early 90s; popularity diminished in late 90s.</li>
+<li>Recent resurgence: State-of-the-art technique for many applications</li>
+</ul>
+<p><img src="/Users/lixinge/Desktop/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-08-03%2011.37.53.png" alt="屏幕快照 2018-08-03 11.37.53"></p>
+<h3 id="Model-representation-I"><a href="#Model-representation-I" class="headerlink" title="Model representation I"></a>Model representation I</h3><h4 id="Neuron-model-Logistic-unit"><a href="#Neuron-model-Logistic-unit" class="headerlink" title="Neuron model: Logistic unit"></a>Neuron model: Logistic unit</h4><p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1ftwd10um6lj31420msgqg.jpg"></p>
+<h4 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h4><ul>
+<li>$a_i^{(j)} = $ “activation” of unit i in layer j</li>
+<li>$\theta^{(j)} = $ matrix of weights controlling function mapping from layer j to layer j+1<ul>
+<li>$a_1^{(2)} = g(\Theta_{10}^{(1)}x_0 + \Theta_{11}^{(1)}x_1 + \Theta_{12}^{(1)}x_2 + \Theta_{13}^{(1)}x_3)$</li>
+<li>$a_2^{(2)} = g(\Theta_{20}^{(1)}x_0 + \Theta_{21}^{(1)}x_1 + \Theta_{22}^{(1)}x_2 + \Theta_{23}^{(1)}x_3)$</li>
+<li>$a_3^{(2)} = g(\Theta_{30}^{(1)}x_0 + \Theta_{31}^{(1)}x_1 + \Theta_{32}^{(1)}x_2 + \Theta_{33}^{(1)}x_3)$</li>
+<li>$h_{\Theta}(x) = a_1^{(3)} = g(\Theta_{10}^{(1)}a_0 + \Theta_{11}^{(1)}a_1 + \Theta_{12}^{(1)}a_2 + \Theta_{13}^{(1)}a_3)$</li>
+</ul>
+</li>
+<li>If network has $s_j$ units in layer j, $s_{j+1}$ units in layer j+1, then $\Theta^{(j)}$ will be of dimension $s_{j+1} \times (s_j + 1)$</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwd23s99tj30ww11owpk.jpg"></p>
+<h3 id="Model-representation-II"><a href="#Model-representation-II" class="headerlink" title="Model representation II"></a>Model representation II</h3><h4 id="Forward-propagation-Vectorized-implementation"><a href="#Forward-propagation-Vectorized-implementation" class="headerlink" title="Forward propagation: Vectorized implementation"></a>Forward propagation: Vectorized implementation</h4><p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1ftwdi9q7hrj30zw0kw7cc.jpg"></p>
+<h4 id="Other-network-architectures"><a href="#Other-network-architectures" class="headerlink" title="Other network architectures"></a>Other network architectures</h4><p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1ftwdjv7i0jj30xm0gejv8.jpg"></p>
+<h3 id="Examples-and-intuitions-I"><a href="#Examples-and-intuitions-I" class="headerlink" title="Examples and intuitions I"></a>Examples and intuitions I</h3><h4 id="Non-linear-classification-example-XOR-XNOR"><a href="#Non-linear-classification-example-XOR-XNOR" class="headerlink" title="Non-linear classification example: XOR/XNOR"></a>Non-linear classification example: XOR/XNOR</h4><ul>
+<li>y = $x_1$ XNOR $x_2$<ul>
+<li>$x_1 = 1, x_2 = 1$ -&gt; y = 1</li>
+<li>$x_1 = 0, x_2 = 1$ -&gt; y = 0</li>
+<li>$x_1 = 0, x_2 = 0$ -&gt; y = 1</li>
+<li>$x_1 = 1, x_2 = 0$ -&gt; y = 0</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1ftwdptyrryj313g0mmn26.jpg"></p>
+<h4 id="Simple-example-AND"><a href="#Simple-example-AND" class="headerlink" title="Simple example: AND"></a>Simple example: AND</h4><p>$h_\Theta(x) = g(-30 + 20x_1 + 20x_2)$</p>
+<p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1ftwdrvx6sdj313a0mgq8n.jpg"></p>
+<h4 id="Example-OR-function"><a href="#Example-OR-function" class="headerlink" title="Example: OR function"></a>Example: OR function</h4><p>$h_\Theta(x) = g(-10 + 20x_1 + 20x_2)$</p>
+<p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1ftwducmu4rj313a0mgn0n.jpg"></p>
+<h3 id="Examples-and-intuitions-II"><a href="#Examples-and-intuitions-II" class="headerlink" title="Examples and intuitions II"></a>Examples and intuitions II</h3><p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1ftwdvfmdngj30xe1247e5.jpg"></p>
+<h3 id="Multi-class-classification"><a href="#Multi-class-classification" class="headerlink" title="Multi-class classification"></a>Multi-class classification</h3><h4 id="Multiple-output-units-One-vs-all"><a href="#Multiple-output-units-One-vs-all" class="headerlink" title="Multiple output units: One-vs-all"></a>Multiple output units: One-vs-all</h4><p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1ftwdyc6x0qj30y412ydxk.jpg"></p>
+<h2 id="Lecture-9-Neural-Networks-Learning"><a href="#Lecture-9-Neural-Networks-Learning" class="headerlink" title="Lecture 9 Neural Networks Learning"></a>Lecture 9 Neural Networks Learning</h2><h3 id="Cost-function-3"><a href="#Cost-function-3" class="headerlink" title="Cost function"></a>Cost function</h3><h4 id="Neural-Network-Classification"><a href="#Neural-Network-Classification" class="headerlink" title="Neural Network(Classification)"></a>Neural Network(Classification)</h4><ul>
+<li>L = total no. of layers in network</li>
+<li>$s_l =$ no. of units(not counting bias unit) in layer $l$</li>
+<li>Binary classification<ul>
+<li>1 output unit</li>
+</ul>
+</li>
+<li>Multi-class classification(K classes)<ul>
+<li>$y \in R^K$</li>
+<li>K outputs units</li>
+</ul>
+</li>
+</ul>
+<h4 id="Cost-function-4"><a href="#Cost-function-4" class="headerlink" title="Cost function"></a>Cost function</h4><ul>
+<li>Logistic regression<ul>
+<li>$J(\theta) = -\frac{1}{m}[\sum_{i=1}^m y^{(i)}logh_\theta(x^{(i)}) + (1 - y^{(i)}) log(1 - h_\theta(x^{(i)}))] + \frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$</li>
+</ul>
+</li>
+<li>Neural network<ul>
+<li>$J(\theta) = -\frac{1}{m}[\sum_{i=1}^m\sum_{k=1}^Ky_k^{(i)}log(h_\Theta(x^{(i)}))<em>k + (1 - y^{(i)}<em>k)log(1-(h_\Theta(x^{(i)}))<em>k)] + \frac{\lambda}{2m}\sum</em>{l=1}^{L-1}\sum</em>{i=1}^{s_l}\sum</em>{j=1}^{s_l+1}(\Theta_{ji}^{(l)})^2$</li>
+</ul>
+</li>
+</ul>
+<h3 id="Backpropagation-algorithm"><a href="#Backpropagation-algorithm" class="headerlink" title="Backpropagation algorithm"></a>Backpropagation algorithm</h3><h4 id="Gradient-computation"><a href="#Gradient-computation" class="headerlink" title="Gradient computation"></a>Gradient computation</h4><ul>
+<li>$J(\theta) = -\frac{1}{m}[\sum_{i=1}^m\sum_{k=1}^Ky_k^{(i)}log(h_\Theta(x^{(i)}))<em>k + (1 - y^{(i)}<em>k)log(1-(h_\Theta(x^{(i)}))<em>k)] + \frac{\lambda}{2m}\sum</em>{l=1}^{L-1}\sum</em>{i=1}^{s_l}\sum</em>{j=1}^{s_l+1}(\Theta_{ji}^{(l)})^2$</li>
+<li>Need code to compute<ul>
+<li>$J(\Theta)$</li>
+<li>$\frac{\partial}{\partial\Theta_{ij}^{(l)}}J(\Theta)$</li>
+</ul>
+</li>
+<li>$\delta_j^{(l)} = $” error” of node $j$ in layer $ l$</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1fu252rvwb8j31600o60zs.jpg"></p>
+<p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1fu254vek0rj315o0noahi.jpg"></p>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2556x72lj315o0nutgh.jpg"></p>
+<h3 id="Backpropagation-intuition"><a href="#Backpropagation-intuition" class="headerlink" title="Backpropagation intuition"></a>Backpropagation intuition</h3><h4 id="Forward-Propagation"><a href="#Forward-Propagation" class="headerlink" title="Forward Propagation"></a>Forward Propagation</h4><p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu28o14aolj315q0nsq9m.jpg"></p>
+<h4 id="What-is-backpropagation-doing"><a href="#What-is-backpropagation-doing" class="headerlink" title="What is backpropagation doing?"></a>What is backpropagation doing?</h4><p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu28qi9btoj315q0nwqbh.jpg"></p>
+<h3 id="Implementation-note-Unrolling-parameters"><a href="#Implementation-note-Unrolling-parameters" class="headerlink" title="Implementation note: Unrolling parameters"></a>Implementation note: Unrolling parameters</h3><h4 id="Advanced-optimization-2"><a href="#Advanced-optimization-2" class="headerlink" title="Advanced optimization"></a>Advanced optimization</h4><p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu28vlp4zcj315q0nutci.jpg"></p>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1fu28vs1ywdj315o0ns0yq.jpg"></p>
+<p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu28vvd56gj315q0nutci.jpg"></p>
+<p>###Gradient checking</p>
+<h4 id="Numerical-estimation-of-gradients"><a href="#Numerical-estimation-of-gradients" class="headerlink" title="Numerical estimation of gradients"></a>Numerical estimation of gradients</h4><ul>
+<li>$\frac{d}{d\theta}J(\theta) \approx \frac{J(\theta+\epsilon) - J(\theta-\epsilon)}{2\epsilon}$</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu28yti6x5j315u0nudjx.jpg"></p>
+<h4 id="Parameter-vector-theta"><a href="#Parameter-vector-theta" class="headerlink" title="Parameter vector $\theta$"></a>Parameter vector $\theta$</h4><ul>
+<li>Check that $gradApprox \approx DVec$ (DVec from backpropagation)</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1fu28zyztjkj30x411wwn5.jpg"></p>
+<h4 id="Implementation-Note"><a href="#Implementation-Note" class="headerlink" title="Implementation Note:"></a>Implementation Note:</h4><ul>
+<li>Implement backprop to compute DVec(unrolled $D^{(1)}, D^{(2)}, D^{(3)}$)</li>
+<li>Implement numerical gradient check to compute gradApprox</li>
+<li>Make sure they give similar values</li>
+<li>Turn off gradient checking. Using backprop code for learning</li>
+</ul>
+<h3 id="Random-initialization"><a href="#Random-initialization" class="headerlink" title="Random initialization"></a>Random initialization</h3><h4 id="Initial-value-of-Theta"><a href="#Initial-value-of-Theta" class="headerlink" title="Initial value of $\Theta$"></a>Initial value of $\Theta$</h4><p>For gradient descent and advanced optimization method, need initial value for $\Theta$</p>
+<h4 id="Zero-initialization"><a href="#Zero-initialization" class="headerlink" title="Zero initialization"></a>Zero initialization</h4><ul>
+<li>$\Theta_{ij}^{(l)} = 0$ for all $i, j, l$</li>
+<li>After each update, parameters corresponding to inputs going into each of two hidden units are identical</li>
+</ul>
+<p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2970km49j30z80e2n0e.jpg"></p>
+<h4 id="Random-initialization-Symmetry-breaking"><a href="#Random-initialization-Symmetry-breaking" class="headerlink" title="Random initialization: Symmetry breaking"></a>Random initialization: Symmetry breaking</h4><ul>
+<li>initialize each $\Theta_{ij}^{(l)}$ to a random value in [-$\epsilon$, $\epsilon$]</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1fu298veauvj31400deq5y.jpg"></p>
+<h3 id="Putting-it-together"><a href="#Putting-it-together" class="headerlink" title="Putting it together"></a>Putting it together</h3><ul>
+<li>Pick a network architecture(connectivity pattern between neurons)</li>
+<li>No. of input units: Dimension of features $x^{(i)}$</li>
+<li>No. of output units: Number of classes</li>
+</ul>
+<p>####Training a neural network</p>
+<ol>
+<li>Randomly initialize weights</li>
+<li>Implement forward propagation to get $h_\Theta(x^{(i)})$ for any $x^{(i)}$ </li>
+<li>Implement code to compute cost function $J(\Theta)$</li>
+<li>Implement backprop to compute partial derivatives $\frac{\partial}{\partial\Theta_{jk}^{(l)}}$</li>
+</ol>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1fu29fq2wq8j30zy0cojvg.jpg"></p>
+<ol start="5">
+<li><p>Use gradient checking to compare $\frac{\partial}{\partial\Theta_{jk}^{(l)}}$ computed using backpropagation vs. using numerical estimate of gradient of $J(\Theta)$</p>
+<p>Then disable gradient checking code</p>
+</li>
+<li><p>Use gradient descent or advanced optimization method with backpropagation to try to minimize $J(\Theta)$ as a function of parameters $\Theta$</p>
+</li>
+</ol>
+<p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu29jxtzouj315u0nyanj.jpg"></p>
+<h2 id="Lecture-10-Advice-for-applying-machine-learning"><a href="#Lecture-10-Advice-for-applying-machine-learning" class="headerlink" title="Lecture 10 Advice for applying machine learning"></a>Lecture 10 Advice for applying machine learning</h2><h4 id="Machine-learning-diagnostic"><a href="#Machine-learning-diagnostic" class="headerlink" title="Machine learning diagnostic"></a>Machine learning diagnostic</h4><ul>
+<li>Diagnostic: A test that you can run to gain insight what is/isn’t working with a learning algorithm, and gain guidance as to how best to improve its performance</li>
+<li>Diagnositics can take time to implement, but doing so can be a very good use of your time</li>
+</ul>
+<h3 id="Evaluating-a-hypothesis"><a href="#Evaluating-a-hypothesis" class="headerlink" title="Evaluating a hypothesis"></a>Evaluating a hypothesis</h3><h4 id="Training-testing-procedure-for-linear-regression"><a href="#Training-testing-procedure-for-linear-regression" class="headerlink" title="Training/testing procedure for linear regression"></a>Training/testing procedure for linear regression</h4><ul>
+<li>Learn parameter $\theta$ from training data(minimizing training error $J(\theta)$)</li>
+<li>Compute test set error</li>
+<li>Misclassification error(0/1 misclassification error)</li>
+</ul>
+<h3 id="Model-selection-and-training-validation-test-sets"><a href="#Model-selection-and-training-validation-test-sets" class="headerlink" title="Model selection and training/validation/test sets"></a>Model selection and training/validation/test sets</h3><h4 id="Overfitting-example"><a href="#Overfitting-example" class="headerlink" title="Overfitting example"></a>Overfitting example</h4><ul>
+<li>Once parameter $\theta_0, \theta_1, …, \theta_4$ were fit to some set of data(training set), the error of the parameters as measured on that data(the training error $J(\theta)$) is likely to be lower than the actual generalization error</li>
+</ul>
+<p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2a8ui3jrj315w0o00xr.jpg"></p>
+<h4 id="Model-selection"><a href="#Model-selection" class="headerlink" title="Model selection"></a>Model selection</h4><p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2aa34ejqj315s0nm451.jpg"></p>
+<h4 id="Evaluating-your-hypothesis"><a href="#Evaluating-your-hypothesis" class="headerlink" title="Evaluating your hypothesis"></a>Evaluating your hypothesis</h4><ul>
+<li>60% training set, 20% cross validation set, 20% test set</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2aapyw4pj315u0nsahf.jpg"></p>
+<h4 id="Train-validation-test-error"><a href="#Train-validation-test-error" class="headerlink" title="Train/validation/test error"></a>Train/validation/test error</h4><p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2abu44kdj315q0nu780.jpg"></p>
+<h3 id="Diagnosing-bias-vs-variance"><a href="#Diagnosing-bias-vs-variance" class="headerlink" title="Diagnosing bias vs. variance"></a>Diagnosing bias vs. variance</h3><h4 id="Bias-variance"><a href="#Bias-variance" class="headerlink" title="Bias/variance"></a>Bias/variance</h4><p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2ad7mks1j315s0nswi4.jpg"></p>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2adyq1o1j315u0nygq2.jpg"></p>
+<h4 id="Diagnosing-bias-vs-variance-1"><a href="#Diagnosing-bias-vs-variance-1" class="headerlink" title="Diagnosing bias vs. variance"></a>Diagnosing bias vs. variance</h4><ul>
+<li>Bias(underfit)<ul>
+<li>$J_{train}(\theta)$ will be high</li>
+<li> $J_{train}(\theta) \approx J_{cv}(\theta)$</li>
+</ul>
+</li>
+<li>Variance(overfit)<ul>
+<li>$J_{train}(\theta)$ will be low</li>
+<li>$J_{cv}(\theta) &gt;&gt; J_{train}(\theta)$</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2aezib85j315m0nstfn.jpg"></p>
+<h3 id="Regularization-and-bias-variance"><a href="#Regularization-and-bias-variance" class="headerlink" title="Regularization and bias/variance"></a>Regularization and bias/variance</h3><h4 id="Linear-regression-with-regularization"><a href="#Linear-regression-with-regularization" class="headerlink" title="Linear regression with regularization"></a>Linear regression with regularization</h4><p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2ai8dhz1j315o0nswk4.jpg"></p>
+<h4 id="Choosing-the-regularization-parameter-lambda"><a href="#Choosing-the-regularization-parameter-lambda" class="headerlink" title="Choosing the regularization parameter $\lambda$"></a>Choosing the regularization parameter $\lambda$</h4><p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2arofpsdj315o0o0jxz.jpg"></p>
+<h4 id="Bias-variance-as-a-function-of-the-regularization-parameter-lambda"><a href="#Bias-variance-as-a-function-of-the-regularization-parameter-lambda" class="headerlink" title="Bias/variance as a function of the regularization parameter $\lambda$"></a>Bias/variance as a function of the regularization parameter $\lambda$</h4><p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1fu2arj18vrj315s0nw0xt.jpg"></p>
+<h3 id="Learning-curves"><a href="#Learning-curves" class="headerlink" title="Learning curves"></a>Learning curves</h3><h4 id="Learning-curves-1"><a href="#Learning-curves-1" class="headerlink" title="Learning curves"></a>Learning curves</h4><ul>
+<li> As m becomes larger, $J_{cv}(\theta)$ becomes smaller and $J_{train}(\theta)$ becomes larger</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2asi6lrzj315q0nsgqa.jpg"></p>
+<h4 id="High-bias"><a href="#High-bias" class="headerlink" title="High bias"></a>High bias</h4><ul>
+<li>If a learning algorithm is suffering from high bias, getting more training data will not help much</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1fu2auvuhpwj315q0nstdu.jpg"></p>
+<h4 id="High-variance"><a href="#High-variance" class="headerlink" title="High variance"></a>High variance</h4><ul>
+<li>If a learning algorithm is suffering from high variance, getting more training data is likely to help</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2awqwwh2j315u0nw0wv.jpg"></p>
+<h3 id="Deciding-what-to-try-next"><a href="#Deciding-what-to-try-next" class="headerlink" title="Deciding what to try next"></a>Deciding what to try next</h3><p>####Debugging a learning algorithm</p>
+<ul>
+<li><p>Suppose you have implemented regularized linear regression to predict housing prices.</p>
+<p>$J(\theta) = \frac{1}{2m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2 + \lambda\sum_{j=1}^m\theta_j^2$</p>
+</li>
+<li><p>However, when you test your hypothesis on a new set of houses, you ﬁnd that it makes unacceptably large errors in its predictions. What should you try next?</p>
+<ul>
+<li>Get more training examples<ul>
+<li>fixes high variance</li>
+</ul>
+</li>
+<li>Try smaller sets of features<ul>
+<li>fixes high variance</li>
+</ul>
+</li>
+<li>Try getting additional features<ul>
+<li>fixes high bias</li>
+</ul>
+</li>
+<li>Try adding polynomial features<ul>
+<li>fixes high bias</li>
+</ul>
+</li>
+<li>Try decreasing $\lambda$<ul>
+<li>fixes high bias</li>
+</ul>
+</li>
+<li>try increasing $\lambda$<ul>
+<li>fixes high variance</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Neural-networks-and-overfitting"><a href="#Neural-networks-and-overfitting" class="headerlink" title="Neural networks and overfitting"></a>Neural networks and overfitting</h4><ul>
+<li>“Small” neural network(fewer parameters; more prone to nunderfitting)<ul>
+<li>Computationally cheaper</li>
+</ul>
+</li>
+<li>“Large” neural network(more parameters; more prone to overfitting)<ul>
+<li>Computationally more expensive</li>
+<li>Use regularization ($\lambda$) to address to overfitting</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2b2uzbi9j313g0f0te2.jpg"></p>
+<h2 id="Lecture-11-Machine-learning-system-design"><a href="#Lecture-11-Machine-learning-system-design" class="headerlink" title="Lecture 11 Machine learning system design"></a>Lecture 11 Machine learning system design</h2><h3 id="Prioritizing-what-to-work-on-Spam-classification-example"><a href="#Prioritizing-what-to-work-on-Spam-classification-example" class="headerlink" title="Prioritizing what to work on: Spam classification example"></a>Prioritizing what to work on: Spam classification example</h3><h4 id="Building-a-spam-classifier"><a href="#Building-a-spam-classifier" class="headerlink" title="Building a spam classifier"></a>Building a spam classifier</h4><ul>
+<li>Supervised learning<ul>
+<li>x = features of email</li>
+<li>y = spam(1) or not spam(0)</li>
+<li>Features x: Choose 100 words indicative of spam/not spam</li>
+</ul>
+</li>
+<li>In practice, take most frequently occurring n words(10,000 to 50,000) in training set, rather than manually pick 100 words</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2b6f6zl3j311m0d6goz.jpg"></p>
+<ul>
+<li>How to spend time to make it have low error?<ul>
+<li>Collect lots of data</li>
+<li>Develop sophisticated features based on email routing information(from email header)</li>
+<li>Develop sophisticated features for message body<ul>
+<li>e.g. should “discount” and “discounts” be treated as the same word? How about “deal” and “Dealer”? Features about punctuation?</li>
+</ul>
+</li>
+<li>Develop sophisticated algorithms to detect misspellings</li>
+</ul>
+</li>
+</ul>
+<h3 id="Error-analysis"><a href="#Error-analysis" class="headerlink" title="Error analysis"></a>Error analysis</h3><h4 id="Recommended-approach"><a href="#Recommended-approach" class="headerlink" title="Recommended approach"></a>Recommended approach</h4><ul>
+<li>Start with a simple algorithm that you can implement it quickly. Implement it and test it on your cross-validation data</li>
+<li>Plot learning curves to decide if more data, more features, etc. are likely to help</li>
+</ul>
+<h4 id="Error-Analysis"><a href="#Error-Analysis" class="headerlink" title="Error Analysis"></a>Error Analysis</h4><ul>
+<li>Manually examine the errors, and categorize them based on sth.</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2bbtsd50j315o0nswit.jpg"></p>
+<h4 id="The-importance-of-numerical-evaluation"><a href="#The-importance-of-numerical-evaluation" class="headerlink" title="The importance of numerical evaluation"></a>The importance of numerical evaluation</h4><ul>
+<li>Error analysis may not be helpful for deciding if this is likely to improve performance. Only solution is to try it and see if it works</li>
+</ul>
+<p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2beyplt3j315m0nwq86.jpg"></p>
+<h3 id="Error-metrics-for-skewed-classes"><a href="#Error-metrics-for-skewed-classes" class="headerlink" title="Error metrics for skewed classes"></a>Error metrics for skewed classes</h3><h4 id="Cancer-classification-example"><a href="#Cancer-classification-example" class="headerlink" title="Cancer classification example"></a>Cancer classification example</h4><p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1fu2bmg80bgj315q0nqwjz.jpg"></p>
+<h4 id="Precision-Recall"><a href="#Precision-Recall" class="headerlink" title="Precision/Recall"></a>Precision/Recall</h4><ul>
+<li>$ y = 1 $ in presence of rare class that we want to detect</li>
+<li>Precision <ul>
+<li>(Of all patients where we predict $y=1$, what fraction actually has cancer?)</li>
+<li>$precision = \frac{TP}{TP+FP}$</li>
+</ul>
+</li>
+<li>Recall<ul>
+<li>(Of all patients that actually have cancer, what fraction we correctly detect as having cancer?)</li>
+<li>$recall = \frac{TP}{TP+FN}$</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Actual</th>
+<th>class</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>**Predicted **</td>
+<td>1</td>
+<td>True Positive</td>
+<td>False Positive</td>
+</tr>
+<tr>
+<td><strong>class</strong></td>
+<td>0</td>
+<td>False Negative</td>
+<td>True Negative</td>
+</tr>
+</tbody></table>
+<h3 id="Trading-off-precision-and-recall"><a href="#Trading-off-precision-and-recall" class="headerlink" title="Trading off precision and recall"></a>Trading off precision and recall</h3><h4 id="Trading-off-precision-and-recall-1"><a href="#Trading-off-precision-and-recall-1" class="headerlink" title="Trading off precision and recall"></a>Trading off precision and recall</h4><ul>
+<li><p>Predict 1 if $h_\theta(x) \geq threshold$</p>
+</li>
+<li><p>Suppose we want to predict $y=1$ only if very confident</p>
+<ul>
+<li>Higher presicion, lower recall</li>
+</ul>
+</li>
+<li><p>Suppose we want to avoid missing too many cases of cancer</p>
+<ul>
+<li>Higher recall, lower precision</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1fu2bucjrerj315w0nsjxi.jpg"></p>
+<h4 id="F-1-Score-F-score"><a href="#F-1-Score-F-score" class="headerlink" title="$F_1$ Score(F score)"></a>$F_1$ Score(F score)</h4><ul>
+<li>Compare precision/recall numbers</li>
+<li>$F_1Score = 2\frac{Precision*Recall}{Precision+Recall}$</li>
+</ul>
+<p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2bzmn8mhj315u0nw0xu.jpg"></p>
+<ul>
+<li>P=0 or R=0 -&gt; $F_1$ score = 0</li>
+<li>P=1 and R=1 -&gt; $F_1$ score = 1</li>
+</ul>
+<h3 id="Data-for-machine-learning"><a href="#Data-for-machine-learning" class="headerlink" title="Data for machine learning"></a>Data for machine learning</h3><h4 id="Designing-a-high-accuracy-learning-system"><a href="#Designing-a-high-accuracy-learning-system" class="headerlink" title="Designing a high accuracy learning system"></a>Designing a high accuracy learning system</h4><p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2c1ep3plj315m0nw7ay.jpg"></p>
+<h4 id="Large-data-rationale"><a href="#Large-data-rationale" class="headerlink" title="Large data rationale"></a>Large data rationale</h4><p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2c3eco8rj31620o8tdl.jpg"></p>
+<h2 id="Lecture-12-Support-Vector-Machines"><a href="#Lecture-12-Support-Vector-Machines" class="headerlink" title="Lecture 12 Support Vector Machines"></a>Lecture 12 Support Vector Machines</h2><h3 id="Optimization-objective"><a href="#Optimization-objective" class="headerlink" title="Optimization objective"></a>Optimization objective</h3><h4 id="Alternative-view-of-logistic-regression"><a href="#Alternative-view-of-logistic-regression" class="headerlink" title="Alternative view of logistic regression"></a>Alternative view of logistic regression</h4><ul>
+<li>$h_\theta(x) = \frac{1}{1+e^{-\theta^Tx}}$</li>
+<li>If $y=1$, we want $h_\theta(x) \approx 1, \theta^Tx &gt;&gt; 0$</li>
+<li>If $y=0$, we want $h_\theta(x) \approx 0, \theta^Tx &lt;&lt; 0$</li>
+<li>$J = -ylog\frac{1}{1+e^{-\theta^Tx}} - (1-y)log(1-\frac{1}{1+e^{-\theta^Tx}}) $</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1fu2c6h26zyj315m0nyjvf.jpg"></p>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2c7hg02kj315q0ns79i.jpg"></p>
+<h4 id="Support-vector-machine"><a href="#Support-vector-machine" class="headerlink" title="Support vector machine"></a>Support vector machine</h4><ul>
+<li><p>Logistic regression</p>
+<p>$min_\theta\frac{1}{m}[\sum_{i=1}^my^{(i)}(-logh_\theta(x^{(i)})) + (1-y^{(i)})((-log(1-h_\theta(x^{(i)}))))]+ \frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$</p>
+</li>
+<li><p>Support Vector machine hypothesis</p>
+<p>$min_\theta C\sum_{i=1}^m[y^{(i)}cost_1(\theta^Tx^{(i)})+(1-y^{(i)})cost_0(\theta^Tx^{(i)})] + \frac{1}{2}\sum_{i=1}^n\theta_j^2$</p>
+</li>
+</ul>
+<h3 id="Large-Margin-Intuition"><a href="#Large-Margin-Intuition" class="headerlink" title="Large Margin Intuition"></a>Large Margin Intuition</h3><h4 id="Support-Vector-Machine"><a href="#Support-Vector-Machine" class="headerlink" title="Support Vector Machine"></a>Support Vector Machine</h4><ul>
+<li>$min_\theta C\sum_{i=1}^m[y^{(i)}cost_1(\theta^Tx^{(i)})+(1-y^{(i)})cost_0(\theta^Tx^{(i)})] + \frac{1}{2}\sum_{i=1}^n\theta_j^2$<ul>
+<li>If $y=1​$, we want $\theta^Tx \geq 1​$ (not just $\geq 0​$)</li>
+<li>If $y=0$, we want $\theta^Tx \leq -1$ (not just $&lt; 0$)</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2crjx23sj315y0nstd7.jpg"></p>
+<h4 id="SVM-Decision-Boundary"><a href="#SVM-Decision-Boundary" class="headerlink" title="SVM Decision Boundary"></a>SVM Decision Boundary</h4><ul>
+<li>whenever $y^{(i)}=1$: $\theta^Tx^{(i)}\geq1$</li>
+<li>whenever $y^{(i)}=0$: $\theta^Tx^{(i)}\leq-1$</li>
+</ul>
+<h4 id="SVM-Decision-Boundary-Linearly-separable-case"><a href="#SVM-Decision-Boundary-Linearly-separable-case" class="headerlink" title="SVM Decision Boundary: Linearly separable case"></a>SVM Decision Boundary: Linearly separable case</h4><p><img src="https://ws1.sinaimg.cn/large/0069RVTdgy1fu2cua44m6j315u0nu77m.jpg"></p>
+<h4 id="Large-margin-classiﬁer-in-presence-of-outliers"><a href="#Large-margin-classiﬁer-in-presence-of-outliers" class="headerlink" title="Large margin classiﬁer in presence of outliers"></a>Large margin classiﬁer in presence of outliers</h4><p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2cv3xu46j315q0nsgp5.jpg"></p>
+<h3 id="The-mathematics-behind-large-margin-classiﬁcation"><a href="#The-mathematics-behind-large-margin-classiﬁcation" class="headerlink" title="The mathematics behind large margin classiﬁcation"></a>The mathematics behind large margin classiﬁcation</h3><h4 id="Vector-Inner-Product"><a href="#Vector-Inner-Product" class="headerlink" title="Vector Inner Product"></a>Vector Inner Product</h4><p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2cw4lwzrj315s0nsdkh.jpg"></p>
+<h4 id="SVM-Decision-Boundary-1"><a href="#SVM-Decision-Boundary-1" class="headerlink" title="SVM Decision Boundary"></a>SVM Decision Boundary</h4><p><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu2d4mlcmtj315w0nuwja.jpg"></p>
+<p><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu2d5z49zzj315o0nujz6.jpg"></p>
+<h3 id="Kernels-I"><a href="#Kernels-I" class="headerlink" title="Kernels I"></a>Kernels I</h3><h4 id="Non-­‐linear-Decision-Boundary"><a href="#Non-­‐linear-Decision-Boundary" class="headerlink" title="Non-­‐linear Decision Boundary"></a>Non-­‐linear Decision Boundary</h4><p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu3mn9l0f6j30ym0js0y4.jpg"></p>
+<h4 id="Kernel"><a href="#Kernel" class="headerlink" title="Kernel"></a>Kernel</h4><ul>
+<li>Given $x$, compute new feature depending on proximity to landmarks $l^{(1)}, l^{(2)}, l^{(3)}$</li>
+<li>$f_i = similarity(x, l^{(i)}) = e^{(-\frac{||x-l^{(i)}||^2}{2\sigma^2})}$</li>
+<li>similarity -&gt; Kernel</li>
+<li>$e^{(-\frac{||x-l^{(i)}||^2}{2\sigma^2})}$ -&gt; Gaussian Kernels</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fu3monotydj30yo0jq0wb.jpg"></p>
+<h4 id="Kernels-and-Similarity"><a href="#Kernels-and-Similarity" class="headerlink" title="Kernels and Similarity"></a>Kernels and Similarity</h4><ul>
+<li>$f_i = similarity(x, l^{(i)}) = e^{(-\frac{||x-l^{(i)}||^2}{2\sigma^2})}$</li>
+<li>If $x \approx l^{(i)}$<ul>
+<li>$f_i \approx e^{(-\frac{0^2}{2\sigma^2})} \approx 1$</li>
+</ul>
+</li>
+<li>If x is far from $l^{(i)}$<ul>
+<li>$f_i \approx e^{(-\frac{(large \ number)^2}{2\sigma^2})} \approx 0$</li>
+</ul>
+</li>
+</ul>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu3mwpr5gaj30ys0k4n5s.jpg"></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu3mxj8md1j30yo0js42n.jpg"></p>
+<h3 id="Kernels-II"><a href="#Kernels-II" class="headerlink" title="Kernels II"></a>Kernels II</h3><h4 id="Choosing-the-landmarks"><a href="#Choosing-the-landmarks" class="headerlink" title="Choosing the landmarks"></a>Choosing the landmarks</h4><ul>
+<li>Given x<ul>
+<li>$f_i = similarity(x, l^{(i)}) = e^{(-\frac{||x-l^{(i)}||^2}{2\sigma^2})}$</li>
+</ul>
+</li>
+<li>Predict y = 1<ul>
+<li>if $\theta_0 + \theta_1f_1 + \theta_2f_2 + \theta_3f_3 \geq 0$</li>
+</ul>
+</li>
+<li>Where to get $l^{(1)}, l^{(2)}, l^{(3)}, …$ ?</li>
+</ul>
+<h4 id="SVM-with-Kernels"><a href="#SVM-with-Kernels" class="headerlink" title="SVM with Kernels"></a>SVM with Kernels</h4><ul>
+<li>Given $(x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), …., (x^{(m)}, y^{(m)})$</li>
+<li>Choose $l^{(1)} = x^{(1)}, l^{(2)} = x^{(2)}, …, l^{(m)} = x^{(m)}$</li>
+<li>Given example x<ul>
+<li>Compute $f_i = similarity(x, l^{(i)})$ (i = 1, 2, 3, …, m)</li>
+<li>$\begin{bmatrix}f_0 \ f_1 \ … \ f_m\end{bmatrix}$, $f_0 = 1$</li>
+</ul>
+</li>
+<li>For training example $(x^{(i)}, y^{(i)})$<ul>
+<li>$x^{(i)}$ -&gt; $\begin{bmatrix}f_1^{(i)} = sim(x^{(i)}, l^{(1)}) \ f_2^{(i)} = sim(x^{(i)}, l^{(2)}) \ … \f_m^{(i)} = sim(x^{(i)}, l^{(m)})\end{bmatrix}$</li>
+<li>$x^{(i)} \in R^{n+1}$</li>
+<li>$f^{(i)} = \begin{bmatrix}f_0 ^{(i)}\ f_1^{(i)} \ … \ f_m^{(i)}\end{bmatrix}$, $f_0^{(i)} = 1$</li>
+</ul>
+</li>
+<li>Hypothesis: Given x, compute features $f \in R^{m+1}$<ul>
+<li>Predict “y=1” if $\theta^Tf \geq 0$</li>
+</ul>
+</li>
+<li>Training<ul>
+<li>$min_\theta C\sum^m_{i=1}y^{(i)}cost_1(\theta^Tf^{(i)})+ (1-y^{(i)})cost_0(\theta^Tf^{(i)})+\frac{1}{2}\sum^m_{j=1}\theta_j^2$</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu3n4976c3j30xe128n7q.jpg"></p>
+<h4 id="SVM-parameters"><a href="#SVM-parameters" class="headerlink" title="SVM parameters"></a>SVM parameters</h4><ul>
+<li>C ( = $\frac{1}{\lambda}$)<ul>
+<li>Large C: Lower bias, high variance</li>
+<li>Small C: Higher bias, low variance</li>
+</ul>
+</li>
+<li>$\sigma^2$<ul>
+<li>Large $\sigma^2$:<ul>
+<li>Features $f_i$ vary more smoothly</li>
+<li>Higher bias, lower variance </li>
+</ul>
+</li>
+<li>Small $\sigma^2$ <ul>
+<li>Features $f_i$ vary less smoothly</li>
+<li>Lower bias, higher variance</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fu4oavbvyjj314i0n8jv6.jpg"></p>
+<h3 id="Using-an-SVM"><a href="#Using-an-SVM" class="headerlink" title="Using an SVM"></a>Using an SVM</h3><ul>
+<li><p>Use SVM software package(e.g. liblinear, libsvm, …) to solve for parameters $\theta$</p>
+</li>
+<li><p>Need to specify</p>
+<ul>
+<li>Choice of parameter C</li>
+<li>Choice of kernel(similarity function)</li>
+</ul>
+</li>
+<li><p>E.g. No kernel(“linear kernel”)</p>
+<ul>
+<li>Predict “y=1” if $\theta^Tx \geq 0$</li>
+</ul>
+</li>
+<li><p>Guassian kernel</p>
+<ul>
+<li>$f_i = e^{-\frac{||x-l^{(i)}||^2}{2\sigma^2}}$, where $l^{(i)} = x^{(i)}$</li>
+<li>Need to choose $\sigma^2$</li>
+</ul>
+</li>
+<li><p>Do perform feature scaling before using the Gaussian kernel</p>
+</li>
+</ul>
+<h4 id="Other-choices-of-kernel"><a href="#Other-choices-of-kernel" class="headerlink" title="Other choices of kernel"></a>Other choices of kernel</h4><ul>
+<li>Not all similarity functions $similarity(x, l)$ make valid kernels(Need to satisfy technical condition called <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Mercer%27s_theorem">“Mercers’ Theorem”</a> to make sure SVM packages’ optimizations run correctly, and do not diverge)</li>
+<li>Many off-the-shelf kernels available<ul>
+<li>Polynomial kernel</li>
+<li>More esoteric: String kernel, chi-square kernel, histogram intersection kernel, …</li>
+</ul>
+</li>
+</ul>
+<h4 id="Multi-class-classification-1"><a href="#Multi-class-classification-1" class="headerlink" title="Multi-class classification"></a>Multi-class classification</h4><ul>
+<li>Many SVM packages already have built-in multi-class classificiation functionality</li>
+<li>Otherwise, use one-vs.-all method(Train K SVMs, one to distinguish $y = i$ from the rest, for i = 1, 2, …, K), get $\theta^{(1)}, \theta^{(2)}, …, \theta{(K)} $. Pick class i with largest $(\theta^{(i)})^Tx$</li>
+</ul>
+<h4 id="Logistic-regression-vs-SVMs"><a href="#Logistic-regression-vs-SVMs" class="headerlink" title="Logistic regression vs. SVMs"></a>Logistic regression vs. SVMs</h4><ul>
+<li>n = number of features ($x \in R^{n+1})$</li>
+<li>m = number of training examples</li>
+<li>if n is large (relative to m)<ul>
+<li>Use logistic regression, or SVM without a kernel(“linear kernel”)</li>
+</ul>
+</li>
+<li>if n is small, m is intermediate<ul>
+<li>Use SVM with Gaussian kernel</li>
+</ul>
+</li>
+<li>if n is small, m is large<ul>
+<li>Create/add more features, then use logistic regression or SVM without a kernel</li>
+</ul>
+</li>
+<li>Neural network likely to work well for most of these settings, but maybe slower to train</li>
+</ul>
+<h2 id="Lecture-13-Clustering"><a href="#Lecture-13-Clustering" class="headerlink" title="Lecture 13 Clustering"></a>Lecture 13 Clustering</h2><h3 id="Unsupervised-learning-introduction"><a href="#Unsupervised-learning-introduction" class="headerlink" title="Unsupervised learning introduction"></a>Unsupervised learning introduction</h3><h4 id="Supervised-learning"><a href="#Supervised-learning" class="headerlink" title="Supervised learning"></a>Supervised learning</h4><p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4per81iaj314o0n841l.jpg"></p>
+<p>####Unsupervised learning</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4pfb9rwyj314g0n4771.jpg"></p>
+<h4 id="Applications-of-clustering"><a href="#Applications-of-clustering" class="headerlink" title="Applications of clustering"></a>Applications of clustering</h4><ul>
+<li>Market segmentation</li>
+<li>Social network analysis</li>
+<li>Organize computing clusters</li>
+<li>Astronomical data analysis</li>
+</ul>
+<h3 id="K-means-algorithm"><a href="#K-means-algorithm" class="headerlink" title="K-means algorithm"></a>K-means algorithm</h3><ul>
+<li>Input <ul>
+<li>K(number of clusters)</li>
+<li>Training set {$x^{(1)}, x^{(2)}, …, x^{(m)}$} </li>
+<li>$x^{(i)} \in R^n$ (drop $x_0=1$ convention)</li>
+</ul>
+</li>
+<li>Randomly initialize K cluster centroids $\mu_1, \mu_2, …, \mu_K \in R^n$</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fu4ppxxhbxj314i0n47a8.jpg"></p>
+<h3 id="Optimization-objective-1"><a href="#Optimization-objective-1" class="headerlink" title="Optimization objective"></a>Optimization objective</h3><h4 id="K-means-optimization-objective"><a href="#K-means-optimization-objective" class="headerlink" title="K-means optimization objective"></a>K-means optimization objective</h4><ul>
+<li>$c^{(i)}$ = index of cluster (1, 2, …, K) to which example $x^{(i)}$ is currently assigned</li>
+<li>$\mu_k$ = cluster centroid $k(\mu_k \in R^n)$</li>
+<li>$\mu_{c^{(i)}}$ = cluster centroid of cluster to which example $x^{(i)}$ has been assigned</li>
+<li>Optimization objective<ul>
+<li>$J(c^{(1)}, …, c^{(m)}, \mu_1, …, \mu_K) = \frac{1}{m}\sum_{i=1}^m||x^{(i)} - \mu_{c^{(i)}}||^2$</li>
+<li>min $J(c^{(1)}, …, c^{(m)}, \mu_1, …, \mu_K) $</li>
+</ul>
+</li>
+</ul>
+<h3 id="Random-initialization-1"><a href="#Random-initialization-1" class="headerlink" title="Random initialization"></a>Random initialization</h3><ul>
+<li>Should have K&lt;m</li>
+<li>Randomly pick K training examples</li>
+<li>Set $\mu_1, …, \mu_K$ equal to these K examples</li>
+</ul>
+<h4 id="Local-optima"><a href="#Local-optima" class="headerlink" title="Local optima"></a>Local optima</h4><p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fu4q6jhavij314g0n6jv3.jpg"></p>
+<p>####Random initialization</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4q7kk1qtj314g0n4goi.jpg"></p>
+<h3 id="Choosing-the-number-of-clusters"><a href="#Choosing-the-number-of-clusters" class="headerlink" title="Choosing the number of clusters"></a>Choosing the number of clusters</h3><h4 id="Choosing-the-value-of-K"><a href="#Choosing-the-value-of-K" class="headerlink" title="Choosing the value of K"></a>Choosing the value of K</h4><ul>
+<li><p>Elbow method</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4q9zh74tj314k0n2q5w.jpg"></p>
+</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4qb9c9e1j314i0n4wj0.jpg"></p>
+<h2 id="Lecture-14-Dimensionality-Reduction"><a href="#Lecture-14-Dimensionality-Reduction" class="headerlink" title="Lecture 14 Dimensionality Reduction"></a>Lecture 14 Dimensionality Reduction</h2><h4 id="Motivation-I-Data-Compression"><a href="#Motivation-I-Data-Compression" class="headerlink" title="Motivation I: Data Compression"></a>Motivation I: Data Compression</h4><p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4qd2xtj8j314q0n677h.jpg"></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fu4qdjc3xwj314i0naq78.jpg"></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fu4qeabs2oj314i0n8tna.jpg"></p>
+<h3 id="Motivation-II-Data-Visualization"><a href="#Motivation-II-Data-Visualization" class="headerlink" title="Motivation II: Data Visualization"></a>Motivation II: Data Visualization</h3><h4 id="Data-Visualization"><a href="#Data-Visualization" class="headerlink" title="Data Visualization"></a>Data Visualization</h4><p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fu4qkql5kjj314i0n8tcc.jpg"></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4ql1un4vj314g0n443a.jpg"></p>
+<h3 id="Principal-Component-Analysis-problem-formulation"><a href="#Principal-Component-Analysis-problem-formulation" class="headerlink" title="Principal Component Analysis problem formulation"></a>Principal Component Analysis problem formulation</h3><ul>
+<li>Find k vectors $u^{(1)}, u^{(2)}, …, u^{(k)}$ onto which to project the data, so as to minimize the projection error</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fu4qlru0bij314k0nctc0.jpg"></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fu4qmfa8j8j314m0netk6.jpg"></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fu4qnr8e6nj314i0n6dip.jpg"></p>
+<h3 id="Principal-Component-Analysis-algorithm"><a href="#Principal-Component-Analysis-algorithm" class="headerlink" title="Principal Component Analysis algorithm"></a>Principal Component Analysis algorithm</h3><h4 id="Data-preprocessing"><a href="#Data-preprocessing" class="headerlink" title="Data preprocessing"></a>Data preprocessing</h4><ul>
+<li>Training set: $x^{(1)}, x^{(2)}, …, x^{(m)}$</li>
+<li>Preprocessing (feature scaling / mean normalization)<ul>
+<li>$\mu_j = \frac{1}{m}\sum_{i=1}^mx_j^{(i)}$</li>
+<li>Replace each $x_j^{(i)}$ with $x_j - \mu_j$</li>
+<li>scale features to have comparable range of values<ul>
+<li>$x_j^{(i)} = \frac{x_j^{(i)} - \mu_j}{s_j}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Principal-Component-Analysis-algorithm-1"><a href="#Principal-Component-Analysis-algorithm-1" class="headerlink" title="Principal Component Analysis algorithm"></a>Principal Component Analysis algorithm</h4><ul>
+<li>Reduce data from n-dimensions to k-dimensions</li>
+<li>Compute “covariance matrix”<ul>
+<li>$\sum = \frac{1}{m}\sum^n_{i=1}(x^{(i)})(x^{(i)})^T$</li>
+</ul>
+</li>
+<li>Compute “eigenvectors” of matrix $\sum$<ul>
+<li><code>[U, S, V] = svd(Sigma);</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4r0c125uj314i0n2jvq.jpg"></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fu4r0muo1hj314k0n2aeg.jpg"></p>
+<h4 id="Principal-Component-Analysis-algorithm-summary"><a href="#Principal-Component-Analysis-algorithm-summary" class="headerlink" title="Principal Component Analysis algorithm summary"></a>Principal Component Analysis algorithm summary</h4><p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fu4r1xbd4rj314g0n00y0.jpg"></p>
+<h3 id="Reconstruction-from-compressed-representation"><a href="#Reconstruction-from-compressed-representation" class="headerlink" title="Reconstruction from compressed representation"></a>Reconstruction from compressed representation</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4r3a5k9xj314e0n0427.jpg"></p>
+<h3 id="Choosing-the-number-of-principal-components"><a href="#Choosing-the-number-of-principal-components" class="headerlink" title="Choosing the number of principal components"></a>Choosing the number of principal components</h3><h4 id="Choosing-k-number-of-principal-components"><a href="#Choosing-k-number-of-principal-components" class="headerlink" title="Choosing k (number of principal components)"></a>Choosing k (number of principal components)</h4><ul>
+<li>Average squared projection error<ul>
+<li>$\frac{1}{m}\sum_{i=1}^m||x^{(i)} - x_{approx}^{(i)}||^2$</li>
+</ul>
+</li>
+<li>Total variation in the data<ul>
+<li>$\frac{1}{m}\sum_{i=1}^m||x^{(i)}||^2$</li>
+</ul>
+</li>
+<li>Typically, choose k to be smallest value so that<ul>
+<li>$\frac{\frac{1}{m}\sum_{i=1}^m||x^{(i)}-x_{approx}^{(i)}||^2}{\frac{1}{m}\sum_{i=1}^m||x^{(i)}||^2} \leq 1%$ </li>
+<li>“99% of variance is retained”</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4r9x4ke3j314e0my7bx.jpg"></p>
+<h3 id="Advice-for-applying-PCA"><a href="#Advice-for-applying-PCA" class="headerlink" title="Advice for applying PCA"></a>Advice for applying PCA</h3><h4 id="Supervised-learning-speedup"><a href="#Supervised-learning-speedup" class="headerlink" title="Supervised learning speedup"></a>Supervised learning speedup</h4><ul>
+<li>Extract inputs<ul>
+<li>Unlabeled dataset: $x^{(1)}, x^{(2)}, …, x^{(m)} \in R^{10000}$ </li>
+<li>after PCA:  $z^{(1)}, z^{(2)}, …, z^{(m)} \in R^{1000}$ </li>
+</ul>
+</li>
+</ul>
+<h4 id="Application-of-PCA"><a href="#Application-of-PCA" class="headerlink" title="Application of PCA"></a>Application of PCA</h4><ul>
+<li>Compression <ul>
+<li>Reduce memory/disk needed to store data</li>
+<li>Speed up learning algorithm</li>
+</ul>
+</li>
+<li>Visualization</li>
+<li></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/mooc/" rel="tag"># mooc</a>
+              <a href="/tags/coursera/" rel="tag"># coursera</a>
+              <a href="/tags/course-notes/" rel="tag"># course notes</a>
+              <a href="/tags/Andrew-NG/" rel="tag"># Andrew NG</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/08/07/%E5%90%AC%E5%8A%9B%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-9/" rel="prev" title="听力训练（初期）Day 9">
+                  <i class="fa fa-chevron-left"></i> 听力训练（初期）Day 9
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/10/29/%E3%80%8AHadoop-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B/" rel="next" title="《Hadoop 权威指南》">
+                  《Hadoop 权威指南》 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lsinger</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,37 +1,431 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="TPO 3 Conversation 1 Excuse me, I’m supposed to be having my physics class in the science building, but no one’s in the classroom. 太快没听清">
+<meta property="og:type" content="article">
+<meta property="og:title" content="听力训练（初期）Day 3">
+<meta property="og:url" content="http://yoursite.com/2018/07/14/%E5%90%AC%E5%8A%9B%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-3/index.html">
+<meta property="og:site_name" content="Lsinger&#39; s blog">
+<meta property="og:description" content="TPO 3 Conversation 1 Excuse me, I’m supposed to be having my physics class in the science building, but no one’s in the classroom. 太快没听清">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-07-14T14:25:24.000Z">
+<meta property="article:modified_time" content="2018-07-15T12:35:51.471Z">
+<meta property="article:author" content="Lsinger">
+<meta property="article:tag" content="TOEFL">
+<meta property="article:tag" content="Listening">
+<meta property="article:tag" content="训练初期">
+<meta property="article:tag" content="TPO 3">
+<meta property="article:tag" content="TPO 4">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2018/07/14/%E5%90%AC%E5%8A%9B%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;default&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;07&#x2F;14&#x2F;%E5%90%AC%E5%8A%9B%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-3&#x2F;&quot;,&quot;path&quot;:&quot;2018&#x2F;07&#x2F;14&#x2F;听力训练（初期）Day-3&#x2F;&quot;,&quot;title&quot;:&quot;听力训练（初期）Day 3&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>听力训练（初期）Day 3 | Lsinger' s blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lsinger' s blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Lsinger' s blog</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TPO-3-Conversation-1"><span class="nav-number">1.</span> <span class="nav-text">TPO 3 Conversation 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TPO-4-Conversation-2"><span class="nav-number">2.</span> <span class="nav-text">TPO 4 Conversation 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">3.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AC%E5%8A%9B%E7%94%9F%E8%AF%8D%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">听力生词总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lsinger</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/%E5%90%AC%E5%8A%9B%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          听力训练（初期）Day 3
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-07-14 22:25:24" itemprop="dateCreated datePublished" datetime="2018-07-14T22:25:24+08:00">2018-07-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2018-07-15 20:35:51" itemprop="dateModified" datetime="2018-07-15T20:35:51+08:00">2018-07-15</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/TOEFL/" itemprop="url" rel="index"><span itemprop="name">TOEFL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="TPO-3-Conversation-1"><a href="#TPO-3-Conversation-1" class="headerlink" title="TPO 3 Conversation 1"></a>TPO 3 Conversation 1</h2><ol start="2">
+<li><p>Excuse me, I’m supposed to be having my physics class in the science building, but <strong>no one’s in the</strong> classroom.</p>
+<p>太快没听清</p>
+</li>
+</ol>
+<span id="more"></span> 
+
+<ol start="2">
+<li><p>Well, there’s a room assignment sheet on the <strong>bulletin board</strong> outside this office.</p>
+<p> 在咱这办公室外的布告栏上有教室安排告示。</p>
+<p>不认识 <strong>bulletin board</strong></p>
+</li>
+<li><p>You should have got <strong>note</strong> letter from the <strong>registrar’s office</strong> about this.</p>
+<p> 教务室应该通过信件通知你了的。</p>
+<p>note 太短太快听不清，**registrar’s office **不认识</p>
+</li>
+<li><p><strong>‘Cause it</strong> says on the computer that the letter was sent out to students a week ago.</p>
+<p>依然没听清 cause</p>
+</li>
+<li><p>I wonder if I <strong>threw it away with all</strong> the junk mail by mistake.</p>
+<p>我有可能不小心将它同垃圾邮件一块清除了。</p>
+<p><strong>threw it away</strong> 不熟悉</p>
+</li>
+<li><p>If I<strong>’d</strong> known this <strong><del>could</del> happen</strong>, I would <strong>have</strong> taken it last semester.</p>
+<p>If I<strong>’d</strong> known this <strong>was going to happen</strong>, I would <strong>have</strong> taken it last semester.</p>
+<p>太快了完全听不出来</p>
+</li>
+<li><p><strong>Do you have any</strong> courses you’re going to take next semester?</p>
+<p>太快了听不清</p>
+</li>
+<li><p>I just <strong>hope it</strong> won’t be cancelled again.</p>
+<p>just hope 似乎连读了，听不出来</p>
+</li>
+<li><p>Give the physics department a call <strong>a couple of</strong> weeks before the semester starts.</p>
+<p>对 <strong>a couple of</strong> 不熟悉</p>
+</li>
+<li><p>They will be able to tell you <strong>if they’re</strong> planning to go through with it.</p>
+<p>他们能够告诉你他们是否开课。</p>
+<p>太快听不清，感觉小站托福的录音不太清晰，老师的话特别快特别模糊，以后还是用超能学吧</p>
+</li>
+<li><p>Oh, <strong>why don’t</strong> you to go change a mail address now.</p>
+<p>不熟悉，所以听不出来</p>
+</li>
+<li><p>It <strong>only</strong> takes a minute.</p>
+<p>连读了</p>
+</li>
+</ol>
+<h2 id="TPO-4-Conversation-2"><a href="#TPO-4-Conversation-2" class="headerlink" title="TPO 4 Conversation 2"></a>TPO 4 Conversation 2</h2><ol start="6">
+<li><p>Well, <strong>since it’s</strong> your class, I guess it’s OK.</p>
+<p>就是，这是你的课，我想没事的。</p>
+<p>对 since 还是不够熟悉，快了就听不清</p>
+</li>
+<li><p>Ah, yes, <strong><del>do</del></strong> next week.</p>
+<p>Ah, yes, <strong>due</strong> next week.</p>
+<p>对 due 不熟悉</p>
+</li>
+<li><p>It’s about, ur, United States <strong>Supreme Court</strong> Decisions.</p>
+<p>是关于美国最高法院决议</p>
+<p>不认识 <strong>Supreme Court</strong></p>
+</li>
+<li><p>We are looking at <strong>the impact of recent cases</strong> on <strong>property</strong> rights, <strong>municipal land use</strong> cases, <strong>owning disputes</strong>.</p>
+<p>我们正在研究最近的案子对美国产权，城市用地法案，所有权冲突的影响。</p>
+<p>好几个词都是不认识的，land use 连读了</p>
+</li>
+<li><p>They are just sitting back, not really doing their <strong>fair</strong> share of the work and waiting for an A.</p>
+<p> 他们只是袖手旁观，没有完成他们分内的工作，却妄想着要拿到A。</p>
+<p>不知道什么是 <strong>fair share</strong></p>
+</li>
+<li><p>It’s kind of <strong>stressing</strong> me out, because <strong>we are</strong> getting close to the deadline and I feel <strong>like</strong> I’m doing everything for this project.</p>
+<p>不熟悉，太快</p>
+</li>
+<li><p>Ah, <strong>the good old free rider problem.</strong></p>
+<p>啊，又是这种搭便车的问题。</p>
+<p>没听过这种说法</p>
+</li>
+<li><p> Ah, it’s just a term that describes this situation, when people in the group <strong>seek to</strong> get the benefits <strong>of</strong> being in a group without contributing to the work.</p>
+<p>不熟悉，听不出来</p>
+</li>
+<li><p>Anyway, what exactly do you mean when you say they just sit back?</p>
+<p>不管怎样。你说他们袖手旁观是怎样的情况？</p>
+</li>
+<li><p>I mean, they<strong>’ve been filing following the weekly progress</strong> reports <strong>with me</strong>.</p>
+<p> 因为他们一直都有完成每周的进度报告。</p>
+<p>完全听不出 filling，对这种操作不了解，太快听不出来具体的单词</p>
+</li>
+<li><p>I went <strong>off</strong> to the <strong>stack</strong> and found some really good material for my part, but when I got back to our table, they were just <strong>goofing</strong> off and talking.</p>
+<p>我在书架上找到对我负责的部分很好的资料，但当我回去的时候，他们却在偷懒聊天。</p>
+<p><strong>went off</strong> ，<strong>goofing off</strong> 不认识，stack 的说法也不了解</p>
+</li>
+<li><p>I know, but I didn’t want to <strong>risk</strong> the project going down the <strong>drain</strong>.</p>
+<p>学生：我知道，但是那样的话项目可能流于无形，我可不想冒险。</p>
+<p>risk 不熟悉 <strong>going down the drain</strong> 的说法不了解</p>
+</li>
+<li><p>Maybe <strong>Teresa and Kevin aren’t that excited</strong> about the topic?</p>
+<p>无法在句子里分辨出人名，太快听不出来</p>
+</li>
+<li><p><strong>And since you picked it, have you thought…talk to them at</strong> all about <strong>picking a</strong> different topic?</p>
+<p>pick 的用法不熟悉，thought 完全听不出来</p>
+</li>
+<li><p>We don’t have time to start from <strong>scratch</strong>.</p>
+<p>我们没有时间从头再来。</p>
+<p>不认识 <strong>start from scratch</strong></p>
+</li>
+<li><p>OK, I will let you go <strong>‘cause I know you are</strong> so busy.</p>
+<p>好，我会放宽期限因为我知道你很忙，</p>
+<p>太快，依然没听清 ‘cause</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
+<li>太快听不清楚</li>
+<li>有些特定情境下常用的词汇，或者口语常用的说法不熟悉</li>
+<li>连读</li>
+</ol>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ol>
+<li>多练</li>
+<li>总结记录下来，看下听力特定场景词汇总结</li>
+<li>多练</li>
+</ol>
+<h2 id="听力生词总结"><a href="#听力生词总结" class="headerlink" title="听力生词总结"></a>听力生词总结</h2><p><a target="_blank" rel="noopener" href="https://quizlet.com/_51gj10">https://quizlet.com/_51gj10</a></p>
+<p>BBC 英语教学这个网站好像还不错：</p>
+<p><a target="_blank" rel="noopener" href="http://www.bbc.co.uk/learningenglish/chinese/">http://www.bbc.co.uk/learningenglish/chinese/</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TOEFL/" rel="tag"># TOEFL</a>
+              <a href="/tags/Listening/" rel="tag"># Listening</a>
+              <a href="/tags/%E8%AE%AD%E7%BB%83%E5%88%9D%E6%9C%9F/" rel="tag"># 训练初期</a>
+              <a href="/tags/TPO-3/" rel="tag"># TPO 3</a>
+              <a href="/tags/TPO-4/" rel="tag"># TPO 4</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/07/14/%E9%98%85%E8%AF%BB%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-3/" rel="prev" title="阅读训练（初期）Day 3">
+                  <i class="fa fa-chevron-left"></i> 阅读训练（初期）Day 3
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/07/15/%E9%98%85%E8%AF%BB%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-4/" rel="next" title="阅读训练（初期）Day 4">
+                  阅读训练（初期）Day 4 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lsinger</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,37 +1,414 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="挑战程序设计竞赛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《挑战程序设计竞赛》笔记">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/%E3%80%8A%E6%8C%91%E6%88%98%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%E3%80%8B%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Lsinger&#39; s blog">
+<meta property="og:description" content="挑战程序设计竞赛">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-08-03T12:33:13.000Z">
+<meta property="article:modified_time" content="2018-08-08T11:55:58.169Z">
+<meta property="article:author" content="Lsinger">
+<meta property="article:tag" content="coding">
+<meta property="article:tag" content="notes">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2018/08/03/%E3%80%8A%E6%8C%91%E6%88%98%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%E3%80%8B%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;default&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;08&#x2F;03&#x2F;%E3%80%8A%E6%8C%91%E6%88%98%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%E3%80%8B%E7%AC%94%E8%AE%B0&#x2F;&quot;,&quot;path&quot;:&quot;2018&#x2F;08&#x2F;03&#x2F;《挑战程序设计竞赛》笔记&#x2F;&quot;,&quot;title&quot;:&quot;《挑战程序设计竞赛》笔记&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>《挑战程序设计竞赛》笔记 | Lsinger' s blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lsinger' s blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Lsinger' s blog</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%91%E6%88%98%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B"><span class="nav-number">1.</span> <span class="nav-text">挑战程序设计竞赛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%87%86%E5%A4%87%E7%AF%87"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 准备篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E4%BB%A5%E9%AB%98%E6%95%88%E7%9A%84%E7%AE%97%E6%B3%95%E4%B8%BA%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.5 以高效的算法为目标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1.5.1 什么是复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-2-%E5%85%B3%E4%BA%8E%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">1.5.2 关于运行时间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-%E8%BD%BB%E6%9D%BE%E7%83%AD%E8%BA%AB"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.6 轻松热身</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-1-%E7%AE%80%E5%8D%95%E9%A2%98"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1.6.1 简单题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-2-POJ-No-1852"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">1.6.2 POJ No.1852</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-3-%E5%A2%9E%E5%8A%A0%E9%9A%BE%E5%BA%A6%E7%9A%84%E6%8A%BD%E7%AD%BE%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">1.6.3 增加难度的抽签问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E4%B8%8E-O-n-3logn-%E7%9A%84%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.2.3.1.</span> <span class="nav-text">1. 二分搜索与 $O(n^3logn)$ 的算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-O-n-2logn-%E7%9A%84%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.2.3.2.</span> <span class="nav-text">2. $O(n^2logn)$ 的算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%88%9D%E5%87%BA%E8%8C%85%E5%BA%90%E2%80%94%E2%80%94%E5%88%9D%E7%BA%A7%E7%AF%87"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 初出茅庐——初级篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%9C%80%E5%9F%BA%E7%A1%80%E7%9A%84%E2%80%9C%E7%A9%B7%E7%AB%AD%E6%90%9C%E7%B4%A2%E2%80%9D"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 最基础的“穷竭搜索”</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">2.1.1 递归函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-%E6%A0%88"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2.1.2 栈</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lsinger</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/%E3%80%8A%E6%8C%91%E6%88%98%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%E3%80%8B%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《挑战程序设计竞赛》笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-08-03 20:33:13" itemprop="dateCreated datePublished" datetime="2018-08-03T20:33:13+08:00">2018-08-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2018-08-08 19:55:58" itemprop="dateModified" datetime="2018-08-08T19:55:58+08:00">2018-08-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/coding/" itemprop="url" rel="index"><span itemprop="name">coding</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="挑战程序设计竞赛"><a href="#挑战程序设计竞赛" class="headerlink" title="挑战程序设计竞赛"></a>挑战程序设计竞赛</h1><span id="more"></span> 
+
+<h2 id="第一章-准备篇"><a href="#第一章-准备篇" class="headerlink" title="第一章 准备篇"></a>第一章 准备篇</h2><h3 id="1-5-以高效的算法为目标"><a href="#1-5-以高效的算法为目标" class="headerlink" title="1.5 以高效的算法为目标"></a>1.5 以高效的算法为目标</h3><h4 id="1-5-1-什么是复杂度"><a href="#1-5-1-什么是复杂度" class="headerlink" title="1.5.1 什么是复杂度"></a>1.5.1 什么是复杂度</h4><ol>
+<li>复杂度的估算是非常重要的，因为我们不可能把每个想到的算法都去实现一遍看看是否足够快</li>
+<li>通常考虑复杂度与什么成正比，并称之为算法的阶</li>
+</ol>
+<h4 id="1-5-2-关于运行时间"><a href="#1-5-2-关于运行时间" class="headerlink" title="1.5.2 关于运行时间"></a>1.5.2 关于运行时间</h4><ol>
+<li>程序的运行时间不光取决于复杂度，也会受诸如循环体的复杂性等因素的影响</li>
+<li>但是，因此造成的差距多数情况下也就几十倍</li>
+<li>因此要缩短程序的运行时间，主要应该从复杂度入手</li>
+</ol>
+<p><strong>例如，考虑 O($n^2$) 时间的算法，假设题目描述中的限制条件为 n ≤ 1000，将 n=1000 代入 $n^2$ 就得到了 1000000.在这个数值的基础上，我们就可以结合下表进行判断了</strong></p>
+<p>假设时间限制为 1s</p>
+<table>
+<thead>
+<tr>
+<th>1000000</th>
+<th>游刃有余</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10000000</td>
+<td>勉勉强强</td>
+</tr>
+<tr>
+<td>100000000</td>
+<td>很悬，仅限循环体非常简单的情况</td>
+</tr>
+</tbody></table>
+<h3 id="1-6-轻松热身"><a href="#1-6-轻松热身" class="headerlink" title="1.6 轻松热身"></a>1.6 轻松热身</h3><h4 id="1-6-1-简单题"><a href="#1-6-1-简单题" class="headerlink" title="1.6.1 简单题"></a>1.6.1 简单题</h4><ol>
+<li>自己写的</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">100001</span>];</span><br><span class="line">    <span class="keyword">while</span>(cin &gt;&gt; n)&#123;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            cin &gt;&gt; a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k=j+<span class="number">1</span>; k&lt;n; k++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (a[i]&gt;=a[j] &amp;&amp; a[i]&gt;=a[k] &amp;&amp; a[i]&lt;(a[j]+a[k])) &#123;</span><br><span class="line">                        <span class="keyword">if</span> ((a[i]+a[j]+a[k])&gt;max) &#123;</span><br><span class="line">                            max = a[i]+a[j]+a[k];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (a[j]&gt;=a[i] &amp;&amp; a[j]&gt;=a[k] &amp;&amp; a[j]&lt;(a[i]+a[k])) &#123;</span><br><span class="line">                        <span class="keyword">if</span> ((a[i]+a[j]+a[k])&gt;max) &#123;</span><br><span class="line">                            max = a[i]+a[j]+a[k];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (a[k]&gt;=a[i] &amp;&amp; a[k]&gt;=a[j] &amp;&amp; a[k]&lt;(a[i]+a[j])) &#123;</span><br><span class="line">                        <span class="keyword">if</span> ((a[i]+a[j]+a[k])&gt;max) &#123;</span><br><span class="line">                            max = a[i]+a[j]+a[k];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; max &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>题解版</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">100001</span>];</span><br><span class="line">    <span class="keyword">while</span>(cin &gt;&gt; n)&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            cin &gt;&gt; a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;n; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k=j+<span class="number">1</span>; k&lt;n; k++) &#123;</span><br><span class="line">                    <span class="keyword">int</span> len = a[i] + a[j] + a[k];</span><br><span class="line">                    <span class="keyword">int</span> maxlen = <span class="built_in">max</span>(a[i], <span class="built_in">max</span>(a[j], a[k]));</span><br><span class="line">                    <span class="keyword">int</span> rest = len - maxlen;</span><br><span class="line">                    <span class="keyword">if</span> (rest &gt; maxlen) &#123;</span><br><span class="line">                        ans = <span class="built_in">max</span>(ans, len);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-6-2-POJ-No-1852"><a href="#1-6-2-POJ-No-1852" class="headerlink" title="1.6.2 POJ No.1852"></a>1.6.2 POJ No.1852</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include &lt;algorithm&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> L, n, x[<span class="number">1000001</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; L) &#123;</span><br><span class="line">        <span class="built_in">int</span> minDist = <span class="number">0</span>, maxDist = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">            cin &gt;&gt; x[i];</span><br><span class="line">            minDist = <span class="built_in">max</span>(minDist, <span class="built_in">min</span>(L-x[i], x[i]));</span><br><span class="line">            maxDist = <span class="built_in">max</span>(maxDist, <span class="built_in">max</span>(L-x[i], x[i]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; minDist &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; maxDist &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-6-3-增加难度的抽签问题"><a href="#1-6-3-增加难度的抽签问题" class="headerlink" title="1.6.3 增加难度的抽签问题"></a>1.6.3 增加难度的抽签问题</h4><p><strong>抽签问题</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m, k[<span class="number">51</span>];</span><br><span class="line">    <span class="keyword">while</span>(cin &gt;&gt; n &gt;&gt; m &amp;&amp; n!=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            cin &gt;&gt; k[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>; a&lt;n; a++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">0</span>; b&lt;n; b++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> c=<span class="number">0</span>; c&lt;n; c++)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> d=<span class="number">0</span>; d&lt;n; d++)&#123;</span><br><span class="line">                        <span class="keyword">if</span>((k[a]+k[b]+k[c]+k[d])==m) &#123;</span><br><span class="line">                            flag = <span class="literal">true</span>;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(flag) cout &lt;&lt; <span class="string">&quot;Yes&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">else</span> cout &lt;&lt; <span class="string">&quot;No&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>起初</p>
+<p>​    检查是否有 d 使得 $k_a+k_b+k_c+k_d = m$</p>
+<p>通过对式子移项，得到</p>
+<p>​    检查是否有 d 使得 $k_d = m-k_a-k_b-k_c$</p>
+<h5 id="1-二分搜索与-O-n-3logn-的算法"><a href="#1-二分搜索与-O-n-3logn-的算法" class="headerlink" title="1. 二分搜索与 $O(n^3logn)$ 的算法"></a>1. 二分搜索与 $O(n^3logn)$ 的算法</h5><p>记所要查找的值 $m-k_a-k_b-k_c$ 为 x，预先把数组 k 排好序，然后看 k 中央的数字，可知</p>
+<ul>
+<li>如果它比 x 小，x 只可能在它的后面半段</li>
+<li>如果它比 x 大，x 只可能在它的前面半段</li>
+</ul>
+<p>这样反复操作不断缩小 x 的存在区间，最终可以确定 x 存在与否</p>
+<p>要判断长度为 n 的有序数组 k 中是否有包含 x，只要反复执行约 $log_2n$ 次就完成了，所以二分查找的复杂度为 O($logn$) ，我们称这种阶的运行时间为对数时间，即使 n 变得很大时，对数时间的算法依然非常快速</p>
+<p>将最内侧的循环换成二分搜索算法之后，就变成</p>
+<ul>
+<li>排序 $O(nlogn)$</li>
+<li>循环 $O(n^3logn)$</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (r - l &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> i = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (k[i] == x) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (k[i] &lt; x) l = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> r = i;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">sort</span>(k, k+n);</span><br><span class="line">    <span class="keyword">bool</span> f = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>; a&lt;n; a++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">0</span>; b&lt;n; b++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> c=<span class="number">0</span>; c&lt;n; c++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">binary_search</span>(m-k[a]-k[b]-k[c])) f = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(f) cout &lt;&lt; <span class="string">&quot;Yes&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span> cout &lt;&lt; <span class="string">&quot;No&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-O-n-2logn-的算法"><a href="#2-O-n-2logn-的算法" class="headerlink" title="2. $O(n^2logn)$ 的算法"></a>2. $O(n^2logn)$ 的算法</h5><ul>
+<li><p>将代入 n=1000 $n^3logn$ 发现依然远远不够，还需要对算法进行进一步优化</p>
+</li>
+<li><p>刚刚我们只着眼于四层循环中最内层的循环，接下来我们着眼于内侧的两个循环</p>
+</li>
+<li><p>与刚才同样的思路，内侧的两个循环是在</p>
+<p>检查是否有 c 使得 $k_c + k_d = m - k_a - k_b$</p>
+</li>
+<li><p>这种情况不能直接使用二分搜索，但是可以预先枚举出 $k_c + k_d$ 所得的 $n^2$ 个数字并排好序，便可以用二分搜索了</p>
+</li>
+<li><p>该算法</p>
+<ul>
+<li>排序 $O(n^2logn)$ 时间</li>
+<li>循环 $O(n^2logn)$ 时间</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> kab[MAX_N*MAX_N];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = n*n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (r - l &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> i = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (kab[i] == x) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (kab[i] &lt; x) l = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> r = i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//int count = 0;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>; a&lt;n; a++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">0</span>; b&lt;n; b++)&#123;</span><br><span class="line">            <span class="comment">//kab[count++] = k[a] + k[b];</span></span><br><span class="line">            kab[a*n+b] = k[a] + k[b];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">sort</span>(kab, kab+n*n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> f=<span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> c=<span class="number">0</span>; c&lt;n; c++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> d=<span class="number">0</span>; d&lt;n; d++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">binary_search</span>(m-k[c]-k[d])) f = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(f) cout &lt;&lt; <span class="string">&quot;Yes&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span> cout &lt;&lt; <span class="string">&quot;No&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>抽签问题急需要二分搜索这一基础算法知识，也需要将四个数分成两两考虑的想象力</li>
+<li>从复杂度高的算法出发，不断降低复杂度直到满足问题需求的过程，也是设计算法时常会经历的一个过程</li>
+</ol>
+<h2 id="第二章-初出茅庐——初级篇"><a href="#第二章-初出茅庐——初级篇" class="headerlink" title="第二章 初出茅庐——初级篇"></a>第二章 初出茅庐——初级篇</h2><h3 id="2-1-最基础的“穷竭搜索”"><a href="#2-1-最基础的“穷竭搜索”" class="headerlink" title="2.1 最基础的“穷竭搜索”"></a>2.1 最基础的“穷竭搜索”</h3><p>穷竭搜索是将所有的可能性罗列出来，在其中寻找答案的方法。这里我们主要介绍深度优先搜索和广度优先搜索这两种方法</p>
+<h4 id="2-1-1-递归函数"><a href="#2-1-1-递归函数" class="headerlink" title="2.1.1 递归函数"></a>2.1.1 递归函数</h4><ul>
+<li><p>递归函数：在一个函数中再次调用该函数自身的行为叫做递归，这样的函数称为递归函数</p>
+</li>
+<li><p>例如编写一个计算阶乘的函数，可以用循环来实现，也可以写成递推式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fact</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> n*<span class="built_in">fact</span>(n<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>在编写一个递归函数时，函数的停止条件是必须存在的，如果不存在函数就会无限地递归下去</p>
+</li>
+<li><p>编写计算斐波那契数列的函数</p>
+<ul>
+<li>$a_0=0$</li>
+<li>$a_1=1 $</li>
+<li>$a_n = a_{n-1}+a_{n-2}(n&gt;1)$</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">fib</span>(n<span class="number">-1</span>)+<span class="built_in">fib</span>(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>实际使用递归函数时，需要花费相当长的时间（会按照指数级别扩展开来）</p>
+</li>
+<li><p>因此可以在计算一次之后，用数列将结果存储起来，便可优化之后的计算。这种方法是处于记忆化搜索或者动态规划的想法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> memo[MAX_N + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">if</span>(memo[n] != <span class="number">0</span>) <span class="keyword">return</span> memo[n];</span><br><span class="line">    <span class="keyword">return</span> memo[n] = <span class="built_in">fib</span>(n<span class="number">-1</span>) + <span class="built_in">fib</span>(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-1-2-栈"><a href="#2-1-2-栈" class="headerlink" title="2.1.2 栈"></a>2.1.2 栈</h4><ul>
+<li>栈（stack）是支持 push 和 pop 两种操作的数据结构。push 是在栈的顶端放入一组数据的操作。反之，pop 是从其顶端取出一组数据的操作。因此，最后进入栈的一组数据可以最先被取出（Last In First Out, LIFO）</li>
+<li>移除最顶端的数据：stack::pop 访问最顶端的数据：stack::top</li>
+<li></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/coding/" rel="tag"># coding</a>
+              <a href="/tags/notes/" rel="tag"># notes</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/08/03/%E5%90%AC%E5%8A%9B%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-7/" rel="prev" title="听力训练（初期）Day 7">
+                  <i class="fa fa-chevron-left"></i> 听力训练（初期）Day 7
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/08/06/%E5%90%AC%E5%8A%9B%E8%AE%AD%E7%BB%83%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89Day-8/" rel="next" title="听力训练（初期）Day 8">
+                  听力训练（初期）Day 8 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lsinger</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
