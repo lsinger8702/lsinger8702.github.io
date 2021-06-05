@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="二叉树概念 二叉树，顾名思义，每个节点最多有两个“叉”，也就是两个子节点，分别是左子节点和右子节点  满二叉树 叶子节点全都在最底层，除了叶子节点之外，每个节点都有左右两个子节点  完全二叉树 叶子节点都在最底下两层，最后一层的叶子节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大   存储基于指针&#x2F;引用的二叉链式存储法 每个节点有三个字段，其中一个存储数据，另外两个是指向左右子节点的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树">
+<meta property="og:url" content="http://yoursite.com/2021/06/05/%E6%A0%91/index.html">
+<meta property="og:site_name" content="Lsinger&#39; s blog">
+<meta property="og:description" content="二叉树概念 二叉树，顾名思义，每个节点最多有两个“叉”，也就是两个子节点，分别是左子节点和右子节点  满二叉树 叶子节点全都在最底层，除了叶子节点之外，每个节点都有左右两个子节点  完全二叉树 叶子节点都在最底下两层，最后一层的叶子节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大   存储基于指针&#x2F;引用的二叉链式存储法 每个节点有三个字段，其中一个存储数据，另外两个是指向左右子节点的">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-06-05T05:46:22.000Z">
+<meta property="article:modified_time" content="2021-06-05T08:47:58.317Z">
+<meta property="article:author" content="Lsinger">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="Interview">
+<meta property="article:tag" content="Tree">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2021/06/05/%E6%A0%91/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;default&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;06&#x2F;05&#x2F;%E6%A0%91&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;05&#x2F;树&#x2F;&quot;,&quot;title&quot;:&quot;树&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>树 | Lsinger' s blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lsinger' s blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Lsinger' s blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8"><span class="nav-number">1.2.</span> <span class="nav-text">存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%8C%87%E9%92%88-%E5%BC%95%E7%94%A8%E7%9A%84%E4%BA%8C%E5%8F%89%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">基于指针&#x2F;引用的二叉链式存储法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%95%B0%E7%BB%84%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">基于数组的顺序存储法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8D%E5%8E%86"><span class="nav-number">1.3.</span> <span class="nav-text">遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91"><span class="nav-number">1.4.</span> <span class="nav-text">二叉查找树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E6%93%8D%E4%BD%9C"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">其它操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE"><span class="nav-number">1.4.2.5.</span> <span class="nav-text">支持重复数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.4.3.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E6%AF%94%E6%95%A3%E5%88%97%E8%A1%A8%E4%BC%98%E5%8A%BF"><span class="nav-number">1.4.4.</span> <span class="nav-text">相比散列表优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E8%A1%A1%E6%9F%A5%E6%89%BE%E6%A0%91"><span class="nav-number">1.4.5.</span> <span class="nav-text">平衡查找树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AVL-%E6%A0%91"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">AVL 树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91-Red-Black-Tree-R-B-Tree"><span class="nav-number">1.4.5.4.</span> <span class="nav-text">红黑树(Red-Black Tree, R-B Tree)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="nav-number">1.4.5.4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%91%E4%BC%BC%E5%B9%B3%E8%A1%A1"><span class="nav-number">1.4.5.4.2.</span> <span class="nav-text">近似平衡</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-1"><span class="nav-number">1.4.5.4.3.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">1.4.5.4.4.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91-v-s-AVL"><span class="nav-number">1.4.5.5.</span> <span class="nav-text">红黑树 v.s. AVL</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%8F%89%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text">多叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B3%E8%A1%A1%E5%A4%9A%E8%B7%AF%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="nav-number">2.1.</span> <span class="nav-text">平衡多路搜索树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B%E6%A0%91%EF%BC%88Balance-Tree%EF%BC%89"><span class="nav-number">2.1.1.</span> <span class="nav-text">B树（Balance Tree）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A0%B9%E8%8A%82%E7%82%B9%E7%9A%84%E5%84%BF%E5%AD%90%E6%95%B0%E7%9A%84%E8%8C%83%E5%9B%B4%E6%98%AF-2-M"><span class="nav-number">2.1.1.1.1.</span> <span class="nav-text">根节点的儿子数的范围是[2,M]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AF%8F%E4%B8%AA%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9%E5%8C%85%E5%90%AB-k-1-%E4%B8%AA%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C-k-%E4%B8%AA%E5%AD%A9%E5%AD%90%EF%BC%8C"><span class="nav-number">2.1.1.1.2.</span> <span class="nav-text">每个中间节点包含 k-1 个关键字和 k 个孩子，</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E5%8F%B6%E5%AD%90%E8%8A%82%E7%82%B9%E4%BD%8D%E4%BA%8E%E5%90%8C%E4%B8%80%E5%B1%82"><span class="nav-number">2.1.1.1.3.</span> <span class="nav-text">所有叶子节点位于同一层</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%A0%91"><span class="nav-number">2.1.2.</span> <span class="nav-text">B+树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E7%82%B9-1"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AF%8F%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%AD%E5%AD%90%E8%8A%82%E7%82%B9%E7%9A%84%E4%B8%AA%E6%95%B0%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%87-m%EF%BC%8C%E4%B9%9F%E4%B8%8D%E8%83%BD%E5%B0%8F%E4%BA%8E-m-2"><span class="nav-number">2.1.2.1.1.</span> <span class="nav-text">每个节点中子节点的个数不能超过 m，也不能小于 m&#x2F;2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#m-%E5%8F%89%E6%A0%91%E5%8F%AA%E5%AD%98%E5%82%A8%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%B9%B6%E4%B8%8D%E7%9C%9F%E6%AD%A3%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE"><span class="nav-number">2.1.2.1.2.</span> <span class="nav-text">m 叉树只存储索引，并不真正存储数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%E5%B0%86%E5%8F%B6%E5%AD%90%E8%8A%82%E7%82%B9%E4%B8%B2%E8%81%94%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%8C%E6%96%B9%E4%BE%BF%E5%8C%BA%E9%97%B4%E6%9F%A5%E6%89%BE"><span class="nav-number">2.1.2.1.3.</span> <span class="nav-text">通过双向链表将叶子节点串联在一起，方便区间查找</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E6%83%85%E5%86%B5%EF%BC%8C%E6%A0%B9%E8%8A%82%E7%82%B9%E4%BC%9A%E8%A2%AB%E5%AD%98%E5%82%A8%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%EF%BC%8C%E5%85%B6%E4%BB%96%E8%8A%82%E7%82%B9%E5%AD%98%E5%82%A8%E5%9C%A8%E7%A3%81%E7%9B%98%E4%B8%AD"><span class="nav-number">2.1.2.1.4.</span> <span class="nav-text">一般情况，根节点会被存储在内存中，其他节点存储在磁盘中</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Tree-v-s-B-Tree"><span class="nav-number">2.1.3.</span> <span class="nav-text">B+ Tree  v.s. B Tree</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">常见面试题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lsinger</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/05/%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          树
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-06-05 13:46:22 / Modified: 16:47:58" itemprop="dateCreated datePublished" datetime="2021-06-05T13:46:22+08:00">2021-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li><p>二叉树，顾名思义，每个节点最多有两个“叉”，也就是两个子节点，分别是左子节点和右子节点</p>
+</li>
+<li><p>满二叉树</p>
+<p>叶子节点全都在最底层，除了叶子节点之外，每个节点都有左右两个子节点</p>
+</li>
+<li><p>完全二叉树</p>
+<p>叶子节点都在最底下两层，最后一层的叶子节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大</p>
+</li>
+</ul>
+<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><h3 id="基于指针-引用的二叉链式存储法"><a href="#基于指针-引用的二叉链式存储法" class="headerlink" title="基于指针/引用的二叉链式存储法"></a>基于指针/引用的二叉链式存储法</h3><ul>
+<li>每个节点有三个字段，其中一个存储数据，另外两个是指向左右子节点的指针</li>
+</ul>
+<h3 id="基于数组的顺序存储法"><a href="#基于数组的顺序存储法" class="headerlink" title="基于数组的顺序存储法"></a>基于数组的顺序存储法</h3><ul>
+<li>如果某棵二叉树是一棵完全二叉树，那用数组存储无疑是最节省内存的一种方式</li>
+<li>存储<ul>
+<li>把根节点存储在下标 i = 1 的位置，那左子节点存储在下标 2 * i = 2 的位置，右子节点存储在 2 * i + 1 = 3 的位置</li>
+<li>以此类推，B 节点的左子节点存储在 2 * i = 2 * 2 = 4 的位置，右子节点存储在 2 * i + 1 = 2 * 2 + 1 = 5 的位置</li>
+</ul>
+</li>
+<li>查找<ul>
+<li>如果节点 X 存储在数组中下标为 i 的位置</li>
+<li>下标为 2 * i 的位置存储的就是左子节点</li>
+<li>下标为 2 * i + 1 的位置存储的就是右子节点</li>
+<li>下标为 i/2 的位置存储就是它的父节点</li>
+</ul>
+</li>
+<li>通过这种方式，我们只要知道根节点存储的位置（一般情况下，为了方便计算子节点，根节点会存储在下标为 1 的位置），这样就可以通过下标计算，把整棵树都串起来</li>
+</ul>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><ul>
+<li><p>经典的方法有三种，前序遍历、中序遍历和后序遍历，表示的是节点与它的左右子树节点遍历打印的先后顺序</p>
+</li>
+<li><p>前序遍历</p>
+<p>对于树中的任意节点来说，先打印这个节点，然后再打印它的左子树，最后打印它的右子树</p>
+</li>
+<li><p>中序遍历</p>
+<p>对于树中的任意节点来说，先打印它的左子树，然后再打印它本身，最后打印它的右子树</p>
+</li>
+<li><p>后序遍历</p>
+<p>对于树中的任意节点来说，先打印它的左子树，然后再打印它的右子树，最后打印这个节点本身</p>
+</li>
+<li><p>时间复杂度</p>
+<p>每个节点最多会被访问两次，所以遍历操作的时间复杂度，跟节点的个数 n 成正比，也就是说二叉树遍历的时间复杂度是 O(n)</p>
+</li>
+</ul>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul>
+<li>实际上，二叉树的前、中、后序遍历就是一个递归的过程</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>二叉查找树是为了实现快速查找而生，它要求在树中的任意一个节点，其左子树中的每个节点的值，都要小于这个节点的值，而右子树节点的值都大于这个节点的值</li>
+</ul>
+<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><ul>
+<li>如果要查找的数据比根节点的值小，那就在左子树中递归查找</li>
+<li>如果要查找的数据比根节点的值大，那就在右子树中递归查找</li>
+</ul>
+<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><ul>
+<li>如果要插入的数据比节点的数据大<ul>
+<li>节点的右子树为空，就将新数据直接插到右子节点的位置</li>
+<li>如果不为空，就再递归遍历右子树，查找插入位置</li>
+</ul>
+</li>
+<li>如果要插入的数据比节点数值小<ul>
+<li>节点的左子树为空，就将新数据插入到左子节点的位置</li>
+<li>如果不为空，就再递归遍历左子树，查找插入位置</li>
+</ul>
+</li>
+</ul>
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><ul>
+<li>要删除的节点没有子节点<ul>
+<li>直接将父节点中，指向要删除节点的指针置为 null</li>
+</ul>
+</li>
+<li>要删除的节点只有一个子节点（只有左子节点或者右子节点）<ul>
+<li>更新父节点中，指向要删除节点的指针，让它指向要删除节点的子节点就可以了</li>
+</ul>
+</li>
+<li>要删除的节点有两个子节点<ul>
+<li>找到这个节点的右子树中的最小节点，把它替换到要删除的节点上</li>
+<li>然后再删除掉这个最小节点</li>
+<li>因为最小节点肯定没有左子节点，如果有左子结点，那就不是最小节点了</li>
+</ul>
+</li>
+<li>实际上，关于二叉查找树的删除操作，还有个非常简单、取巧的方法<ul>
+<li>将要删除的节点标记为“已删除”，但是并不真正从树中将这个节点去掉</li>
+<li>这样原本删除的节点还需要存储在内存中，比较浪费内存空间，但是删除操作就变得简单了很多</li>
+</ul>
+</li>
+</ul>
+<h4 id="其它操作"><a href="#其它操作" class="headerlink" title="其它操作"></a>其它操作</h4><ul>
+<li>快速查找最大节点<ul>
+<li>递归查找右子树，叶子节点即为最大节点</li>
+</ul>
+</li>
+<li>快速查找最小节点<ul>
+<li>递归查找左子树，叶子节点即为最小节点</li>
+</ul>
+</li>
+<li>快速查找前驱节点<ul>
+<li>递归查找左子树的右子树，叶子节点即为前驱结点</li>
+</ul>
+</li>
+<li>快速查找后继节点<ul>
+<li>递归查找右子树的左子树，叶子节点即为后继节点</li>
+</ul>
+</li>
+<li>中序遍历二叉查找树，可以输出有序的数据序列，时间复杂度是 O(n)</li>
+</ul>
+<h4 id="支持重复数据"><a href="#支持重复数据" class="headerlink" title="支持重复数据"></a>支持重复数据</h4><ul>
+<li>二叉查找树中每一个节点不仅会存储一个数据<ul>
+<li>通过链表和支持动态扩容的数组等数据结构，把值相同的数据都存储在同一个节点上</li>
+</ul>
+</li>
+<li>将要插入的数据放到这个节点的右子树，把这个新插入的数据当作大于这个节点的值来处理<ul>
+<li>当要查找数据的时候，遇到值相同的节点，我们并不停止查找操作，而是继续在右子树中查找，直到遇到叶子节点，才停止</li>
+<li>对于删除操作，我们也需要先查找到每个要删除的节点，然后再按前面讲的删除操作的方法，依次删除</li>
+</ul>
+</li>
+</ul>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li>不管操作是插入、删除还是查找，时间复杂度其实都跟树的高度成正比，也就是 O(height)</li>
+<li>一些计算<ul>
+<li>第 K 层包含的节点个数就是 2^(K-1)</li>
+<li>对于完全二叉树来说，最后一层的节点个数在 1 个到 2^(L-1) 个之间（我们假设最大层数是 L）</li>
+<li>借助等比数列的求和公式，可以计算出，L 的范围是[log2(n+1), log2n +1]</li>
+<li>完全二叉树的层数小于等于 log2n +1，也就是说，完全二叉树的高度小于等于 log2n</li>
+</ul>
+</li>
+<li>极度不平衡的二叉查找树，它的查找性能肯定不能满足我们的需求</li>
+</ul>
+<h3 id="相比散列表优势"><a href="#相比散列表优势" class="headerlink" title="相比散列表优势"></a>相比散列表优势</h3><ul>
+<li>排序<ul>
+<li>散列表中的数据是无序存储的，如果要输出有序的数据，需要先进行排序</li>
+<li>对于二叉查找树来说，我们只需要中序遍历，就可以在 O(n) 的时间复杂度内，输出有序的数据序列</li>
+</ul>
+</li>
+<li>稳定性<ul>
+<li>散列表扩容耗时很多，而且当遇到散列冲突时，性能不稳定，</li>
+<li>工程中最常用的平衡二叉查找树的性能非常稳定，时间复杂度稳定在 O(logn)</li>
+</ul>
+</li>
+<li>性能<ul>
+<li>时间<ul>
+<li>尽管散列表的查找等操作的时间复杂度是常量级的，但因为哈希冲突的存在，这个常量不一定比 logn 小，所以实际的查找速度可能不一定比 O(logn) 快</li>
+<li>加上哈希函数的耗时，也不一定就比平衡二叉查找树的效率高</li>
+</ul>
+</li>
+<li>空间<ul>
+<li>为了避免过多的散列冲突，散列表装载因子不能太大，特别是基于开放寻址法解决冲突的散列表，不然会浪费一定的存储空间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实现<ul>
+<li>散列表的构造比二叉查找树要复杂，需要考虑的东西很多<ul>
+<li>比如散列函数的设计、冲突解决办法、扩容、缩容等</li>
+</ul>
+</li>
+<li>平衡二叉查找树只需要考虑平衡性这一个问题，而且这个问题的解决方案比较成熟、固定</li>
+</ul>
+</li>
+<li>综上，平衡二叉查找树在某些方面还是优于散列表的，所以，这两者的存在并不冲突，在实际的开发过程中，需要结合具体的需求来选择使用哪一个</li>
+</ul>
+<h3 id="平衡查找树"><a href="#平衡查找树" class="headerlink" title="平衡查找树"></a>平衡查找树</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>二叉查找树在频繁的动态更新过程中，可能会出现树的高度远大于 log2n 的情况，从而导致各个操作的效率下降，极端情况下，二叉树会退化为链表，时间复杂度会退化到 O(n)</li>
+</ul>
+<h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><ul>
+<li>二叉树中任意一个节点的左右子树的高度相差不能大于 1</li>
+<li>完全二叉树、满二叉树其实都是平衡二叉树，但是非完全二叉树也有可能是平衡二叉树</li>
+<li>解决普通二叉查找树在频繁的插入、删除等动态更新的情况下，出现时间复杂度退化的问题</li>
+</ul>
+<h4 id="AVL-树"><a href="#AVL-树" class="headerlink" title="AVL 树"></a>AVL 树</h4><ul>
+<li>最先被发明的平衡二叉查找树是AVL 树，它严格符合平衡二叉查找树的定义，即任何节点的左右子树高度相差不超过 1，是一种高度平衡的二叉查找树</li>
+</ul>
+<h4 id="红黑树-Red-Black-Tree-R-B-Tree"><a href="#红黑树-Red-Black-Tree-R-B-Tree" class="headerlink" title="红黑树(Red-Black Tree, R-B Tree)"></a>红黑树(Red-Black Tree, R-B Tree)</h4><h5 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h5><ul>
+<li>是一种不严格的平衡二叉查找树</li>
+<li>红黑树中的节点，一类被标记为黑色，一类被标记为红色</li>
+<li>一棵红黑树还需要满足这样几个要求<ul>
+<li>根节点是黑色的</li>
+<li>每个叶子节点都是黑色的空节点（NIL），不存储数据</li>
+<li>任何相邻的节点都不能同时为红色，红色节点是被黑色节点隔开的</li>
+<li>每个节点，从该节点到达其可达叶子节点的所有路径，都包含相同数目的黑色节点</li>
+</ul>
+</li>
+</ul>
+<h5 id="近似平衡"><a href="#近似平衡" class="headerlink" title="近似平衡"></a>近似平衡</h5><ul>
+<li>如果将红色节点从红黑树中去掉，有些节点就没有父节点了，它们会直接拿这些节点的祖父节点（父节点的父节点）作为父节点，所以二叉树就变成了四叉树</li>
+<li>从任意节点到可达的叶子节点的每个路径包含相同数目的黑色节点，仅包含黑色节点的完全四叉树的高度，比包含相同节点个数的完全二叉树的高度还要小，所以去掉红色节点的“黑树”的高度也不会超过 log2n</li>
+<li>把红色节点加回去，在红黑树中，红色节点不能相邻，所以最长路径不会超过 2log2n</li>
+<li>红黑树的高度只比高度平衡的 AVL 树的高度（log2n）仅仅大了一倍，而实际上红黑树的性能更好</li>
+</ul>
+<h5 id="时间复杂度-1"><a href="#时间复杂度-1" class="headerlink" title="时间复杂度"></a>时间复杂度</h5><ul>
+<li>插入、删除、查找操作的时间复杂度都是 O(logn)</li>
+</ul>
+<h5 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h5><h4 id="红黑树-v-s-AVL"><a href="#红黑树-v-s-AVL" class="headerlink" title="红黑树 v.s. AVL"></a>红黑树 v.s. AVL</h4><ul>
+<li>AVL 树<ul>
+<li>一种高度平衡的二叉树，所以查找的效率非常高</li>
+<li>但是，AVL 树为了维持这种高度的平衡，就要付出更多的代价，每次插入、删除都要做调整，就比较复杂、耗时</li>
+<li>对于有频繁的插入、删除操作的数据集合，使用 AVL 树的代价就有点高了</li>
+</ul>
+</li>
+<li>红黑树<ul>
+<li>只是做到了近似平衡，并不是严格的平衡，所以在维护平衡的成本上，要比 AVL 树要低</li>
+<li>红黑树的插入、删除、查找各种操作性能都比较稳定</li>
+<li>对于工程应用来说，要面对各种异常情况，为了支撑这种工业级的应用，我们更倾向于这种性能稳定的平衡二叉查找树</li>
+</ul>
+</li>
+</ul>
+<h1 id="多叉树"><a href="#多叉树" class="headerlink" title="多叉树"></a>多叉树</h1><h2 id="平衡多路搜索树"><a href="#平衡多路搜索树" class="headerlink" title="平衡多路搜索树"></a>平衡多路搜索树</h2><h3 id="B树（Balance-Tree）"><a href="#B树（Balance-Tree）" class="headerlink" title="B树（Balance Tree）"></a>B树（Balance Tree）</h3><ul>
+<li>是一种平衡的多路搜索树，高度远小于平衡二叉树的高度</li>
+<li>在文件系统和数据库系统中的索引结构经常采用 B 树来实现</li>
+</ul>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>一个 M 阶的 B 树（M&gt;2）有以下的特性</p>
+<h5 id="根节点的儿子数的范围是-2-M"><a href="#根节点的儿子数的范围是-2-M" class="headerlink" title="根节点的儿子数的范围是[2,M]"></a>根节点的儿子数的范围是[2,M]</h5><h5 id="每个中间节点包含-k-1-个关键字和-k-个孩子，"><a href="#每个中间节点包含-k-1-个关键字和-k-个孩子，" class="headerlink" title="每个中间节点包含 k-1 个关键字和 k 个孩子，"></a>每个中间节点包含 k-1 个关键字和 k 个孩子，</h5><ul>
+<li><p>孩子的数量 = 关键字的数量 +1，k 的取值范围为[ceil(M/2), M]</p>
+</li>
+<li><p>叶子节点包括 k-1 个关键字（叶子节点没有孩子），k 的取值范围为[ceil(M/2), M]。</p>
+</li>
+<li><p>假设中间节点节点的关键字为：Key[1], Key[2], …, Key[k-1]，且关键字按照升序排序，即 Key[i]&lt;Key[i+1]</p>
+</li>
+<li><p>k-1 个关键字相当于划分了 k 个范围，也就是对应着 k 个指针</p>
+<ul>
+<li>P[1], P[2], …, P[k]，其中 P[1]指向关键字小于 Key[1]的子树</li>
+<li>P[i]指向关键字属于 (Key[i-1], Key[i]) 的子树，P[k]指向关键字大于 Key[k-1]的子树</li>
+</ul>
+</li>
+</ul>
+<h5 id="所有叶子节点位于同一层"><a href="#所有叶子节点位于同一层" class="headerlink" title="所有叶子节点位于同一层"></a>所有叶子节点位于同一层</h5><p>而 B 树实际上是低级版的 B+ 树，或者说 B+ 树是 B 树的改进版。B 树跟 B+ 树的不同点主要集中在这几个地方：<br>B+ 树中的节点不存储数据，只是索引，而 B 树中的节点存储数据；<br>B 树中的叶子节点并不需要链表来串联。</p>
+<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><ul>
+<li>B+ 树基于 B 树做出了改进，主流的 DBMS 都支持 B+ 树的索引方式，比如 MySQL</li>
+</ul>
+<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><p>一个 M 阶的 B+ 树（M&gt;2）有以下的特性</p>
+<h5 id="每个节点中子节点的个数不能超过-m，也不能小于-m-2"><a href="#每个节点中子节点的个数不能超过-m，也不能小于-m-2" class="headerlink" title="每个节点中子节点的个数不能超过 m，也不能小于 m/2"></a>每个节点中子节点的个数不能超过 m，也不能小于 m/2</h5><ul>
+<li><p>优化的重点就是尽量减少磁盘 IO 操作，也就是尽量降低树的高度</p>
+<ul>
+<li>为了节省内存，如果把树存储在硬盘中，那么每个节点的读取（或者访问），都对应一次磁盘 IO 操作</li>
+<li>比起内存读写操作，磁盘 IO 操作非常耗时</li>
+<li>树的高度就等于每次查询数据时磁盘 IO 操作的次数</li>
+</ul>
+</li>
+<li><p>在选择 m 大小的时候，要尽量让每个节点的大小等于一个页的大小</p>
+<ul>
+<li>对于相同个数的数据构建 m 叉树索引，m 叉树中的 m 越大，那树的高度就越小</li>
+<li>不管是内存还是磁盘中的数据，操作系统都是按页（通常是 4KB）来读取的，一次会读一页的数据</li>
+<li>如果要读取的数据量超过一页的大小，就会触发多次 IO 操作</li>
+</ul>
+</li>
+<li><p>数据的写入过程，会涉及索引的更新，这是索引导致写入变慢的主要原因</p>
+</li>
+<li><p>数据的个数超过 m 就分裂节点</p>
+<ul>
+<li>在往数据库中写入数据的过程中，这样就有可能使索引中某些节点的子节点个数超过 m</li>
+<li>节点的大小超过了一个页的大小，读取这样一个节点，就会导致多次磁盘 IO 操作</li>
+</ul>
+</li>
+<li><p>某个节点的子节点个数小于 m/2，我们就将它跟相邻的兄弟节点合并</p>
+<ul>
+<li>在删除某个数据的时候，也要对应地更新索引节点</li>
+<li>频繁的数据删除，就会导致某些节点中，子节点的个数变得非常少</li>
+<li>如果每个节点的子节点都比较少，势必会影响索引的效率</li>
+<li>在 B+ 树中，合并节点的阈值等于 m/2</li>
+</ul>
+</li>
+<li><p>根节点的子节点个数可以不超过 m/2，这是一个例外</p>
+</li>
+</ul>
+<h5 id="m-叉树只存储索引，并不真正存储数据"><a href="#m-叉树只存储索引，并不真正存储数据" class="headerlink" title="m 叉树只存储索引，并不真正存储数据"></a>m 叉树只存储索引，并不真正存储数据</h5><h5 id="通过双向链表将叶子节点串联在一起，方便区间查找"><a href="#通过双向链表将叶子节点串联在一起，方便区间查找" class="headerlink" title="通过双向链表将叶子节点串联在一起，方便区间查找"></a>通过双向链表将叶子节点串联在一起，方便区间查找</h5><h5 id="一般情况，根节点会被存储在内存中，其他节点存储在磁盘中"><a href="#一般情况，根节点会被存储在内存中，其他节点存储在磁盘中" class="headerlink" title="一般情况，根节点会被存储在内存中，其他节点存储在磁盘中"></a>一般情况，根节点会被存储在内存中，其他节点存储在磁盘中</h5><h3 id="B-Tree-v-s-B-Tree"><a href="#B-Tree-v-s-B-Tree" class="headerlink" title="B+ Tree  v.s. B Tree"></a>B+ Tree  v.s. B Tree</h3><ul>
+<li>B+ 树有 k 个孩子的节点就有 k 个关键字，也就是孩子数量 = 关键字数</li>
+<li>B 树中，孩子数量 = 关键字数 +1</li>
+<li>B+ 树的非叶子节点的关键字也会同时存在在子节点中，并且是在子节点中所有关键字的最大（或最小）</li>
+<li>B+ 树的非叶子节点仅用于索引，不保存数据记录，跟记录有关的信息都放在叶子节点中<ul>
+<li>B+ 树查询效率更稳定<ul>
+<li>因为 B+ 树每次只有访问到叶子节点才能找到对应的数据</li>
+<li>而在 B 树中，非叶子节点也会存储数据，这样就会造成查询效率不稳定的情况，有时候访问到了非叶子节点就可以找到关键字，而有时需要访问到叶子节点才能找到关键字</li>
+</ul>
+</li>
+<li>B+ 树的查询效率更高<ul>
+<li>这是因为通常 B+ 树比 B 树更矮胖（阶数更大，深度更低），查询所需要的磁盘 I/O 也会更少</li>
+<li>同样的磁盘页大小，B+ 树可以存储更多的节点关键字</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>B 树中，非叶子节点既保存索引，也保存数据记录</li>
+<li>B+ 树的所有关键字都在叶子节点出现，叶子节点构成一个有序链表，而且叶子节点本身按照关键字的大小从小到大顺序链接<ul>
+<li>在查询范围上，B+ 树的效率也比 B 树高<ul>
+<li>因为所有关键字都出现在 B+ 树的叶子节点中，并通过有序链表进行了链接</li>
+<li>在 B 树中则需要通过中序遍历才能完成查询范围的查找，效率要低很多</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h1><ul>
+<li>b+树、b树、二叉树、平衡二叉树、红黑树各自特点 </li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>《算法》第四版</li>
+<li>王争《数据结构与算法之美》</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Data-Structure/" rel="tag"># Data Structure</a>
+              <a href="/tags/Interview/" rel="tag"># Interview</a>
+              <a href="/tags/Tree/" rel="tag"># Tree</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/02/Kafka-%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/" rel="prev" title="Kafka 重要概念">
+                  <i class="fa fa-chevron-left"></i> Kafka 重要概念
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/06/05/%E5%A0%86/" rel="next" title="堆">
+                  堆 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lsinger</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
