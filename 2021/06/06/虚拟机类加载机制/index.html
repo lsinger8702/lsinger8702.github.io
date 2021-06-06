@@ -20,23 +20,30 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lsinger&#39; s blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="过程加载 Loading三层类加载器、双亲委派的类加载架构 过程 通过一个类的全限定名来获取定义此类的二进制字节流 将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构 在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口  字节流  Java 语言的类型可以分为两大类：基本类型（primitive types）和引用类型（reference">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟机类加载机制">
+<meta property="og:url" content="http://yoursite.com/2021/06/06/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="Lsinger&#39; s blog">
+<meta property="og:description" content="过程加载 Loading三层类加载器、双亲委派的类加载架构 过程 通过一个类的全限定名来获取定义此类的二进制字节流 将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构 在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口  字节流  Java 语言的类型可以分为两大类：基本类型（primitive types）和引用类型（reference">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-06-06T13:17:07.000Z">
+<meta property="article:modified_time" content="2021-06-06T13:33:25.721Z">
 <meta property="article:author" content="Lsinger">
+<meta property="article:tag" content="Class Loading">
+<meta property="article:tag" content="JVM">
+<meta property="article:tag" content="Interview">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2021/06/06/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:true,&quot;isPost&quot;:false,&quot;lang&quot;:&quot;default&quot;,&quot;comments&quot;:&quot;&quot;,&quot;permalink&quot;:&quot;&quot;,&quot;path&quot;:&quot;index.html&quot;,&quot;title&quot;:&quot;&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;default&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;06&#x2F;06&#x2F;%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;06&#x2F;虚拟机类加载机制&#x2F;&quot;,&quot;title&quot;:&quot;虚拟机类加载机制&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>Lsinger' s blog</title>
+<title>虚拟机类加载机制 | Lsinger' s blog</title>
   
 
 
@@ -91,7 +98,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -104,6 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD-Loading"><span class="nav-number">1.1.</span> <span class="nav-text">加载 Loading</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B-1"><span class="nav-number">1.1.1.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E6%B5%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">字节流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">类加载器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%EF%BC%88bootstrap-class-loader%EF%BC%89"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">启动类加载器（bootstrap class loader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">其它类加载器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%EF%BC%88extension-class-loader%EF%BC%89"><span class="nav-number">1.1.3.3.1.</span> <span class="nav-text">扩展类加载器（extension class loader）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%EF%BC%88application-class-loader%EF%BC%89"><span class="nav-number">1.1.3.3.2.</span> <span class="nav-text">应用类加载器（application class loader）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">1.1.3.3.3.</span> <span class="nav-text">自定义类加载器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">双亲委派模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B-2"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8-1"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A0%B4%E5%9D%8F%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E8%A7%84%E5%88%99"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">破坏双亲委派规则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B9%B6%E8%B0%83%E7%94%A8-findClass-%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.4.4.1.</span> <span class="nav-text">自定义并调用 findClass() 方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">1.1.4.4.2.</span> <span class="nav-text">线程上下文类加载器</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5"><span class="nav-number">1.2.</span> <span class="nav-text">链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">1.2.2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90"><span class="nav-number">1.2.3.</span> <span class="nav-text">解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E5%BC%95%E7%94%A8"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">符号引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%BC%95%E7%94%A8"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">直接引用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.3.</span> <span class="nav-text">初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-clinit-gt-%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">&lt;clinit&gt; 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F"><span class="nav-number">1.3.2.</span> <span class="nav-text">顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%88%99"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">按类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E7%88%B6%E7%B1%BB%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">有父类的情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E6%83%85%E5%86%B5"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">触发情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">1.3.3.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">相关面试题</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -155,16 +163,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="default">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/06/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -177,9 +186,9 @@
       <meta itemprop="name" content="Lsinger' s blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/06/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">虚拟机类加载机制</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          虚拟机类加载机制
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -212,7 +221,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><h2 id="加载-Loading"><a href="#加载-Loading" class="headerlink" title="加载 Loading"></a>加载 Loading</h2><p>三层类加载器、双亲委派的类加载架构</p>
+        <h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><h2 id="加载-Loading"><a href="#加载-Loading" class="headerlink" title="加载 Loading"></a>加载 Loading</h2><p>三层类加载器、双亲委派的类加载架构</p>
 <h3 id="过程-1"><a href="#过程-1" class="headerlink" title="过程"></a>过程</h3><ul>
 <li>通过一个类的全限定名来获取定义此类的二进制字节流</li>
 <li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构</li>
@@ -448,7 +457,6 @@
 <li>双亲委派是什么，如何打破</li>
 </ul>
 
-      
     </div>
 
     
@@ -456,291 +464,23 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/Class-Loading/" rel="tag"># Class Loading</a>
+              <a href="/tags/JVM/" rel="tag"># JVM</a>
+              <a href="/tags/Interview/" rel="tag"># Interview</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/05/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/05/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" class="post-title-link" itemprop="url">JVM 垃圾回收</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-06-05 19:41:53" itemprop="dateCreated datePublished" datetime="2021-06-05T19:41:53+08:00">2021-06-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-06 21:12:35" itemprop="dateModified" datetime="2021-06-06T21:12:35+08:00">2021-06-06</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><ul>
-<li>为什么要学习垃圾回收？<ul>
-<li>需要排查内存溢出、内存泄漏问题时，垃圾回收可能成为系统达到高并发量的瓶颈</li>
-</ul>
-</li>
-<li>哪些内存需要回收？<ul>
-<li> Java堆和方法区这两个区域有很显著的不确定性，内存的分配和回收是动态的</li>
-<li>Java运行区域的各个部分中，程序计数器、虚拟机栈、本地方法栈 3 个区域随线程而生，随线程而灭，分配多少内存基本上是在类结构确定下来时就已知的，因此这几个区域的内存回收具备确定性</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/05/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/05/%E8%B7%B3%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/05/%E8%B7%B3%E8%A1%A8/" class="post-title-link" itemprop="url">跳表</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-06-05 19:17:55 / Modified: 19:39:57" itemprop="dateCreated datePublished" datetime="2021-06-05T19:17:55+08:00">2021-06-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>我们只需要对链表稍加改造，就可以支持类似“二分”的查找算法。我们把改造之后的数据结构叫做跳表（Skip list）</li>
-<li>对于一个单链表来讲，即便链表中存储的数据是有序的，如果我们要想在其中查找某个数据，也只能从头到尾遍历链表。这样查找效率就会很低，时间复杂度会很高，是 O(n)</li>
-<li>可以通过对链表建立一级“索引”来提高查找效率，每两个结点提取一个结点到上一级，我们把抽出来的那一级叫做索引或索引层</li>
-<li>通过索引层结点的 down 指针，下降到原始链表这一层，继续遍历</li>
-<li>加来一层索引之后，查找一个结点需要遍历的结点个数减少了，也就是说查找效率提高了</li>
-<li>链表加多级索引的结构，就是跳表</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/05/%E8%B7%B3%E8%A1%A8/#more" rel="contents">
-                Read more &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/05/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="prev" title="JVM 垃圾回收">
+                  <i class="fa fa-chevron-left"></i> JVM 垃圾回收
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/05/%E5%A0%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/05/%E5%A0%86/" class="post-title-link" itemprop="url">堆</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-06-05 16:48:15 / Modified: 19:39:43" itemprop="dateCreated datePublished" datetime="2021-06-05T16:48:15+08:00">2021-06-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><ul>
-<li><p>满足以下两个条件</p>
-<ul>
-<li>堆是一个完全二叉树</li>
-<li>堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值</li>
-</ul>
-</li>
-<li><p>大顶堆</p>
-<ul>
-<li>对于每个节点的值都大于等于子树中每个节点值的堆</li>
-</ul>
-</li>
-<li><p>小顶堆</p>
-<ul>
-<li>对于每个节点的值都小于等于子树中每个节点值的堆</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/05/%E5%A0%86/#more" rel="contents">
-                Read more &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
@@ -748,677 +488,7 @@
 
 
 
-    
 
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/05/%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/05/%E6%A0%91/" class="post-title-link" itemprop="url">树</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-06-05 13:46:22 / Modified: 19:39:50" itemprop="dateCreated datePublished" datetime="2021-06-05T13:46:22+08:00">2021-06-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li><p>二叉树，顾名思义，每个节点最多有两个“叉”，也就是两个子节点，分别是左子节点和右子节点</p>
-</li>
-<li><p>满二叉树</p>
-<p>叶子节点全都在最底层，除了叶子节点之外，每个节点都有左右两个子节点</p>
-</li>
-<li><p>完全二叉树</p>
-<p>叶子节点都在最底下两层，最后一层的叶子节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大</p>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/05/%E6%A0%91/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/02/Kafka-%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/02/Kafka-%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">Kafka 重要概念</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-06-02 22:34:29" itemprop="dateCreated datePublished" datetime="2021-06-02T22:34:29+08:00">2021-06-02</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-05 19:38:17" itemprop="dateModified" datetime="2021-06-05T19:38:17+08:00">2021-06-05</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Message-Queue/" itemprop="url" rel="index"><span itemprop="name">Message Queue</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><ul>
-<li>Apache Kafka 是一款开源的消息引擎系统</li>
-<li>消息引擎系统是一组规范。企业利用这组规范在不同系统之间传递语义准确的消息，实现松耦合的异步式数据传递</li>
-</ul>
-<h1 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h1><ul>
-<li>Kafka 属于分布式的消息引擎系统，它的主要功能是提供一套完备的消息发布与订阅解决方案</li>
-<li>在 Kafka 中，发布订阅的对象是主题（Topic），你可以为每个业务、每个应用甚至是每类数据都创建专属的主题</li>
-<li>向主题发布消息的客户端应用程序称为生产者（Producer），生产者程序通常持续不断地向一个或多个主题发送消息</li>
-<li>订阅这些主题消息的客户端应用程序就被称为消费者（Consumer），消费者也能够同时订阅多个主题的消息</li>
-<li>生产者和消费者统称为客户端（Clients）</li>
-<li>可以同时运行多个生产者和消费者实例，这些实例会不断地向 Kafka 集群中的多个主题生产和消费消息</li>
-<li>Kafka 的服务器端由被称为 Broker 的服务进程构成，即一个 Kafka 集群由多个 Broker 组成，Broker 负责接收和处理客户端发送过来的请求，以及对消息进行持久化</li>
-<li>每个消费者在消费消息的过程中必然需要有个字段记录它当前消费到了分区的哪个位置上，这个字段就是消费者位移（Consumer Offset），每个消费者有着自己的消费者位移</li>
-<li>消息在分区中的位移称为分区位移，而把消费者端的位移称为消费者位移</li>
-</ul>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h2 id="三层消息架构"><a href="#三层消息架构" class="headerlink" title="三层消息架构"></a>三层消息架构</h2><ul>
-<li>第一层是主题层，每个主题可以配置 M 个分区，而每个分区又可以配置 N 个副本</li>
-<li>第二层是分区层，每个分区的 N 个副本中只能有一个充当领导者角色，对外提供服务；其他 N-1 个副本是追随者副本，只是提供数据冗余之用</li>
-<li>第三层是消息层，分区中包含若干条消息，每条消息的位移从 0 开始，依次递增</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/02/Kafka-%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/01/12-%E6%9C%88%E6%8C%91%E6%88%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/12/01/12-%E6%9C%88%E6%8C%91%E6%88%98/" class="post-title-link" itemprop="url">12 月挑战</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2018-12-01 16:46:18 / Modified: 17:26:33" itemprop="dateCreated datePublished" datetime="2018-12-01T16:46:18+08:00">2018-12-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/challenges/" itemprop="url" rel="index"><span itemprop="name">challenges</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="专业"><a href="#专业" class="headerlink" title="专业"></a>专业</h2><p><strong>优先序列</strong></p>
-<ul>
-<li>爬虫<ul>
-<li>《Python 3 网络爬虫开发实战》看完<ul>
-<li>大概进度：平均每天 20 页</li>
-</ul>
-</li>
-<li>完成毕设的爬虫部分</li>
-</ul>
-</li>
-<li>LeetCode<ul>
-<li>做完 sort 和 List 的部分</li>
-<li>大概进度：easy 的话一天 3、4 题，medium、hard 一天 1 题</li>
-</ul>
-</li>
-<li>大数据<ul>
-<li>《Hadoop 权威指南》 第 I、II、III 部分<ul>
-<li>大概进度：平均每天 15 页</li>
-</ul>
-</li>
-<li>《Scala 学习手册》快速看完<ul>
-<li>大概进度：平均每天 1 章</li>
-</ul>
-</li>
-<li>Gitchat</li>
-</ul>
-</li>
-<li>数学基础——概率论<ul>
-<li><a target="_blank" rel="noopener" href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/">MIT: Introduction to Probability and Statistics</a> Ch 8~25 阅读并完成作业<ul>
-<li>大概进度：两天一章</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>NLP<ul>
-<li>《Python 自然语言处理实战》看完<ul>
-<li>大概进度：平均每天 10 页</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h2><ul>
-<li><p>阅读</p>
-<ul>
-<li>TPO 阅读——文化艺术  做完并且收集单词<ul>
-<li>大概进度：两天一篇</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>每天听一篇口语部分的听力</p>
-</li>
-<li><p>坚持背单词</p>
-</li>
-</ul>
-<h2 id="个人提升"><a href="#个人提升" class="headerlink" title="个人提升"></a>个人提升</h2><ul>
-<li><p>健康</p>
-<ul>
-<li>睡眠<ul>
-<li>23:45 上床</li>
-<li>6:30 起床</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>运动</p>
-<ul>
-<li>每周夜跑 3~4 次</li>
-<li>不夜跑的时候跳绳</li>
-</ul>
-</li>
-<li><p>饮食</p>
-<ul>
-<li>一周最多两次螺蛳粉 一次麦当劳 两周一次甜品 除此之外拒绝高糖和油炸</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/30/%E3%80%8A%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B-%E3%80%8A%E5%8D%95%E6%A0%B8%E5%B7%A5%E4%BD%9C%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/30/%E3%80%8A%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B-%E3%80%8A%E5%8D%95%E6%A0%B8%E5%B7%A5%E4%BD%9C%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B/" class="post-title-link" itemprop="url">《番茄工作法图解》&《单核工作法图解》</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2018-10-30 16:57:59" itemprop="dateCreated datePublished" datetime="2018-10-30T16:57:59+08:00">2018-10-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2018-10-31 13:21:20" itemprop="dateModified" datetime="2018-10-31T13:21:20+08:00">2018-10-31</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E8%87%AA%E6%88%91%E7%AE%A1%E7%90%86%E7%B1%BB%EF%BC%89/" itemprop="url" rel="index"><span itemprop="name">读书笔记（自我管理类）</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="一次只做一件事"><a href="#一次只做一件事" class="headerlink" title="一次只做一件事"></a>一次只做一件事</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
-<li>列出待办的活动</li>
-<li>选出任务中最重要的，最想尽快完成的一项</li>
-<li>开启番茄钟</li>
-<li>全神贯注的做这一项任务</li>
-<li>到闹钟响，立即停下，别管人物有没有完成</li>
-<li>休息 五分钟后继续</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/30/%E3%80%8A%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B-%E3%80%8A%E5%8D%95%E6%A0%B8%E5%B7%A5%E4%BD%9C%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/%E3%80%8A%E7%9D%A1%E7%9C%A0%E9%9D%A9%E5%91%BD%E3%80%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/29/%E3%80%8A%E7%9D%A1%E7%9C%A0%E9%9D%A9%E5%91%BD%E3%80%8B/" class="post-title-link" itemprop="url">《睡眠革命》</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2018-10-29 17:06:09" itemprop="dateCreated datePublished" datetime="2018-10-29T17:06:09+08:00">2018-10-29</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2018-10-30 17:10:54" itemprop="dateModified" datetime="2018-10-30T17:10:54+08:00">2018-10-30</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E8%87%AA%E6%88%91%E7%AE%A1%E7%90%86%E7%B1%BB%EF%BC%89/" itemprop="url" rel="index"><span itemprop="name">读书笔记（自我管理类）</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>#睡眠修复的关键指标</p>
-<h2 id="昼夜节律"><a href="#昼夜节律" class="headerlink" title="昼夜节律"></a>昼夜节律</h2><p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fwqav1zy7qj30mc0gazqw.jpg"></p>
-<ol>
-<li>昼夜节律是生命体 24 小时的内循环，受我们的内置生物钟管理</li>
-<li>我们大脑中的这一生物钟，24 小时调节着我们的多个内部系统，包括睡眠和饮食习惯、激素的分泌、体温、灵敏度、情绪和消化，使其与地球的自转相一致</li>
-<li>我们的生物钟是根据一些外部因素设定的，其中最主要的是日光，此外还包括温度和进食时间等因素</li>
-<li>昼夜节律是我们每个个体的有机组成部分，是经历了成千上万年进化后的产物，我们无法摆脱昼夜节律</li>
-<li>长期违背生物钟，将导致严重的健康问题</li>
-<li>生物钟并不是唯一的睡眠调节器。如果说昼夜节律让我们产生睡眠欲望，那么自我平衡的睡眠压力会令我们产生睡眠需求，清醒的时间越久，这种需求就会越强</li>
-<li>昼夜节律敦促这我们日出而作、日落而息</li>
-<li>有时昼夜节律能战胜我们的睡眠需求，因此有时我们睡眠需求很旺盛但也无法沉沉入睡</li>
-<li>光线是最重要的生物钟调节器，没有什么比早晨的阳光更美好</li>
-<li>人体对蓝光特别敏感，电子产品的屏幕所发出的光线大多属于蓝光</li>
-<li>白天的蓝光对人体是有益的，能帮助设置人体的生物钟、抑制褪黑素的分泌，提高人的灵敏度和各方面的表现</li>
-<li>但天黑以后，蓝光就成了一种不良光线，它将导致“垃圾睡眠”——受干扰和不充足的睡眠。因为蓝光妨碍了褪黑素的分泌，推迟了我们的生物钟。</li>
-<li>在晚上，蓝光是一种不合时宜的光线，尽量让蓝光变得暗淡。不妨多利用红光和黄光，甚至是蜡烛光</li>
-</ol>
-<h2 id="睡眠类型"><a href="#睡眠类型" class="headerlink" title="睡眠类型"></a>睡眠类型</h2><ol>
-<li>睡眠类型描述了你的睡眠特点——你是喜欢早起的人，还是喜欢晚睡的人</li>
-<li>睡眠类型并不会限定起床和上床时间，它显示的是你的身体希望在何时履行昼夜节律图中列出的功能</li>
-<li>如果你是一个喜欢早起的人，你的生物钟会相对快一点。如果你说一个习惯晚睡的人，你的生物钟会相对慢一点</li>
-<li>睡眠类型是遗传的。在时间上，两种睡眠类型最多会相差两个小时左右，绝对不会相差五六个小时</li>
-<li>了解自己的睡眠类型可以通过完成慕尼黑大学的睡眠类型调查问卷</li>
-<li>研究显示，每 1000 克体重摄入 3~6 毫克的咖啡因，对运动员最有利</li>
-<li>英国食品标准局的咖啡因每日建议摄入量不超过 400 毫克，另外，咖啡因的半衰期是 6 小时</li>
-<li>星巴克的大杯现磨咖啡中含有 330 毫克的咖啡因，单份浓缩咖啡中含有 75 毫克咖啡因，而一杯自制咖啡中则含有 200 毫克咖啡因</li>
-<li>配置日光灯可以提高工作的灵敏度和效率，改善工作情绪</li>
-<li>对于晚睡星人来说，如果想要克服社交时差，就不要在周末睡懒觉</li>
-</ol>
-<p>##睡眠周期</p>
-<ol>
-<li>睡眠时间是因人而异的。8 小时的睡眠是每晚的人均睡眠时间，我们不必一味追求 8 小时的睡眠</li>
-<li>我们应该以睡眠周期衡量睡眠时间，而不是执着于每晚睡了几个小时</li>
-<li><strong>“R90”</strong> 指的是以 90 分钟为一个周期，获得身体修复。从临床上说，90 分钟是一个人经历各个睡眠阶段所需的时间。这些睡眠阶段组成了一个睡眠周期</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/29/%E3%80%8A%E7%9D%A1%E7%9C%A0%E9%9D%A9%E5%91%BD%E3%80%8B/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/11-%E6%9C%88%E6%8C%91%E6%88%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/29/11-%E6%9C%88%E6%8C%91%E6%88%98/" class="post-title-link" itemprop="url">11 月挑战</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2018-10-29 16:44:57" itemprop="dateCreated datePublished" datetime="2018-10-29T16:44:57+08:00">2018-10-29</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2018-12-01 16:45:43" itemprop="dateModified" datetime="2018-12-01T16:45:43+08:00">2018-12-01</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/challenges/" itemprop="url" rel="index"><span itemprop="name">challenges</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="专业"><a href="#专业" class="headerlink" title="专业"></a>专业</h2><ol>
-<li><p><del>过一遍 Python 入门 1</del></p>
-<p><del>《Python编程：从入门到实践》</del></p>
-<p>大概进度：最少一天一章</p>
-<p><strong>15h23min</strong></p>
-</li>
-<li><p>数学基础—概率论与统计</p>
-<p><a target="_blank" rel="noopener" href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/">MIT: Introduction to Probability and Statistics</a></p>
-<p>Ch 1~9 阅读并完成作业</p>
-<p>大概进度：三天一章</p>
-<p><strong>9h10min 未完成，看到 C8</strong></p>
-</li>
-<li><p><del>完成高级实训的论文</del></p>
-<p>一周至少读 3 篇相关论文并整理素材 <strong>没做到</strong></p>
-<p><strong>20h</strong></p>
-</li>
-<li><p><del>毕设开题报告</del></p>
-<p><strong>3h</strong></p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/29/11-%E6%9C%88%E6%8C%91%E6%88%98/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
 
 </div>
   </main>
