@@ -116,18 +116,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -165,6 +165,103 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/05/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/06/05/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" class="post-title-link" itemprop="url">JVM 垃圾回收</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-06-05 19:41:53" itemprop="dateCreated datePublished" datetime="2021-06-05T19:41:53+08:00">2021-06-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-06 21:12:35" itemprop="dateModified" datetime="2021-06-06T21:12:35+08:00">2021-06-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><ul>
+<li>为什么要学习垃圾回收？<ul>
+<li>需要排查内存溢出、内存泄漏问题时，垃圾回收可能成为系统达到高并发量的瓶颈</li>
+</ul>
+</li>
+<li>哪些内存需要回收？<ul>
+<li> Java堆和方法区这两个区域有很显著的不确定性，内存的分配和回收是动态的</li>
+<li>Java运行区域的各个部分中，程序计数器、虚拟机栈、本地方法栈 3 个区域随线程而生，随线程而灭，分配多少内存基本上是在类结构确定下来时就已知的，因此这几个区域的内存回收具备确定性</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/05/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/05/%E8%B7%B3%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -190,7 +287,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-06-05 19:17:55 / Modified: 19:30:47" itemprop="dateCreated datePublished" datetime="2021-06-05T19:17:55+08:00">2021-06-05</time>
+      <time title="Created: 2021-06-05 19:17:55 / Modified: 19:39:57" itemprop="dateCreated datePublished" datetime="2021-06-05T19:17:55+08:00">2021-06-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -220,56 +317,14 @@
 <li>加来一层索引之后，查找一个结点需要遍历的结点个数减少了，也就是说查找效率提高了</li>
 <li>链表加多级索引的结构，就是跳表</li>
 </ul>
-<h1 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h1><h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><ul>
-<li>每两个结点会抽出一个结点作为上一级索引的结点，第 k 级索引的结点个数是第 k-1 级索引的结点个数的 1/2，那第 k级索引结点的个数就是 n/(2k)</li>
-<li>假设索引有 h 级，最高级的索引有 2 个结点。通过上面的公式，我们可以得到 $h=log_2n-1$</li>
-<li>如果包含原始链表这一层，整个跳表的高度就是$log_2n$</li>
-<li>我们在跳表中查询某个数据的时候，如果每一层都要遍历 m 个结点，那在跳表中查询一个数据的时间复杂度就是 O(m*logn)</li>
-<li>我们每一级索引都最多只需要遍历 3 个结点，也就是说 m=3,，所以在跳表中查询任意数据的时间复杂度就是 O(logn)</li>
-</ul>
-<h2 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h2><ul>
-<li>这几级索引的结点总和就是 n/2+n/4+n/8…+8+4+2=n-2，所以，跳表的空间复杂度是 O(n)</li>
-<li>如果将包含 n 个结点的单链表构造成跳表，我们需要额外再用接近 n 个结点的存储空间</li>
-<li>在实际的软件开发中，原始链表中存储的有可能是很大的对象，而索引结点只需要存储关键值和几个指针，并不需要存储对象，所以当对象比索引结点大很多时，那索引占用的额外空间就可以忽略了</li>
-</ul>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><ul>
-<li>在单链表中，一旦定位好要插入的位置，插入结点的时间复杂度是很低的，就是 O(1)</li>
-<li>为了保证原始链表中数据的有序性，我们需要先找到要插入的位置，这个查找操作就会比较耗时</li>
-<li>对于跳表来说，我们讲过查找某个结点的时间复杂度是 O(logn)，所以这里查找某个数据应该插入的位置，方法也是类似的，时间复杂度也是 O(logn)</li>
-<li>当我们不停地往跳表中插入数据时，如果我们不更新索引，就有可能出现某 2 个索引结点之间数据非常多的情况，在极端情况下，跳表会退化成单链表</li>
-<li>当我们往跳表中插入数据的时候，我们可以选择同时将这个数据插入到部分索引层中</li>
-<li>通过一个随机函数，来决定将这个结点插入到哪几级索引中，比如随机函数生成了值 K，那我们就将这个结点添加到第一级到第 K 级这 K 级索引中</li>
-<li>随机函数的选择很有讲究，从概率上来讲，能够保证跳表的索引大小和数据大小平衡性</li>
-</ul>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><ul>
-<li>如果这个结点在索引中也有出现，我们除了要删除原始链表中的结点，还要删除索引中的</li>
-<li>因为单链表中的删除操作需要拿到要删除结点的前驱结点，然后通过指针操作完成删除</li>
-<li>所以在查找要删除的结点的时候，一定要获取前驱结点，如果我们用的是双向链表，就不需要考虑这个问题了</li>
-</ul>
-<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><h2 id="Redis-中的有序集合"><a href="#Redis-中的有序集合" class="headerlink" title="Redis 中的有序集合"></a>Redis 中的有序集合</h2><ul>
-<li>Redis 中的有序集合支持的核心操作主要有<ul>
-<li>插入一个数据</li>
-<li>删除一个数据</li>
-<li>查找一个数据</li>
-<li>按照区间查找数据</li>
-<li>迭代输出有序序列</li>
-</ul>
-</li>
-<li>其中，插入、删除、查找以及迭代输出有序序列这几个操作，红黑树也可以完成，时间复杂度跟跳表是一样的</li>
-<li>但是，按照区间来查找数据这个操作，红黑树的效率没有跳表高<ul>
-<li>跳表可以做到 O(logn) 的时间复杂度定位区间的起点，然后在原始链表中顺序往后遍历，非常高效</li>
-</ul>
-</li>
-<li>Redis 之所以用跳表来实现有序集合，还有其他原因<ul>
-<li>跳表更容易代码实现，而简单就意味着可读性好，不容易出错</li>
-<li>跳表更加灵活，它可以通过改变索引构建策略，有效平衡执行效率和内存消耗</li>
-</ul>
-</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>王争《数据结构与算法之美》</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/05/%E8%B7%B3%E8%A1%A8/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -320,7 +375,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-06-05 16:48:15 / Modified: 19:32:37" itemprop="dateCreated datePublished" datetime="2021-06-05T16:48:15+08:00">2021-06-05</time>
+      <time title="Created: 2021-06-05 16:48:15 / Modified: 19:39:43" itemprop="dateCreated datePublished" datetime="2021-06-05T16:48:15+08:00">2021-06-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -360,179 +415,14 @@
 </ul>
 </li>
 </ul>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><ul>
-<li>完全二叉树比较适合用数组来存储，非常节省存储空间的<ul>
-<li>不需要存储左右子节点的指针</li>
-<li>单纯地通过数组的下标，就可以找到一个节点的左右子节点和父节点</li>
-</ul>
-</li>
-<li>数组中下标为 i 的节点的左子节点，就是下标为 i*2 的节点，右子节点就是下标为 i*2+1 的节点，父节点就是下标为$ \frac{i}{2} $的节点</li>
-</ul>
-<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><ul>
-<li>堆化实际上有两种，从下往上和从上往下</li>
-</ul>
-<h3 id="从下往上"><a href="#从下往上" class="headerlink" title="从下往上"></a>从下往上</h3><ul>
-<li>让新插入的节点与父节点对比大小</li>
-<li>不满足子节点小于等于父节点的大小关系，我们就互换两个节点</li>
-<li>一直重复这个过程，直到父子节点之间满足刚说的那种大小关系</li>
-</ul>
-<h2 id="删除堆顶元素（从上往下）"><a href="#删除堆顶元素（从上往下）" class="headerlink" title="删除堆顶元素（从上往下）"></a>删除堆顶元素（从上往下）</h2><ul>
-<li>最后一个节点放到堆顶<ul>
-<li>避免不满足完全二叉树的特性，出现数组空洞</li>
-</ul>
-</li>
-<li>利用同样的父子节点对比方法。对于不满足父子节点大小关系的，互换两个节点</li>
-<li>重复进行这个过程，直到父子节点之间满足大小关系为止</li>
-</ul>
-<h1 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h1><h2 id="建堆"><a href="#建堆" class="headerlink" title="建堆"></a>建堆</h2><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
-<li>堆排序不是稳定的排序算法，因为在排序的过程，存在将堆的最后一个节点跟堆顶节点互换的操作，所以就有可能改变值相同数据的原始相对顺序</li>
-</ul>
-<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><ul>
-<li>一个包含 n 个节点的完全二叉树，树的高度不会超过 $log_2n$</li>
-<li>堆化的过程是顺着节点所在路径比较交换的，所以堆化的时间复杂度跟树的高度成正比，也就是 O(logn)</li>
-<li>插入数据和删除堆顶元素的主要逻辑就是堆化</li>
-<li>所以，往堆中插入一个元素和删除堆顶元素的时间复杂度都是 O(logn)</li>
-</ul>
-<h2 id="堆排序-v-s-快速排序"><a href="#堆排序-v-s-快速排序" class="headerlink" title="堆排序 v.s. 快速排序"></a>堆排序 v.s. 快速排序</h2><h3 id="堆排序数据访问的方式没有快速排序友好"><a href="#堆排序数据访问的方式没有快速排序友好" class="headerlink" title="堆排序数据访问的方式没有快速排序友好"></a>堆排序数据访问的方式没有快速排序友好</h3><ul>
-<li>对于快速排序来说，数据是顺序访问的</li>
-<li>对于堆排序来说，数据是跳着访问的</li>
-<li>快速排序对 CPU 缓存是不友好的</li>
-</ul>
-<h3 id="对于同样的数据，在排序过程中，堆排序算法的数据交换次数要多于快速排序"><a href="#对于同样的数据，在排序过程中，堆排序算法的数据交换次数要多于快速排序" class="headerlink" title="对于同样的数据，在排序过程中，堆排序算法的数据交换次数要多于快速排序"></a>对于同样的数据，在排序过程中，堆排序算法的数据交换次数要多于快速排序</h3><ul>
-<li>对于基于比较的排序算法来说，整个排序过程就是由两个基本的操作组成的，比较和交换（或移动）</li>
-<li>快速排序数据交换的次数不会比逆序度多</li>
-<li>堆排序的第一步是建堆，建堆的过程会打乱数据原有的相对先后顺序，导致原数据的有序度降低</li>
-<li>对于一组已经有序的数据来说，经过建堆之后，数据反而变得更无序了</li>
-</ul>
-<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><h2 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h2><h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><ul>
-<li>实现一个优先级队列的方法有很多，但是用堆来实现是最直接、最高效的</li>
-<li>一个堆就可以看作一个优先级队列，从优先级队列中取出优先级最高的元素，就相当于取出堆顶元素</li>
-</ul>
-<h3 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h3><h4 id="合并有序小文件"><a href="#合并有序小文件" class="headerlink" title="合并有序小文件"></a>合并有序小文件</h4><p>假设我们有 100 个小文件，每个文件的大小是 100MB，每个文件中存储的都是有序的字符串，我们希望将这些 100 个小文件合并成一个有序的大文件</p>
-<ul>
-<li>将从小文件中取出来的字符串放入到小顶堆中，那堆顶的元素，也就是优先级队列队首的元素，就是最小的字符串</li>
-<li>我们将这个字符串放入到大文件中，并将其从堆中删除</li>
-<li>然后再从小文件中取出下一个字符串，放入到堆中</li>
-<li>循环这个过程，就可以将 100 个小文件中的数据依次放入到大文件中</li>
-</ul>
-<h4 id="高性能定时器"><a href="#高性能定时器" class="headerlink" title="高性能定时器"></a>高性能定时器</h4><p>假设我们有一个定时器，定时器中维护了很多定时任务，每个任务都设定了一个要触发执行的时间点。定时器每过一个很小的单位时间（比如 1 秒），就扫描一遍任务，看是否有任务到达设定的执行时间。如果到达了，就拿出来执行。</p>
-<ul>
-<li>这样每过 1 秒就扫描一遍任务列表的做法比较低效<ul>
-<li>任务的约定执行时间离当前时间可能还有很久，这样前面很多次扫描其实都是徒劳的</li>
-<li>每次都要扫描整个任务列表，如果任务列表很大的话，势必会比较耗时</li>
-</ul>
-</li>
-<li>我们按照任务设定的执行时间，将这些任务存储在优先级队列中，队列首部（也就是小顶堆的堆顶）存储的是最先执行的任务</li>
-<li>定时器就不需要每隔 1 秒就扫描一遍任务列表了</li>
-<li>它拿队首任务的执行时间点，与当前时间点相减，得到一个时间间隔 T</li>
-<li>这个时间间隔 T 就是，从当前时间开始，需要等待多久，才会有第一个任务需要被执行</li>
-<li>当 T 秒时间过去之后，定时器取优先级队列中队首的任务执行</li>
-<li>然后再计算新的队首任务的执行时间点与当前时间点的差值，把这个值作为定时器执行下一个任务需要等待的时间</li>
-<li>这样，定时器既不用间隔 1 秒就轮询一次，也不用遍历整个任务列表，性能也就提高了</li>
-</ul>
-<h2 id="Top-K"><a href="#Top-K" class="headerlink" title="Top K"></a>Top K</h2><ul>
-<li>求 Top K 的问题抽象成两类<ul>
-<li>针对静态数据集合，也就是说数据集合事先确定，不会再变</li>
-<li>针对动态数据集合，也就是说数据集合事先并不确定，有数据动态地加入到集合中</li>
-</ul>
-</li>
-<li>针对静态数据<ul>
-<li>维护一个大小为 K 的小顶堆，顺序遍历数组，从数组中取出数据与堆顶元素比较</li>
-<li>如果比堆顶元素大，我们就把堆顶元素删除，并且将这个元素插入到堆中</li>
-<li>如果比堆顶元素小，则不做处理，继续遍历数组</li>
-<li>数组中的数据都遍历完之后，堆中的数据就是前 K 大数据了</li>
-<li>遍历数组需要 O(n) 的时间复杂度，一次堆化操作需要 O(logK) 的时间复杂度，所以最坏情况下，n 个元素都入堆一次，时间复杂度就是 O(nlogK)</li>
-</ul>
-</li>
-<li>针对动态数据求得 Top K 就是实时 Top K<ul>
-<li>可以一直都维护一个 K 大小的小顶堆，当有数据被添加到集合中时，我们就拿它与堆顶的元素对比</li>
-<li>如果比堆顶元素大，我们就把堆顶元素删除，并且将这个元素插入到堆中</li>
-<li>如果比堆顶元素小，则不做处理</li>
-<li>无论任何时候需要查询当前的前 K 大数据，我们都可以立刻返回给他</li>
-</ul>
-</li>
-</ul>
-<h2 id="动态数据集合求中位数"><a href="#动态数据集合求中位数" class="headerlink" title="动态数据集合求中位数"></a>动态数据集合求中位数</h2><ul>
-<li>中位数位置<ul>
-<li>数据的个数是奇数，把数据从小到大排列，那第 2n+1 个数据就是中位数</li>
-<li>数据的个数是偶数的话，那处于中间位置的数据有两个，第 2n 个和第 2n+1 个数据</li>
-</ul>
-</li>
-<li>如果是动态数据集合，中位数在不停地变动，如果再用先排序的方法，每次询问中位数的时候，都要先进行排序，那效率就不高了</li>
-<li>思路<ul>
-<li>我们需要维护两个堆，一个大顶堆，一个小顶堆<ul>
-<li>大顶堆中存储前半部分数据，小顶堆中存储后半部分数据</li>
-<li>小顶堆中的数据都大于大顶堆中的数据<ul>
-<li>如果有 n 个数据，n 是偶数，我们从小到大排序</li>
-<li>前 n/2 个数据存储在大顶堆中</li>
-<li>后 n/2 个数据存储在小顶堆中</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>大顶堆中的堆顶元素就是我们要找的中位数</li>
-<li>如果 n 是奇数，情况是类似的，大顶堆就存储 2n+1 个数据，小顶堆中就存储 2n 个数据</li>
-<li>如果新加入的数据<ul>
-<li>小于等于大顶堆的堆顶元素，我们就将这个新数据插入到大顶堆</li>
-<li>否则就将这个新数据插入到小顶堆</li>
-</ul>
-</li>
-<li>两个堆中的数据个数不符合前面约定的情况，可以从一个堆中不停地将堆顶元素移动到另一个堆，通过这样的调整，来让两个堆中的数据满足上面的约定</li>
-</ul>
-</li>
-<li>利用两个堆不仅可以快速求出中位数，还可以快速求其他百分位的数据，原理是类似的</li>
-<li>如何快速求接口的 99% 响应时间？<ul>
-<li>我们维护两个堆，一个大顶堆，一个小顶堆</li>
-<li>假设当前总数据的个数是 n，大顶堆中保存 n*99% 个数据，小顶堆中保存 n*1% 个数据</li>
-<li>大顶堆堆顶的数据就是我们要找的 99% 响应时间</li>
-<li>每次插入一个数据的时候<ul>
-<li>如果这个新插入的数据比大顶堆的堆顶数据小，那就插入大顶堆</li>
-<li>如果这个新插入的数据比小顶堆的堆顶数据大，那就插入小顶堆</li>
-</ul>
-</li>
-<li>在每次新插入数据之后，我们都要重新计算，这个时候大顶堆和小顶堆中的数据个数，是否还符合 99:1 这个比例<ul>
-<li>如果不符合，我们就将一个堆中的数据移动到另一个堆，直到满足这个比例</li>
-</ul>
-</li>
-<li>每次插入数据，可能会涉及几个数据的堆化操作，所以时间复杂度是 O(logn)</li>
-<li>每次求 99% 响应时间的时候，直接返回大顶堆中的堆顶数据即可，时间复杂度是 O(1)</li>
-</ul>
-</li>
-</ul>
-<h3 id="假设现在我们有一个包含-10-亿个搜索关键词的日志文件，如何快速获取到-Top-10-最热门的搜索关键词呢？"><a href="#假设现在我们有一个包含-10-亿个搜索关键词的日志文件，如何快速获取到-Top-10-最热门的搜索关键词呢？" class="headerlink" title="假设现在我们有一个包含 10 亿个搜索关键词的日志文件，如何快速获取到 Top 10 最热门的搜索关键词呢？"></a>假设现在我们有一个包含 10 亿个搜索关键词的日志文件，如何快速获取到 Top 10 最热门的搜索关键词呢？</h3><ul>
-<li>处理这个问题，有很多高级的解决方法，比如使用 MapReduce 等</li>
-<li>如果我们将处理的场景限定为单机，可以使用的内存为 1GB，那这个问题该如何解决呢？</li>
-<li>因为用户搜索的关键词，有很多可能都是重复的，所以我们首先要统计每个搜索关键词出现的频率</li>
-<li>我们可以通过散列表、平衡二叉查找树或者其他一些支持快速查找、插入的数据结构，来记录关键词及其出现的次数</li>
-<li>假设我们选用散列表。我们就顺序扫描这 10 亿个搜索关键词。当扫描到某个关键词时，我们去散列表中查询。如果存在，我们就将对应的次数加一；如果不存在，我们就将它插入到散列表，并记录次数为 1。</li>
-<li>等遍历完这 10 亿个搜索关键词之后，散列表中就存储了不重复的搜索关键词以及出现的次数</li>
-<li>然后，我们再根据前面讲的用堆求 Top K 的方法，建立一个大小为 10 的小顶堆，遍历散列表，依次取出每个搜索关键词及对应出现的次数，然后与堆顶的搜索关键词对比</li>
-<li>如果出现次数比堆顶搜索关键词的次数多，那就删除堆顶的关键词，将这个出现次数更多的关键词加入到堆中</li>
-<li>当遍历完整个散列表中的搜索关键词之后，堆中的搜索关键词就是出现次数最多的 Top 10 搜索关键词了。</li>
-<li>我们假设 10 亿条搜索关键词中不重复的有 1 亿条，如果每个搜索关键词的平均长度是 50 个字节，那存储 1 亿个关键词起码需要 5GB 的内存空间，而散列表因为要避免频繁冲突，不会选择太大的装载因子，所以消耗的内存空间就更多了。而我们的机器只有 1GB 的可用内存空间，所以我们无法一次性将所有的搜索关键词加入到内存中</li>
-<li>相同数据经过哈希算法得到的哈希值是一样的，我们可以根据哈希算法的这个特点，将 10 亿条搜索关键词先通过哈希算法分片到 10 个文件中</li>
-<li>创建 10 个空文件 00，01，02，……，09。我们遍历这 10 亿个关键词，并且通过某个哈希算法对其求哈希值，然后哈希值同 10 取模，得到的结果就是这个搜索关键词应该被分到的文件编号</li>
-<li>对这 10 亿个关键词分片之后，每个文件都只有 1 亿的关键词，去除掉重复的，可能就只有 1000 万个，每个关键词平均 50 个字节，所以总的大小就是 500MB。1GB 的内存完全可以放得下</li>
-<li>我们针对每个包含 1 亿条搜索关键词的文件，利用散列表和堆，分别求出 Top 10，然后把这个 10 个 Top 10 放在一块，然后取这 100 个关键词中，出现次数最多的 10 个关键词，这就是这 10 亿数据中的 Top 10 最频繁的搜索关键词了</li>
-</ul>
-<h3 id="有一个访问量非常大的新闻网站，我们希望将点击量排名-Top-10-的新闻摘要，滚动显示在网站首页-banner-上，并且每隔-1-小时更新一次。如果你是负责开发这个功能的工程师，你会如何来实现呢？"><a href="#有一个访问量非常大的新闻网站，我们希望将点击量排名-Top-10-的新闻摘要，滚动显示在网站首页-banner-上，并且每隔-1-小时更新一次。如果你是负责开发这个功能的工程师，你会如何来实现呢？" class="headerlink" title="有一个访问量非常大的新闻网站，我们希望将点击量排名 Top 10 的新闻摘要，滚动显示在网站首页 banner 上，并且每隔 1 小时更新一次。如果你是负责开发这个功能的工程师，你会如何来实现呢？"></a>有一个访问量非常大的新闻网站，我们希望将点击量排名 Top 10 的新闻摘要，滚动显示在网站首页 banner 上，并且每隔 1 小时更新一次。如果你是负责开发这个功能的工程师，你会如何来实现呢？</h3><ul>
-<li>对每篇新闻摘要计算一个hashcode，并建立摘要与hashcode的关联关系，使用map存储，以hashCode为key，新闻摘要为值</li>
-<li>按每小时一个文件的方式记录下被点击的摘要的hashCode</li>
-<li>当一个小时结果后，上一个小时的文件被关闭，开始计算上一个小时的点击top10</li>
-<li>将hashcode分片到多个文件中，通过对hashCode取模运算，即可将相同的hashCode分片到相同的文件中</li>
-<li>针对每个文件取top10的hashCode，使用Map&lt;hashCode,int&gt;的方式，统计出所有的摘要点击次数，然后再使用小顶堆（大小为10）计算top10</li>
-<li>再针对所有分片计算一个总的top10,最后合并的逻辑也是使用小顶堆，计算top10</li>
-<li>如果仅展示前一个小时的top10,计算结束</li>
-<li>如果需要展示全天，需要与上一次的计算按hashCode进行合并，然后在这合并的数据中取top10</li>
-<li>在展示时，将计算得到的top10的hashcode，转化为新闻摘要显示即可</li>
-</ul>
-<h1 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h1><ul>
-<li>热点key用什么数据结构存储</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>王争《数据结构与算法之美》</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/05/%E5%A0%86/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -583,7 +473,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-06-05 13:46:22 / Modified: 16:47:58" itemprop="dateCreated datePublished" datetime="2021-06-05T13:46:22+08:00">2021-06-05</time>
+      <time title="Created: 2021-06-05 13:46:22 / Modified: 19:39:50" itemprop="dateCreated datePublished" datetime="2021-06-05T13:46:22+08:00">2021-06-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -615,298 +505,14 @@
 <p>叶子节点都在最底下两层，最后一层的叶子节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大</p>
 </li>
 </ul>
-<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><h3 id="基于指针-引用的二叉链式存储法"><a href="#基于指针-引用的二叉链式存储法" class="headerlink" title="基于指针/引用的二叉链式存储法"></a>基于指针/引用的二叉链式存储法</h3><ul>
-<li>每个节点有三个字段，其中一个存储数据，另外两个是指向左右子节点的指针</li>
-</ul>
-<h3 id="基于数组的顺序存储法"><a href="#基于数组的顺序存储法" class="headerlink" title="基于数组的顺序存储法"></a>基于数组的顺序存储法</h3><ul>
-<li>如果某棵二叉树是一棵完全二叉树，那用数组存储无疑是最节省内存的一种方式</li>
-<li>存储<ul>
-<li>把根节点存储在下标 i = 1 的位置，那左子节点存储在下标 2 * i = 2 的位置，右子节点存储在 2 * i + 1 = 3 的位置</li>
-<li>以此类推，B 节点的左子节点存储在 2 * i = 2 * 2 = 4 的位置，右子节点存储在 2 * i + 1 = 2 * 2 + 1 = 5 的位置</li>
-</ul>
-</li>
-<li>查找<ul>
-<li>如果节点 X 存储在数组中下标为 i 的位置</li>
-<li>下标为 2 * i 的位置存储的就是左子节点</li>
-<li>下标为 2 * i + 1 的位置存储的就是右子节点</li>
-<li>下标为 i/2 的位置存储就是它的父节点</li>
-</ul>
-</li>
-<li>通过这种方式，我们只要知道根节点存储的位置（一般情况下，为了方便计算子节点，根节点会存储在下标为 1 的位置），这样就可以通过下标计算，把整棵树都串起来</li>
-</ul>
-<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><ul>
-<li><p>经典的方法有三种，前序遍历、中序遍历和后序遍历，表示的是节点与它的左右子树节点遍历打印的先后顺序</p>
-</li>
-<li><p>前序遍历</p>
-<p>对于树中的任意节点来说，先打印这个节点，然后再打印它的左子树，最后打印它的右子树</p>
-</li>
-<li><p>中序遍历</p>
-<p>对于树中的任意节点来说，先打印它的左子树，然后再打印它本身，最后打印它的右子树</p>
-</li>
-<li><p>后序遍历</p>
-<p>对于树中的任意节点来说，先打印它的左子树，然后再打印它的右子树，最后打印这个节点本身</p>
-</li>
-<li><p>时间复杂度</p>
-<p>每个节点最多会被访问两次，所以遍历操作的时间复杂度，跟节点的个数 n 成正比，也就是说二叉树遍历的时间复杂度是 O(n)</p>
-</li>
-</ul>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul>
-<li>实际上，二叉树的前、中、后序遍历就是一个递归的过程</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
-<li>二叉查找树是为了实现快速查找而生，它要求在树中的任意一个节点，其左子树中的每个节点的值，都要小于这个节点的值，而右子树节点的值都大于这个节点的值</li>
-</ul>
-<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><ul>
-<li>如果要查找的数据比根节点的值小，那就在左子树中递归查找</li>
-<li>如果要查找的数据比根节点的值大，那就在右子树中递归查找</li>
-</ul>
-<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><ul>
-<li>如果要插入的数据比节点的数据大<ul>
-<li>节点的右子树为空，就将新数据直接插到右子节点的位置</li>
-<li>如果不为空，就再递归遍历右子树，查找插入位置</li>
-</ul>
-</li>
-<li>如果要插入的数据比节点数值小<ul>
-<li>节点的左子树为空，就将新数据插入到左子节点的位置</li>
-<li>如果不为空，就再递归遍历左子树，查找插入位置</li>
-</ul>
-</li>
-</ul>
-<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><ul>
-<li>要删除的节点没有子节点<ul>
-<li>直接将父节点中，指向要删除节点的指针置为 null</li>
-</ul>
-</li>
-<li>要删除的节点只有一个子节点（只有左子节点或者右子节点）<ul>
-<li>更新父节点中，指向要删除节点的指针，让它指向要删除节点的子节点就可以了</li>
-</ul>
-</li>
-<li>要删除的节点有两个子节点<ul>
-<li>找到这个节点的右子树中的最小节点，把它替换到要删除的节点上</li>
-<li>然后再删除掉这个最小节点</li>
-<li>因为最小节点肯定没有左子节点，如果有左子结点，那就不是最小节点了</li>
-</ul>
-</li>
-<li>实际上，关于二叉查找树的删除操作，还有个非常简单、取巧的方法<ul>
-<li>将要删除的节点标记为“已删除”，但是并不真正从树中将这个节点去掉</li>
-<li>这样原本删除的节点还需要存储在内存中，比较浪费内存空间，但是删除操作就变得简单了很多</li>
-</ul>
-</li>
-</ul>
-<h4 id="其它操作"><a href="#其它操作" class="headerlink" title="其它操作"></a>其它操作</h4><ul>
-<li>快速查找最大节点<ul>
-<li>递归查找右子树，叶子节点即为最大节点</li>
-</ul>
-</li>
-<li>快速查找最小节点<ul>
-<li>递归查找左子树，叶子节点即为最小节点</li>
-</ul>
-</li>
-<li>快速查找前驱节点<ul>
-<li>递归查找左子树的右子树，叶子节点即为前驱结点</li>
-</ul>
-</li>
-<li>快速查找后继节点<ul>
-<li>递归查找右子树的左子树，叶子节点即为后继节点</li>
-</ul>
-</li>
-<li>中序遍历二叉查找树，可以输出有序的数据序列，时间复杂度是 O(n)</li>
-</ul>
-<h4 id="支持重复数据"><a href="#支持重复数据" class="headerlink" title="支持重复数据"></a>支持重复数据</h4><ul>
-<li>二叉查找树中每一个节点不仅会存储一个数据<ul>
-<li>通过链表和支持动态扩容的数组等数据结构，把值相同的数据都存储在同一个节点上</li>
-</ul>
-</li>
-<li>将要插入的数据放到这个节点的右子树，把这个新插入的数据当作大于这个节点的值来处理<ul>
-<li>当要查找数据的时候，遇到值相同的节点，我们并不停止查找操作，而是继续在右子树中查找，直到遇到叶子节点，才停止</li>
-<li>对于删除操作，我们也需要先查找到每个要删除的节点，然后再按前面讲的删除操作的方法，依次删除</li>
-</ul>
-</li>
-</ul>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
-<li>不管操作是插入、删除还是查找，时间复杂度其实都跟树的高度成正比，也就是 O(height)</li>
-<li>一些计算<ul>
-<li>第 K 层包含的节点个数就是 2^(K-1)</li>
-<li>对于完全二叉树来说，最后一层的节点个数在 1 个到 2^(L-1) 个之间（我们假设最大层数是 L）</li>
-<li>借助等比数列的求和公式，可以计算出，L 的范围是[log2(n+1), log2n +1]</li>
-<li>完全二叉树的层数小于等于 log2n +1，也就是说，完全二叉树的高度小于等于 log2n</li>
-</ul>
-</li>
-<li>极度不平衡的二叉查找树，它的查找性能肯定不能满足我们的需求</li>
-</ul>
-<h3 id="相比散列表优势"><a href="#相比散列表优势" class="headerlink" title="相比散列表优势"></a>相比散列表优势</h3><ul>
-<li>排序<ul>
-<li>散列表中的数据是无序存储的，如果要输出有序的数据，需要先进行排序</li>
-<li>对于二叉查找树来说，我们只需要中序遍历，就可以在 O(n) 的时间复杂度内，输出有序的数据序列</li>
-</ul>
-</li>
-<li>稳定性<ul>
-<li>散列表扩容耗时很多，而且当遇到散列冲突时，性能不稳定，</li>
-<li>工程中最常用的平衡二叉查找树的性能非常稳定，时间复杂度稳定在 O(logn)</li>
-</ul>
-</li>
-<li>性能<ul>
-<li>时间<ul>
-<li>尽管散列表的查找等操作的时间复杂度是常量级的，但因为哈希冲突的存在，这个常量不一定比 logn 小，所以实际的查找速度可能不一定比 O(logn) 快</li>
-<li>加上哈希函数的耗时，也不一定就比平衡二叉查找树的效率高</li>
-</ul>
-</li>
-<li>空间<ul>
-<li>为了避免过多的散列冲突，散列表装载因子不能太大，特别是基于开放寻址法解决冲突的散列表，不然会浪费一定的存储空间</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>实现<ul>
-<li>散列表的构造比二叉查找树要复杂，需要考虑的东西很多<ul>
-<li>比如散列函数的设计、冲突解决办法、扩容、缩容等</li>
-</ul>
-</li>
-<li>平衡二叉查找树只需要考虑平衡性这一个问题，而且这个问题的解决方案比较成熟、固定</li>
-</ul>
-</li>
-<li>综上，平衡二叉查找树在某些方面还是优于散列表的，所以，这两者的存在并不冲突，在实际的开发过程中，需要结合具体的需求来选择使用哪一个</li>
-</ul>
-<h3 id="平衡查找树"><a href="#平衡查找树" class="headerlink" title="平衡查找树"></a>平衡查找树</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
-<li>二叉查找树在频繁的动态更新过程中，可能会出现树的高度远大于 log2n 的情况，从而导致各个操作的效率下降，极端情况下，二叉树会退化为链表，时间复杂度会退化到 O(n)</li>
-</ul>
-<h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><ul>
-<li>二叉树中任意一个节点的左右子树的高度相差不能大于 1</li>
-<li>完全二叉树、满二叉树其实都是平衡二叉树，但是非完全二叉树也有可能是平衡二叉树</li>
-<li>解决普通二叉查找树在频繁的插入、删除等动态更新的情况下，出现时间复杂度退化的问题</li>
-</ul>
-<h4 id="AVL-树"><a href="#AVL-树" class="headerlink" title="AVL 树"></a>AVL 树</h4><ul>
-<li>最先被发明的平衡二叉查找树是AVL 树，它严格符合平衡二叉查找树的定义，即任何节点的左右子树高度相差不超过 1，是一种高度平衡的二叉查找树</li>
-</ul>
-<h4 id="红黑树-Red-Black-Tree-R-B-Tree"><a href="#红黑树-Red-Black-Tree-R-B-Tree" class="headerlink" title="红黑树(Red-Black Tree, R-B Tree)"></a>红黑树(Red-Black Tree, R-B Tree)</h4><h5 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h5><ul>
-<li>是一种不严格的平衡二叉查找树</li>
-<li>红黑树中的节点，一类被标记为黑色，一类被标记为红色</li>
-<li>一棵红黑树还需要满足这样几个要求<ul>
-<li>根节点是黑色的</li>
-<li>每个叶子节点都是黑色的空节点（NIL），不存储数据</li>
-<li>任何相邻的节点都不能同时为红色，红色节点是被黑色节点隔开的</li>
-<li>每个节点，从该节点到达其可达叶子节点的所有路径，都包含相同数目的黑色节点</li>
-</ul>
-</li>
-</ul>
-<h5 id="近似平衡"><a href="#近似平衡" class="headerlink" title="近似平衡"></a>近似平衡</h5><ul>
-<li>如果将红色节点从红黑树中去掉，有些节点就没有父节点了，它们会直接拿这些节点的祖父节点（父节点的父节点）作为父节点，所以二叉树就变成了四叉树</li>
-<li>从任意节点到可达的叶子节点的每个路径包含相同数目的黑色节点，仅包含黑色节点的完全四叉树的高度，比包含相同节点个数的完全二叉树的高度还要小，所以去掉红色节点的“黑树”的高度也不会超过 log2n</li>
-<li>把红色节点加回去，在红黑树中，红色节点不能相邻，所以最长路径不会超过 2log2n</li>
-<li>红黑树的高度只比高度平衡的 AVL 树的高度（log2n）仅仅大了一倍，而实际上红黑树的性能更好</li>
-</ul>
-<h5 id="时间复杂度-1"><a href="#时间复杂度-1" class="headerlink" title="时间复杂度"></a>时间复杂度</h5><ul>
-<li>插入、删除、查找操作的时间复杂度都是 O(logn)</li>
-</ul>
-<h5 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h5><h4 id="红黑树-v-s-AVL"><a href="#红黑树-v-s-AVL" class="headerlink" title="红黑树 v.s. AVL"></a>红黑树 v.s. AVL</h4><ul>
-<li>AVL 树<ul>
-<li>一种高度平衡的二叉树，所以查找的效率非常高</li>
-<li>但是，AVL 树为了维持这种高度的平衡，就要付出更多的代价，每次插入、删除都要做调整，就比较复杂、耗时</li>
-<li>对于有频繁的插入、删除操作的数据集合，使用 AVL 树的代价就有点高了</li>
-</ul>
-</li>
-<li>红黑树<ul>
-<li>只是做到了近似平衡，并不是严格的平衡，所以在维护平衡的成本上，要比 AVL 树要低</li>
-<li>红黑树的插入、删除、查找各种操作性能都比较稳定</li>
-<li>对于工程应用来说，要面对各种异常情况，为了支撑这种工业级的应用，我们更倾向于这种性能稳定的平衡二叉查找树</li>
-</ul>
-</li>
-</ul>
-<h1 id="多叉树"><a href="#多叉树" class="headerlink" title="多叉树"></a>多叉树</h1><h2 id="平衡多路搜索树"><a href="#平衡多路搜索树" class="headerlink" title="平衡多路搜索树"></a>平衡多路搜索树</h2><h3 id="B树（Balance-Tree）"><a href="#B树（Balance-Tree）" class="headerlink" title="B树（Balance Tree）"></a>B树（Balance Tree）</h3><ul>
-<li>是一种平衡的多路搜索树，高度远小于平衡二叉树的高度</li>
-<li>在文件系统和数据库系统中的索引结构经常采用 B 树来实现</li>
-</ul>
-<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>一个 M 阶的 B 树（M&gt;2）有以下的特性</p>
-<h5 id="根节点的儿子数的范围是-2-M"><a href="#根节点的儿子数的范围是-2-M" class="headerlink" title="根节点的儿子数的范围是[2,M]"></a>根节点的儿子数的范围是[2,M]</h5><h5 id="每个中间节点包含-k-1-个关键字和-k-个孩子，"><a href="#每个中间节点包含-k-1-个关键字和-k-个孩子，" class="headerlink" title="每个中间节点包含 k-1 个关键字和 k 个孩子，"></a>每个中间节点包含 k-1 个关键字和 k 个孩子，</h5><ul>
-<li><p>孩子的数量 = 关键字的数量 +1，k 的取值范围为[ceil(M/2), M]</p>
-</li>
-<li><p>叶子节点包括 k-1 个关键字（叶子节点没有孩子），k 的取值范围为[ceil(M/2), M]。</p>
-</li>
-<li><p>假设中间节点节点的关键字为：Key[1], Key[2], …, Key[k-1]，且关键字按照升序排序，即 Key[i]&lt;Key[i+1]</p>
-</li>
-<li><p>k-1 个关键字相当于划分了 k 个范围，也就是对应着 k 个指针</p>
-<ul>
-<li>P[1], P[2], …, P[k]，其中 P[1]指向关键字小于 Key[1]的子树</li>
-<li>P[i]指向关键字属于 (Key[i-1], Key[i]) 的子树，P[k]指向关键字大于 Key[k-1]的子树</li>
-</ul>
-</li>
-</ul>
-<h5 id="所有叶子节点位于同一层"><a href="#所有叶子节点位于同一层" class="headerlink" title="所有叶子节点位于同一层"></a>所有叶子节点位于同一层</h5><p>而 B 树实际上是低级版的 B+ 树，或者说 B+ 树是 B 树的改进版。B 树跟 B+ 树的不同点主要集中在这几个地方：<br>B+ 树中的节点不存储数据，只是索引，而 B 树中的节点存储数据；<br>B 树中的叶子节点并不需要链表来串联。</p>
-<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><ul>
-<li>B+ 树基于 B 树做出了改进，主流的 DBMS 都支持 B+ 树的索引方式，比如 MySQL</li>
-</ul>
-<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><p>一个 M 阶的 B+ 树（M&gt;2）有以下的特性</p>
-<h5 id="每个节点中子节点的个数不能超过-m，也不能小于-m-2"><a href="#每个节点中子节点的个数不能超过-m，也不能小于-m-2" class="headerlink" title="每个节点中子节点的个数不能超过 m，也不能小于 m/2"></a>每个节点中子节点的个数不能超过 m，也不能小于 m/2</h5><ul>
-<li><p>优化的重点就是尽量减少磁盘 IO 操作，也就是尽量降低树的高度</p>
-<ul>
-<li>为了节省内存，如果把树存储在硬盘中，那么每个节点的读取（或者访问），都对应一次磁盘 IO 操作</li>
-<li>比起内存读写操作，磁盘 IO 操作非常耗时</li>
-<li>树的高度就等于每次查询数据时磁盘 IO 操作的次数</li>
-</ul>
-</li>
-<li><p>在选择 m 大小的时候，要尽量让每个节点的大小等于一个页的大小</p>
-<ul>
-<li>对于相同个数的数据构建 m 叉树索引，m 叉树中的 m 越大，那树的高度就越小</li>
-<li>不管是内存还是磁盘中的数据，操作系统都是按页（通常是 4KB）来读取的，一次会读一页的数据</li>
-<li>如果要读取的数据量超过一页的大小，就会触发多次 IO 操作</li>
-</ul>
-</li>
-<li><p>数据的写入过程，会涉及索引的更新，这是索引导致写入变慢的主要原因</p>
-</li>
-<li><p>数据的个数超过 m 就分裂节点</p>
-<ul>
-<li>在往数据库中写入数据的过程中，这样就有可能使索引中某些节点的子节点个数超过 m</li>
-<li>节点的大小超过了一个页的大小，读取这样一个节点，就会导致多次磁盘 IO 操作</li>
-</ul>
-</li>
-<li><p>某个节点的子节点个数小于 m/2，我们就将它跟相邻的兄弟节点合并</p>
-<ul>
-<li>在删除某个数据的时候，也要对应地更新索引节点</li>
-<li>频繁的数据删除，就会导致某些节点中，子节点的个数变得非常少</li>
-<li>如果每个节点的子节点都比较少，势必会影响索引的效率</li>
-<li>在 B+ 树中，合并节点的阈值等于 m/2</li>
-</ul>
-</li>
-<li><p>根节点的子节点个数可以不超过 m/2，这是一个例外</p>
-</li>
-</ul>
-<h5 id="m-叉树只存储索引，并不真正存储数据"><a href="#m-叉树只存储索引，并不真正存储数据" class="headerlink" title="m 叉树只存储索引，并不真正存储数据"></a>m 叉树只存储索引，并不真正存储数据</h5><h5 id="通过双向链表将叶子节点串联在一起，方便区间查找"><a href="#通过双向链表将叶子节点串联在一起，方便区间查找" class="headerlink" title="通过双向链表将叶子节点串联在一起，方便区间查找"></a>通过双向链表将叶子节点串联在一起，方便区间查找</h5><h5 id="一般情况，根节点会被存储在内存中，其他节点存储在磁盘中"><a href="#一般情况，根节点会被存储在内存中，其他节点存储在磁盘中" class="headerlink" title="一般情况，根节点会被存储在内存中，其他节点存储在磁盘中"></a>一般情况，根节点会被存储在内存中，其他节点存储在磁盘中</h5><h3 id="B-Tree-v-s-B-Tree"><a href="#B-Tree-v-s-B-Tree" class="headerlink" title="B+ Tree  v.s. B Tree"></a>B+ Tree  v.s. B Tree</h3><ul>
-<li>B+ 树有 k 个孩子的节点就有 k 个关键字，也就是孩子数量 = 关键字数</li>
-<li>B 树中，孩子数量 = 关键字数 +1</li>
-<li>B+ 树的非叶子节点的关键字也会同时存在在子节点中，并且是在子节点中所有关键字的最大（或最小）</li>
-<li>B+ 树的非叶子节点仅用于索引，不保存数据记录，跟记录有关的信息都放在叶子节点中<ul>
-<li>B+ 树查询效率更稳定<ul>
-<li>因为 B+ 树每次只有访问到叶子节点才能找到对应的数据</li>
-<li>而在 B 树中，非叶子节点也会存储数据，这样就会造成查询效率不稳定的情况，有时候访问到了非叶子节点就可以找到关键字，而有时需要访问到叶子节点才能找到关键字</li>
-</ul>
-</li>
-<li>B+ 树的查询效率更高<ul>
-<li>这是因为通常 B+ 树比 B 树更矮胖（阶数更大，深度更低），查询所需要的磁盘 I/O 也会更少</li>
-<li>同样的磁盘页大小，B+ 树可以存储更多的节点关键字</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>B 树中，非叶子节点既保存索引，也保存数据记录</li>
-<li>B+ 树的所有关键字都在叶子节点出现，叶子节点构成一个有序链表，而且叶子节点本身按照关键字的大小从小到大顺序链接<ul>
-<li>在查询范围上，B+ 树的效率也比 B 树高<ul>
-<li>因为所有关键字都出现在 B+ 树的叶子节点中，并通过有序链表进行了链接</li>
-<li>在 B 树中则需要通过中序遍历才能完成查询范围的查找，效率要低很多</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h1><ul>
-<li>b+树、b树、二叉树、平衡二叉树、红黑树各自特点 </li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>《算法》第四版</li>
-<li>王争《数据结构与算法之美》</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/05/%E6%A0%91/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1572,94 +1178,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/10/29/10-29-%E6%88%91%E9%98%85%E8%AF%BB%E7%9A%84%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/%E5%88%B7%E9%A2%98%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/29/%E5%88%B7%E9%A2%98%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">刷题过程中遇到的一些问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2018-10-29 14:40:45 / Modified: 14:45:27" itemprop="dateCreated datePublished" datetime="2018-10-29T14:40:45+08:00">2018-10-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/coding/" itemprop="url" rel="index"><span itemprop="name">coding</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ol>
-<li><p>variably modified array at file scope</p>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/13645936/variably-modified-array-at-file-scope-in-c/13645995">https://stackoverflow.com/questions/13645936/variably-modified-array-at-file-scope-in-c/13645995</a></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> a 6</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Time Limit Exceeded</p>
-<p>In C++, do not use cin/cout - use scanf and printf instead.</p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/29/%E5%88%B7%E9%A2%98%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

@@ -28,7 +28,7 @@
 <meta property="og:description" content="概念 我们只需要对链表稍加改造，就可以支持类似“二分”的查找算法。我们把改造之后的数据结构叫做跳表（Skip list） 对于一个单链表来讲，即便链表中存储的数据是有序的，如果我们要想在其中查找某个数据，也只能从头到尾遍历链表。这样查找效率就会很低，时间复杂度会很高，是 O(n) 可以通过对链表建立一级“索引”来提高查找效率，每两个结点提取一个结点到上一级，我们把抽出来的那一级叫做索引或索引层 通">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-06-05T11:17:55.000Z">
-<meta property="article:modified_time" content="2021-06-05T11:30:47.604Z">
+<meta property="article:modified_time" content="2021-06-05T11:39:57.276Z">
 <meta property="article:author" content="Lsinger">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="Interview">
@@ -124,18 +124,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -199,7 +199,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-06-05 19:17:55 / Modified: 19:30:47" itemprop="dateCreated datePublished" datetime="2021-06-05T19:17:55+08:00">2021-06-05</time>
+      <time title="Created: 2021-06-05 19:17:55 / Modified: 19:39:57" itemprop="dateCreated datePublished" datetime="2021-06-05T19:17:55+08:00">2021-06-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -229,6 +229,8 @@
 <li>加来一层索引之后，查找一个结点需要遍历的结点个数减少了，也就是说查找效率提高了</li>
 <li>链表加多级索引的结构，就是跳表</li>
 </ul>
+<span id="more"></span>
+
 <h1 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h1><h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><ul>
 <li>每两个结点会抽出一个结点作为上一级索引的结点，第 k 级索引的结点个数是第 k-1 级索引的结点个数的 1/2，那第 k级索引结点的个数就是 n/(2k)</li>
 <li>假设索引有 h 级，最高级的索引有 2 个结点。通过上面的公式，我们可以得到 $h=log_2n-1$</li>
@@ -301,6 +303,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/06/05/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="next" title="JVM 垃圾回收">
+                  JVM 垃圾回收 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

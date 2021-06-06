@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="背景 为什么要学习垃圾回收？ 需要排查内存溢出、内存泄漏问题时，垃圾回收可能成为系统达到高并发量的瓶颈   哪些内存需要回收？  Java堆和方法区这两个区域有很显著的不确定性，内存的分配和回收是动态的 Java运行区域的各个部分中，程序计数器、虚拟机栈、本地方法栈 3 个区域随线程而生，随线程而灭，分配多少内存基本上是在类结构确定下来时就已知的，因此这几个区域的内存回收具备确定性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM 垃圾回收">
+<meta property="og:url" content="http://yoursite.com/2021/06/05/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/index.html">
+<meta property="og:site_name" content="Lsinger&#39; s blog">
+<meta property="og:description" content="背景 为什么要学习垃圾回收？ 需要排查内存溢出、内存泄漏问题时，垃圾回收可能成为系统达到高并发量的瓶颈   哪些内存需要回收？  Java堆和方法区这两个区域有很显著的不确定性，内存的分配和回收是动态的 Java运行区域的各个部分中，程序计数器、虚拟机栈、本地方法栈 3 个区域随线程而生，随线程而灭，分配多少内存基本上是在类结构确定下来时就已知的，因此这几个区域的内存回收具备确定性">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-06-05T11:41:53.000Z">
+<meta property="article:modified_time" content="2021-06-06T13:12:35.288Z">
+<meta property="article:author" content="Lsinger">
+<meta property="article:tag" content="Interview">
+<meta property="article:tag" content="GC">
+<meta property="article:tag" content="JVM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2021/06/05/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;default&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;06&#x2F;05&#x2F;JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;05&#x2F;JVM-垃圾回收&#x2F;&quot;,&quot;title&quot;:&quot;JVM 垃圾回收&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>JVM 垃圾回收 | Lsinger' s blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lsinger' s blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Lsinger' s blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E5%AE%9A%E5%AF%B9%E8%B1%A1%E6%B6%88%E4%BA%A1"><span class="nav-number">2.</span> <span class="nav-text">如何判定对象消亡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95%EF%BC%88reference-counting%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数法（reference counting）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">2.1.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">可达性分析算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GC-Roots"><span class="nav-number">2.2.2.</span> <span class="nav-text">GC Roots</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">垃圾回收算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E4%BB%A3%E6%94%B6%E9%9B%86%E7%90%86%E8%AE%BA"><span class="nav-number">3.1.</span> <span class="nav-text">分代收集理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E4%B8%89%E4%B8%AA%E5%81%87%E8%AF%B4"><span class="nav-number">3.1.1.</span> <span class="nav-text">基于三个假说</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GC-%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.1.2.</span> <span class="nav-text">GC 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Partial-GC"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">Partial GC</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Minor-GC"><span class="nav-number">3.1.2.1.1.</span> <span class="nav-text">Minor GC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Major-GC"><span class="nav-number">3.1.2.1.2.</span> <span class="nav-text">Major GC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Mixed-GC"><span class="nav-number">3.1.2.1.3.</span> <span class="nav-text">Mixed GC</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Full-GC"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">Full GC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">标记-清除算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B-2"><span class="nav-number">3.2.1.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0-%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">标记-复制算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B-3"><span class="nav-number">3.3.1.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">3.3.2.</span> <span class="nav-text">适用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">3.3.3.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-2"><span class="nav-number">3.3.4.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="nav-number">3.4.</span> <span class="nav-text">标记-整理算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B-4"><span class="nav-number">3.4.1.</span> <span class="nav-text">流程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A1%E9%87%8F%E6%8C%87%E6%A0%87"><span class="nav-number">4.1.</span> <span class="nav-text">衡量指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HotSpot-%E7%9A%84%E7%AE%97%E6%B3%95%E7%BB%86%E8%8A%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.2.</span> <span class="nav-text">HotSpot 的算法细节实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Stop-the-World-STW"><span class="nav-number">4.2.1.</span> <span class="nav-text">Stop the World, STW</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5"><span class="nav-number">4.2.2.</span> <span class="nav-text">内存分配策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF-1"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">4.2.2.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5"><span class="nav-number">4.2.3.</span> <span class="nav-text">内存回收策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E4%BC%98%E5%85%88%E5%9C%A8-Eden-%E5%8C%BA%E8%A2%AB%E5%88%86%E9%85%8D"><span class="nav-number">4.2.3.1.</span> <span class="nav-text">对象优先在 Eden 区被分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%8B%E5%8D%87%E8%80%81%E5%B9%B4%E4%BB%A3"><span class="nav-number">4.2.3.2.</span> <span class="nav-text">晋升老年代</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B0%E5%BF%86%E9%9B%86"><span class="nav-number">4.2.4.</span> <span class="nav-text">记忆集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF-2"><span class="nav-number">4.2.4.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">4.2.4.2.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%B0%E5%BD%95%E7%B2%92%E5%BA%A6"><span class="nav-number">4.2.4.3.</span> <span class="nav-text">记录粒度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%A1%E8%A1%A8"><span class="nav-number">4.2.4.4.</span> <span class="nav-text">卡表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E5%B1%8F%E9%9A%9C"><span class="nav-number">4.2.4.5.</span> <span class="nav-text">写屏障</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E7%9A%84%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90"><span class="nav-number">4.2.5.</span> <span class="nav-text">并发的可达性分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E8%89%B2%E6%A0%87%E8%AE%B0"><span class="nav-number">4.2.5.1.</span> <span class="nav-text">三色标记</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E6%94%B6%E9%9B%86%E5%99%A8%E5%B9%B6%E5%8F%91%E5%B7%A5%E4%BD%9C"><span class="nav-number">4.2.5.2.</span> <span class="nav-text">用户线程与收集器并发工作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8E%E6%9E%9C"><span class="nav-number">4.2.5.2.1.</span> <span class="nav-text">后果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">4.2.5.3.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0"><span class="nav-number">4.2.5.3.1.</span> <span class="nav-text">增量更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E5%BF%AB%E7%85%A7-Snapshot-At-The-Beginning-SATB"><span class="nav-number">4.2.5.3.2.</span> <span class="nav-text">原始快照 (Snapshot At The Beginning, SATB)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">4.2.5.3.3.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.3.</span> <span class="nav-text">经典垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Serial-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.3.1.</span> <span class="nav-text">Serial 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ParNew-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.3.2.</span> <span class="nav-text">ParNew 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parallel-Scavenge-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.3.3.</span> <span class="nav-text">Parallel Scavenge 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serial-Old-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.3.4.</span> <span class="nav-text">Serial Old 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parallel-Old-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.3.5.</span> <span class="nav-text">Parallel Old 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMS%EF%BC%88concurrent-mark-sweep%EF%BC%89%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.3.6.</span> <span class="nav-text">CMS（concurrent mark sweep）收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B-5"><span class="nav-number">4.3.6.1.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-3"><span class="nav-number">4.3.6.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Garbage-First-G1-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.3.7.</span> <span class="nav-text">Garbage First (G1) 收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF-3"><span class="nav-number">4.3.7.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">4.3.7.2.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-3"><span class="nav-number">4.3.7.3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%8F%AF%E9%9D%A0%E7%9A%84%E5%81%9C%E9%A1%BF%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.3.7.4.</span> <span class="nav-text">建立可靠的停顿预测模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%A8-Region-%E5%BC%95%E7%94%A8"><span class="nav-number">4.3.7.5.</span> <span class="nav-text">跨 Region 引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E5%9B%9E%E6%94%B6"><span class="nav-number">4.3.7.6.</span> <span class="nav-text">并发回收</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B-6"><span class="nav-number">4.3.7.7.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-4"><span class="nav-number">4.3.7.8.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMS-v-s-G1"><span class="nav-number">4.3.8.</span> <span class="nav-text">CMS v.s. G1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8E%E5%BB%B6%E8%BF%9F%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.4.</span> <span class="nav-text">低延迟垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shenandoah-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.4.1.</span> <span class="nav-text">Shenandoah 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZGC-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">4.4.2.</span> <span class="nav-text">ZGC 收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF-4"><span class="nav-number">4.4.2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E-Region-%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80"><span class="nav-number">4.4.2.2.</span> <span class="nav-text">基于 Region 内存布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="nav-number">4.4.2.3.</span> <span class="nav-text">并发整理算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9F%93%E8%89%B2%E6%8C%87%E9%92%88%E6%8A%80%E6%9C%AF"><span class="nav-number">4.4.2.3.1.</span> <span class="nav-text">染色指针技术</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B-7"><span class="nav-number">4.4.2.4.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-5"><span class="nav-number">4.4.2.5.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C-JDK-%E4%B8%8B%E7%9A%84%E9%BB%98%E8%AE%A4%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">不同 JDK 下的默认垃圾收集器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">相关面试题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lsinger</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/05/JVM-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JVM 垃圾回收
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-06-05 19:41:53" itemprop="dateCreated datePublished" datetime="2021-06-05T19:41:53+08:00">2021-06-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-06 21:12:35" itemprop="dateModified" datetime="2021-06-06T21:12:35+08:00">2021-06-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><ul>
+<li>为什么要学习垃圾回收？<ul>
+<li>需要排查内存溢出、内存泄漏问题时，垃圾回收可能成为系统达到高并发量的瓶颈</li>
+</ul>
+</li>
+<li>哪些内存需要回收？<ul>
+<li> Java堆和方法区这两个区域有很显著的不确定性，内存的分配和回收是动态的</li>
+<li>Java运行区域的各个部分中，程序计数器、虚拟机栈、本地方法栈 3 个区域随线程而生，随线程而灭，分配多少内存基本上是在类结构确定下来时就已知的，因此这几个区域的内存回收具备确定性</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="如何判定对象消亡"><a href="#如何判定对象消亡" class="headerlink" title="如何判定对象消亡"></a>如何判定对象消亡</h1><h2 id="引用计数法（reference-counting）"><a href="#引用计数法（reference-counting）" class="headerlink" title="引用计数法（reference counting）"></a>引用计数法（reference counting）</h2><h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><ul>
+<li>为每个对象添加一个引用计数器，用来统计指向该对象的引用个数</li>
+<li>如果有一个引用，被赋值为某一对象，那么将该对象的引用计数器 +1</li>
+<li>如果一个指向某一对象的引用，被赋值为其他值，那么将该对象的引用计数器 -1</li>
+<li>一旦某个对象的引用计数器为 0，则说明该对象已经死亡，便可以被回收了</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>需要额外的空间来存储计数器，以及繁琐的更新操作</li>
+<li>无法处理循环引用对象<ul>
+<li>对象 a 与 b 相互引用，除此之外没有其他引用指向 a 或者 b</li>
+</ul>
+</li>
+</ul>
+<h2 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h2><h3 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h3><ul>
+<li>将一系列 GC Roots 作为初始的存活对象合集（live set）</li>
+<li>然后从 GC Roots 出发，探索所有能够被该集合引用到的对象，并将其加入到该集合中-标记（mark）</li>
+<li>最终未被探索到的对象便是死亡的，是可以回收的</li>
+</ul>
+<h3 id="GC-Roots"><a href="#GC-Roots" class="headerlink" title="GC Roots"></a>GC Roots</h3><p>可以暂时理解为由堆外指向堆内的引用</p>
+<ul>
+<li>在虚拟机栈中引用的对象（正在运行的方法用到的参数、局部变量、临时变量等）</li>
+<li>方法区中类静态属性/常量引用的对象</li>
+<li>本地方法栈中JNI（Native方法）引用的对象</li>
+<li>Java虚拟机内部的引用，如基本数据类型对应的Class对象，常驻的异常对象，系统类加载器等</li>
+<li>所有被同步锁持有的对象</li>
+<li>反应虚拟机内部情况的JMXBean、JVMTI中注册的回调、本地代码缓存等</li>
+</ul>
+<h1 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h1><h2 id="分代收集理论"><a href="#分代收集理论" class="headerlink" title="分代收集理论"></a>分代收集理论</h2><h3 id="基于三个假说"><a href="#基于三个假说" class="headerlink" title="基于三个假说"></a>基于三个假说</h3><ul>
+<li>弱分代假说：绝大多数对象都是朝生夕灭的</li>
+<li>强分代假说：熬过越多次垃圾回收过程的对象约难以消亡</li>
+<li>跨代引用假说：跨代引用相对于同代引用来说仅占少数</li>
+</ul>
+<h3 id="GC-类型"><a href="#GC-类型" class="headerlink" title="GC 类型"></a>GC 类型</h3><h4 id="Partial-GC"><a href="#Partial-GC" class="headerlink" title="Partial GC"></a>Partial GC</h4><h5 id="Minor-GC"><a href="#Minor-GC" class="headerlink" title="Minor GC"></a>Minor GC</h5><ul>
+<li>目标只是新生代的垃圾收集</li>
+<li>当 Eden 区的空间耗尽了， Java 虚拟机便会触发一次 Minor GC，来收集新生代的垃圾</li>
+<li>存活下来的对象，则会被送到 Survivor 区</li>
+<li>新生代共有两个 Survivor 区，我们分别用 from 和 to 来指代，其中 to 指向的 Survivior 区是空的</li>
+<li>当发生 Minor GC 时，Eden 区和 from 指向的 Survivor 区中的存活对象会被复制到 to 指向的 Survivor 区中</li>
+<li>然后交换 from 和 to 指针，以保证下一次 Minor GC 时，to 指向的 Survivor 区还是空的</li>
+</ul>
+<h5 id="Major-GC"><a href="#Major-GC" class="headerlink" title="Major GC"></a>Major GC</h5><ul>
+<li>目标只是老年代的垃圾收集，目前只有CMS有单独收集老年代的行为</li>
+</ul>
+<h5 id="Mixed-GC"><a href="#Mixed-GC" class="headerlink" title="Mixed GC"></a>Mixed GC</h5><ul>
+<li>目标是收集整个新生代以及部分老年代的垃圾收集，目前只有G1收集器有这种行为</li>
+</ul>
+<h4 id="Full-GC"><a href="#Full-GC" class="headerlink" title="Full GC"></a>Full GC</h4><ul>
+<li><p>收集整个Java堆和方法区的垃圾收集</p>
+</li>
+<li><p>空间分配担保</p>
+<ul>
+<li>在发生 Minor GC 之前，JVM 必须先检查老年代最大可用的连续空间是否大于新生代对象总空间<ul>
+<li>条件成立，确保安全</li>
+<li>否则，查看 -XX:HandlePromotionFailure 参数的设置值是否允许担保失败<ul>
+<li>如果允许，继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小<ul>
+<li>如果大于，进行一次 Minor GC</li>
+<li>否则，进行一次 Full GC</li>
+</ul>
+</li>
+<li>晋升对象突增，担保失败，重新发起一次 Full GC</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>调用 <code>System.gc</code> 时，会建议 JVM 执行 Full GC，但是不必然执行</p>
+</li>
+<li><p>大对象直接进入老年代，但发现老年代连续空间不足以放置大对象时</p>
+</li>
+<li><p>方法区空间不足</p>
+<ul>
+<li>Metaspace使用的是本地内存，而不是堆内存，也就是说在默认情况下Metaspace的大小只与本地内存大小有关</li>
+<li>超过这个 -XX:MetaspaceSize 参数的值会引发Full GC，但这个值不是固定的，随着JVM的运行进行动态调整的</li>
+</ul>
+</li>
+</ul>
+<h2 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h2><h3 id="流程-2"><a href="#流程-2" class="headerlink" title="流程"></a>流程</h3><ul>
+<li><p>标记</p>
+<p>首先标记所有需要回收/存活的对象</p>
+</li>
+<li><p>清除</p>
+<p>标记完成后，统一回收掉所有被/未被标记的对象</p>
+</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>执行效率不稳定，如果堆中大量对象都是要回收的，必须进行大量标记和清除操作，执行效率随对象数量增长而降低</li>
+<li>内存空间碎片化，产生大量不连续的内存碎片，导致后续需要分配较大对象时无法找到足够的连续内存不得不提前触发一次GC</li>
+</ul>
+<h2 id="标记-复制算法"><a href="#标记-复制算法" class="headerlink" title="标记-复制算法"></a>标记-复制算法</h2><h3 id="流程-3"><a href="#流程-3" class="headerlink" title="流程"></a>流程</h3><ul>
+<li>将可用内存按容量划分为大小相等的两块，每次只使用其中一块</li>
+<li>用完了就将还存活着的对象复制到另一块上面，然后将这块一次性清理掉</li>
+</ul>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
+<li>适用于新生代这种大量对象可回收的场景</li>
+</ul>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>分配时顺序分配，不会产生内存碎片</li>
+</ul>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>可用空间缩小为原来一半，空间浪费太多</li>
+<li>存活率高时进行较多的复制操作，效率降低</li>
+</ul>
+<h2 id="标记-整理算法"><a href="#标记-整理算法" class="headerlink" title="标记-整理算法"></a>标记-整理算法</h2><h3 id="流程-4"><a href="#流程-4" class="headerlink" title="流程"></a>流程</h3><ul>
+<li>标记</li>
+<li>标记完成后，将所有存活对象向内存空间一端移动，然后直接清理掉边界外的内存</li>
+</ul>
+<p>###适用场景</p>
+<ul>
+<li>适用于老年代这种对象存活率较高的场景避免较多的复制操作</li>
+</ul>
+<p>###缺点</p>
+<ul>
+<li>移动对象并更新所有引用这些对象的地方是种极重的操作，并且移动时需要STW</li>
+</ul>
+<h1 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h1><h2 id="衡量指标"><a href="#衡量指标" class="headerlink" title="衡量指标"></a>衡量指标</h2><p>恒量垃圾收集器的三个最重要指标，不可能三角</p>
+<ul>
+<li>内存占用</li>
+<li>吞吐量</li>
+<li>延迟</li>
+</ul>
+<h2 id="HotSpot-的算法细节实现"><a href="#HotSpot-的算法细节实现" class="headerlink" title="HotSpot 的算法细节实现"></a>HotSpot 的算法细节实现</h2><h3 id="Stop-the-World-STW"><a href="#Stop-the-World-STW" class="headerlink" title="Stop the World, STW"></a>Stop the World, STW</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><ul>
+<li>Stop-the-world，停止其他非垃圾回收线程的工作，直到完成垃圾回收</li>
+<li>目的是找到一个稳定的执行状态，也就是Java 虚拟机的堆栈不会发生变化，从而垃圾回收器能够“安全”地执行可达性分析</li>
+</ul>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>Java 虚拟机中的 Stop-the-world 是通过安全点（safepoint）机制来实现的</li>
+<li>Java 虚拟机收到 Stop-the-world 请求，它便会等待所有的线程都到达安全点，才允许请求 Stop-the-world 的线程进行独占的工作</li>
+<li>安全点位置<ul>
+<li>运行状态，需要虚拟机保证在可预见的时间内进入安全点<ul>
+<li> JNI 本地代码</li>
+<li>当 Java 程序通过 JNI 执行本地代码时，如果这段代码不访问 Java 对象、调用 Java 方法或者返回至原 Java 方法，那么 Java 虚拟机的堆栈不会发生改变，这段本地代码可以作为同一个安全点</li>
+<li>Java 虚拟机仅需在 API 的入口处进行安全点检测（safepoint poll），测试是否有其他线程请求停留在安全点里，便可以在必要的时候挂起当前线程</li>
+<li>解释执行字节码<ul>
+<li>字节码与字节码之间皆可作为安全点</li>
+<li>JVM 当有安全点请求时，执行一条字节码便进行一次安全点检测</li>
+</ul>
+</li>
+<li>执行即时编译器生成的机器码<ul>
+<li>在生成机器码时，即时编译器需要插入安全点检测，以避免机器码长时间没有安全点检测的情况</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>线程阻塞<ul>
+<li>阻塞的线程由于处于 Java 虚拟机线程调度器的掌控之下，因此属于安全点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安全点检测<ul>
+<li>HotSpot 虚拟机已经将机器码中安全点检测简化为一个内存访问操作</li>
+<li>在有安全点请求的情况下，JVM 会将安全点检测访问的内存所在的页设置为不可读，并且定义一个 segfault 处理器，来截获因访问该不可读内存而触发 segfault 的线程，并将它们挂起</li>
+</ul>
+</li>
+</ul>
+<h3 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h3><h4 id="背景-1"><a href="#背景-1" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>通常来说，调用 new 指令时会在 Eden 区中划出一块作为存储对象的内存</li>
+<li>由于堆空间是线程共享的，因此直接在这里边划空间是需要进行同步的</li>
+<li>申请内存分配的技术被称为 TLAB（Thread Local Allocation Buffer，对应虚拟机参数 -XX:+UseTLAB，默认开启）</li>
+</ul>
+<h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>每个线程可以向 Java 虚拟机申请一段连续的内存，比如 2048 字节，作为线程私有的 TLAB</li>
+<li>这个操作需要加锁，线程需要维护两个指针（实际上可能更多，但重要也就两个），一个指向 TLAB 中空余内存的起始位置，一个则指向 TLAB 末尾</li>
+<li>new 指令便可以直接通过指针加法（bump the pointer）来实现，即把指向空余内存位置的指针加上所请求的字节数<ul>
+<li>如果加法后空余内存指针的值仍小于或等于指向末尾的指针，则代表分配成功</li>
+<li>否则，TLAB 已经没有足够的空间来满足本次新建操作，需要当前线程重新申请新的 TLAB</li>
+</ul>
+</li>
+</ul>
+<h3 id="内存回收策略"><a href="#内存回收策略" class="headerlink" title="内存回收策略"></a>内存回收策略</h3><h4 id="对象优先在-Eden-区被分配"><a href="#对象优先在-Eden-区被分配" class="headerlink" title="对象优先在 Eden 区被分配"></a>对象优先在 Eden 区被分配</h4><ul>
+<li>详见<a href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5">内存分配策略</a></li>
+</ul>
+<h4 id="晋升老年代"><a href="#晋升老年代" class="headerlink" title="晋升老年代"></a>晋升老年代</h4><ul>
+<li>空间分配担保<ul>
+<li>Minor GC 期间存活的对象无法放入 Survivor 空间，通过分配担保机制被提前转移到老年代</li>
+</ul>
+</li>
+<li>大对象直接进入老年代<ul>
+<li>超过 -XX:PretenureSizeThrehold 参数的对象</li>
+<li>大对象意味着高额的内存复制开销，直接老年代分配，避免在几个区内来回复制</li>
+</ul>
+</li>
+<li>长期存活的对象进入老年代<ul>
+<li>Java 虚拟机会在对象头中记录对象年龄，每经过一次 Minor GC 就增加 1 岁</li>
+<li>年龄增加到 15（对应虚拟机参数 -XX:+MaxTenuringThreshold）将被晋升（promote）至老年代</li>
+</ul>
+</li>
+<li>动态对象年龄判定<ul>
+<li>Survivor 空间中低于/等于某年龄的对象总和大于空间的一半，年龄大于/等于概念了的对象可以直接进入老年代</li>
+</ul>
+</li>
+</ul>
+<h3 id="记忆集"><a href="#记忆集" class="headerlink" title="记忆集"></a>记忆集</h3><h4 id="背景-2"><a href="#背景-2" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>为了解决对象跨代引用带来的问题</li>
+<li>在新生代中建立名为记忆集的数据结构，避免扫描整个老年代</li>
+</ul>
+<h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><ul>
+<li>记录从非收集区域指向收集区域的指针集合的抽象数据结构</li>
+</ul>
+<h4 id="记录粒度"><a href="#记录粒度" class="headerlink" title="记录粒度"></a>记录粒度</h4><ul>
+<li>字长精度：每个记录精确到一个机器字长</li>
+<li>对象精度：每个记录精确到一个对象</li>
+<li>卡精度：每个记录精确到一块内存（最常用）</li>
+</ul>
+<h4 id="卡表"><a href="#卡表" class="headerlink" title="卡表"></a>卡表</h4><ul>
+<li>卡精度的方式实现记忆集</li>
+<li>该技术将整个堆划分为一个个大小为 512 字节的卡，并且维护一个卡表，用来存储每张卡的一个标识位</li>
+<li>实现形式<ul>
+<li>字节数组</li>
+<li>每个元素对应其标识的内存区域中一块特定大小的内存块（卡页，512字节）</li>
+<li>如果页内存在一个或多个对象的字段存在跨代指针，元素的值标识为1（变脏）</li>
+</ul>
+</li>
+<li>在进行 Minor GC 的时候，我们便可以不用扫描整个老年代，而是在卡表中寻找脏卡，并将脏卡中的对象加入到 Minor GC 的 GC Roots 里</li>
+<li>当完成所有脏卡的扫描之后，Java 虚拟机便会将所有脏卡的标识位清零</li>
+<li>由于 Minor GC 伴随着存活对象的复制，而复制需要更新指向该对象的引用<ul>
+<li>在更新引用的同时，我们又会设置引用所在的卡的标识位</li>
+<li>这个时候，我们可以确保脏卡中必定包含指向新生代对象的引用</li>
+</ul>
+</li>
+</ul>
+<h4 id="写屏障"><a href="#写屏障" class="headerlink" title="写屏障"></a>写屏障</h4><ul>
+<li>解决卡表元素维护的问题</li>
+<li>写屏障可以看做JVM层面对“引用类型字段赋值”动作的AOP切面<ul>
+<li>赋值的前后都在写屏障的覆盖范围内，分别为写前屏障和写后屏障</li>
+</ul>
+</li>
+<li>在写屏障中增加更新卡表的操作，会导致只要对引用进行更新，就会产生额外的开销<ul>
+<li>写屏障需要尽可能地保持简洁</li>
+<li>因此，写屏障并不会判断更新后的引用是否指向新生代中的对象，而是宁可错杀，不可放过，一律当成可能指向新生代对象的引用</li>
+<li>虽然写屏障不可避免地带来一些开销，但是它能够加大 Minor GC 的吞吐率，总的来说还是值得的</li>
+</ul>
+</li>
+<li>在高并发环境下，写屏障又带来了虚共享（false sharing）问题<ul>
+<li>可以先检查卡表标记，未被标记过时才标记变脏</li>
+</ul>
+</li>
+</ul>
+<h3 id="并发的可达性分析"><a href="#并发的可达性分析" class="headerlink" title="并发的可达性分析"></a>并发的可达性分析</h3><h4 id="三色标记"><a href="#三色标记" class="headerlink" title="三色标记"></a>三色标记</h4><ul>
+<li>白色<ul>
+<li>对象未被垃圾收集器访问过，分析结束阶段代表不可达</li>
+</ul>
+</li>
+<li>灰色<ul>
+<li>已经被垃圾收集器访问过，这个对象上至少存在一个引用还没有被访问过</li>
+</ul>
+</li>
+<li>黑色<ul>
+<li>对象已经被访问过，表示它是安全存活的</li>
+<li>无须重新扫描，不可能直接指向某个白色对象</li>
+</ul>
+</li>
+</ul>
+<h4 id="用户线程与收集器并发工作"><a href="#用户线程与收集器并发工作" class="headerlink" title="用户线程与收集器并发工作"></a>用户线程与收集器并发工作</h4><h5 id="后果"><a href="#后果" class="headerlink" title="后果"></a>后果</h5><ul>
+<li>浮动垃圾<ul>
+<li>原本消亡的对象标记为存活</li>
+<li>可以容忍</li>
+</ul>
+</li>
+<li>对象消失<ul>
+<li>原本存活的对象标记为已消亡</li>
+<li>非常致命</li>
+</ul>
+</li>
+<li>当且仅当同时满足以下两个条件时，会发生对象消失<ul>
+<li>赋值器插入了一条或多条从黑色对象到白色对象的新引用</li>
+<li>赋值器删除了全部从灰色对象到该白色对象的直接或间接引用</li>
+</ul>
+</li>
+</ul>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><h5 id="增量更新"><a href="#增量更新" class="headerlink" title="增量更新"></a>增量更新</h5><ul>
+<li>破坏第一个条件</li>
+<li>记录从黑色对象到白色对象的新引用</li>
+<li>并发扫描后，将记录的引用关系中，黑色对象为根，重新扫描一次</li>
+<li>CMS 的实现</li>
+</ul>
+<h5 id="原始快照-Snapshot-At-The-Beginning-SATB"><a href="#原始快照-Snapshot-At-The-Beginning-SATB" class="headerlink" title="原始快照 (Snapshot At The Beginning, SATB)"></a>原始快照 (Snapshot At The Beginning, SATB)</h5><ul>
+<li>破坏第二个条件</li>
+<li>将这个要删除的灰色对象到白色对象的引用记录下来</li>
+<li>并发扫描后，将记录的引用关系中，灰色对象为根，重新扫描一次</li>
+<li>G1 的实现</li>
+</ul>
+<h5 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h5><ul>
+<li>虚拟机的记录操作都是通过写屏障实现的</li>
+</ul>
+<h2 id="经典垃圾收集器"><a href="#经典垃圾收集器" class="headerlink" title="经典垃圾收集器"></a>经典垃圾收集器</h2><h3 id="Serial-收集器"><a href="#Serial-收集器" class="headerlink" title="Serial 收集器"></a>Serial 收集器</h3><ul>
+<li><strong>单线程</strong>工作的收集器，只会使用一个处理器或一条收集线程去完成垃圾收集工作</li>
+<li>必须暂停其它所有工作线程，直到它收集结束</li>
+<li>Hotspot 虚拟机运行在客户端模式下的<strong>默认新生代收集器</strong></li>
+<li>优点<ul>
+<li>简单而高效</li>
+<li>额外内存消耗最小</li>
+</ul>
+</li>
+</ul>
+<h3 id="ParNew-收集器"><a href="#ParNew-收集器" class="headerlink" title="ParNew 收集器"></a>ParNew 收集器</h3><ul>
+<li>Serial 收集器的<strong>多线程</strong>并行版本</li>
+<li>运行在服务端模式下，JDK7 之前的首选<strong>新生代收集器</strong>，只有它<strong>能与CMS收集器</strong>配合工作</li>
+</ul>
+<h3 id="Parallel-Scavenge-收集器"><a href="#Parallel-Scavenge-收集器" class="headerlink" title="Parallel Scavenge 收集器"></a>Parallel Scavenge 收集器</h3><ul>
+<li>基于<strong>标记-复制算法</strong>的<strong>新生代收集器</strong>，能够<strong>并行</strong>收集</li>
+<li>优点<ul>
+<li>可控制的吞吐量，适合在后台运算而不需要太多交互的分析任务</li>
+</ul>
+</li>
+<li>提供了两个参数用于<strong>精确控制吞吐量</strong><ul>
+<li>控制最大垃圾收集停顿时间 -XX:MaxGCPauseMills</li>
+<li>直接设置吞吐量大小的 -XX:GCTimeRatio</li>
+</ul>
+</li>
+<li>自适应调节策略动态调整相关参数以提供最合适的停顿时间和最大的吞吐量</li>
+</ul>
+<h3 id="Serial-Old-收集器"><a href="#Serial-Old-收集器" class="headerlink" title="Serial Old 收集器"></a>Serial Old 收集器</h3><ul>
+<li>Serial 收集器的<strong>老年代</strong>版本，<strong>单线程</strong>收集器，客户端模式下使用</li>
+<li>JDK5之前与 Parallel Scavenge 收集器搭配使用</li>
+<li>作为CMS收集器发生失败时的后备预案</li>
+</ul>
+<h3 id="Parallel-Old-收集器"><a href="#Parallel-Old-收集器" class="headerlink" title="Parallel Old 收集器"></a>Parallel Old 收集器</h3><ul>
+<li>JDK6 提供的，Parallel Old 是 Parallel Scavenge 收集器的<strong>老年代版本</strong>，支持<strong>多线程并行</strong>收集，基于<strong>标记-整理</strong>算法</li>
+<li>注重吞吐量或者处理器资源较为稀缺的场合，可以优先考虑 Parallel Scavenge + Parallel Old 组合</li>
+</ul>
+<h3 id="CMS（concurrent-mark-sweep）收集器"><a href="#CMS（concurrent-mark-sweep）收集器" class="headerlink" title="CMS（concurrent mark sweep）收集器"></a>CMS（concurrent mark sweep）收集器</h3><ul>
+<li>以<strong>获取最短停顿时间</strong>为目标的收集器，适用于较为关注服务的响应速度的场景</li>
+<li>基于<strong>标记-清除</strong>算法</li>
+</ul>
+<h4 id="流程-5"><a href="#流程-5" class="headerlink" title="流程"></a>流程</h4><ul>
+<li>初始标记<ul>
+<li>STW</li>
+<li>标记一下GC Roots能直接关联到的对象，速度很快</li>
+</ul>
+</li>
+<li>并发标记<ul>
+<li>从GC Roots直接关联对象开始遍历整个对象图的过程，耗时较长</li>
+<li>通过<a href="#%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0">增量更新</a>的方式解决并发场景下“对象消失“问题</li>
+</ul>
+</li>
+<li>重新标记<ul>
+<li>STW</li>
+<li>修复并发标记期间，标记产生变动的那一部分对象的标记记录</li>
+</ul>
+</li>
+<li>并发清除<ul>
+<li>清理删除标记阶段判断的已死亡对象</li>
+</ul>
+</li>
+</ul>
+<h4 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li><p>对处理器资源敏感，占用了一部分线程导致应用程序变慢，降低总吞吐量</p>
+</li>
+<li><p>无法处理“浮动垃圾”，有可能出现并发失败而导致Full GC产生</p>
+<ul>
+<li>浮动垃圾：并发标记和并发清理阶段产生的新的垃圾对象，无法当次收集，只能留到下一次GC处理</li>
+</ul>
+</li>
+<li><p>产生大量空间碎片，提前触发 Full GC</p>
+</li>
+</ul>
+<h3 id="Garbage-First-G1-收集器"><a href="#Garbage-First-G1-收集器" class="headerlink" title="Garbage First (G1) 收集器"></a>Garbage First (G1) 收集器</h3><h4 id="背景-3"><a href="#背景-3" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>JDK7提供的，面向服务端应用的垃圾收集器，目标是替换掉CMS收集器</li>
+<li>JDK9发布之日，G1宣告取代Parallel Scavenge + Parallel Old 组合，称为服务端模式下默认的垃圾收集器</li>
+</ul>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>整体来看是基于<strong>标记-整理算法</strong>，局部上看是基于标记-复制</li>
+<li>目标是<strong>延迟可控的情况下尽可能高的吞吐量</strong></li>
+<li>G1收集器的<strong>Mixed GC模式</strong><ul>
+<li>面向堆内存任何部分来组成回收集进行回收</li>
+<li>哪块内存中存放的垃圾数量最多，回收收益最大</li>
+</ul>
+</li>
+</ul>
+<h4 id="实现-3"><a href="#实现-3" class="headerlink" title="实现"></a>实现</h4><ul>
+<li><strong>基于 Region</strong> 的堆内存布局，把连续的 Java 堆划分为多个大小相等的独立区域</li>
+<li>G1 仍然<strong>保留了新生代和老年代的概念，但不再固定</strong>，是一系列区域的动态集合<ul>
+<li>每个 Region 都可以<strong>根据需要，扮演新生代的Eden空间、survivor空间，或者老年代空间</strong></li>
+<li>收集器对扮演不同角色的 Region 采取不同的策略处理</li>
+</ul>
+</li>
+<li>Region 中有一类特殊的 <strong>Humongous 区域，专门用来存储大对象</strong><ul>
+<li>大对象：大小超过了一个Region容量一半的对象</li>
+<li>Region 大小可通过参数 -XX:G1HeapRegionSize 设定，范围在1MB~32MB（2的N次幂）</li>
+<li>超过了整个Region容量的超级大对象，被存放在N个连续的Humongous Region中</li>
+</ul>
+</li>
+<li>将 Region 作为垃圾回收的最小单元，每次收集到的内存都是Region大小的整数倍，避免在整个Java堆进行全区域的垃圾收集</li>
+<li>G1收集器<strong>跟踪各个Region里面的垃圾堆积的价值（回收所获得空间的大小以及所需时间的经验值）的大小，在后台维护一个优先级列表，根据用户设定的收集停顿时间，优先处理回收价值收益最大的那些Region</strong></li>
+</ul>
+<h4 id="建立可靠的停顿预测模型"><a href="#建立可靠的停顿预测模型" class="headerlink" title="建立可靠的停顿预测模型"></a>建立可靠的停顿预测模型</h4><ul>
+<li>-XX:MaxGCPauseMillis 参数指定的停顿时间意味着GC发生之前的期望值</li>
+<li>以衰减均值为理论基础实现，更准确的代表最近的平均状态</li>
+<li>G1 在收集过程中记录每个Region的回收耗时、每个记忆集中的脏卡数量等各个可测量的步骤花费的成本，分析得出平均值、标准偏差、置信度等统计信息</li>
+</ul>
+<h4 id="跨-Region-引用"><a href="#跨-Region-引用" class="headerlink" title="跨 Region 引用"></a>跨 Region 引用</h4><ul>
+<li><strong>每个 Region 都维护自己的<a href="#%E8%AE%B0%E5%BF%86%E9%9B%86">记忆集</a>，记录别的 Region 指向自己的指针</strong></li>
+<li>内存占用高，耗费Java堆容量10%-20%的额外内存维持收集器工作</li>
+</ul>
+<h4 id="并发回收"><a href="#并发回收" class="headerlink" title="并发回收"></a>并发回收</h4><ul>
+<li>通过<a href="#%E5%8E%9F%E5%A7%8B%E5%BF%AB%E7%85%A7" title="Snapshot-At-The-Beginning,-SATB">原始快照(SATB)</a>算法解决并发下“对象消失”问题</li>
+<li>TAMS<ul>
+<li>G1 为每个 Region 设计了两个名为 TAMS(Top at Mark Start) 的指针</li>
+<li>Region 中的一部分空间划分出来永不并发回收过程中新对象的分配</li>
+<li>新分配的对象必须要在这两个指针位以上，G1 默认这个地址上的对象是存活的</li>
+</ul>
+</li>
+</ul>
+<h4 id="流程-6"><a href="#流程-6" class="headerlink" title="流程"></a>流程</h4><ul>
+<li>初始标记<ul>
+<li>标记一下 GC Roots 能直接关联到的对象</li>
+<li>修改 TAMS 指针的值，使下一阶段能正确的在 Region 中分配新对象</li>
+<li>STW，耗时很短，借用 Minor GC 时同步完成</li>
+</ul>
+</li>
+<li>并发标记<ul>
+<li>递归扫描整个堆的对象图，耗时较长</li>
+<li>扫描结束后，重新处理 SATB 记录下的在并发时有引用变动的对象</li>
+</ul>
+</li>
+<li>最终标记<ul>
+<li>短暂的STW</li>
+<li>处理并发阶段结束后仍遗留下来的最后少量的SATB记录</li>
+</ul>
+</li>
+<li>筛选回收<ul>
+<li>更新 Region 的统计数据，对各个 Region 的回收价值和成本进行排序</li>
+<li>根据用户所期望的停顿时间来制定停顿计划，自由选择任意多个 Region 构成回收集</li>
+<li>把决定回收的那一部分 Region 的存活对象复制到空的 Region 中</li>
+<li>清理掉整个旧 Region 的全部空间</li>
+<li>涉及存活对象的移动，必须STW，多条收集线程并行完成</li>
+</ul>
+</li>
+</ul>
+<h4 id="缺点-4"><a href="#缺点-4" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>停顿目标时间太短，导致每次选出来的回收集只占堆内存很小的一部分，收集的速度跟不上分配的速度，垃圾慢慢堆积，最终占满堆引发 Full GC 反而降低性能<ul>
+<li>停顿目标时间设置在一两百/两三百毫秒是比较合理的</li>
+</ul>
+</li>
+<li>产生的内存占用高<ul>
+<li>每个Region都必须有一份卡表</li>
+</ul>
+</li>
+<li>额外执行负载高<ul>
+<li>使用写屏障进行卡表维护操作，跟踪并发时的指针变化情况（SATB）</li>
+<li>CMS的写屏障实现是直接的同步操作</li>
+<li>而 G1 相对复杂，消耗更多运算资源，需要异步处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="CMS-v-s-G1"><a href="#CMS-v-s-G1" class="headerlink" title="CMS v.s. G1"></a>CMS v.s. G1</h3><ul>
+<li>CMS在小内存应用上表现大概率优于 G1，G1 在大内存应用能发挥其优势</li>
+</ul>
+<h2 id="低延迟垃圾收集器"><a href="#低延迟垃圾收集器" class="headerlink" title="低延迟垃圾收集器"></a>低延迟垃圾收集器</h2><h3 id="Shenandoah-收集器"><a href="#Shenandoah-收集器" class="headerlink" title="Shenandoah 收集器"></a>Shenandoah 收集器</h3><ul>
+<li><p>OpenJDK12的正式特性，目标是在任何堆内存的大小下都可以把垃圾回收的停顿时间限制在十毫秒以内的垃圾收集器</p>
+</li>
+<li><p>更像是G1的下一代继承者</p>
+<ul>
+<li>基于Region的内存布局，有着存放大对象的Humongous Region</li>
+<li>默认的回收策略是优先处理回收价值最大的Region</li>
+</ul>
+</li>
+<li><p>流程</p>
+<ul>
+<li>初始标记<ul>
+<li>STW</li>
+<li>标记与 GC Roots 直接关联的对象，停顿时间与GC Roots的数量相关</li>
+</ul>
+</li>
+<li>并发标记<ul>
+<li>遍历对象图，标记出全部可达的对象</li>
+<li>与用户线程并发</li>
+<li>时间长短取决于堆中存活对象的数量以及对象图的结构复杂度</li>
+</ul>
+</li>
+<li>最终标记<ul>
+<li>STW</li>
+<li>处理剩余的 SATB 扫描，统计出回收价值最高的 Region，构成一组回收集</li>
+</ul>
+</li>
+<li>并发清理<ul>
+<li>清理那些整个区域内连一个存活对象都没有找到的Region</li>
+</ul>
+</li>
+<li>并发回收<ul>
+<li>复制回收集的存活对象到一份其他未被使用的 Region 之中</li>
+<li>通过读屏障和转发指针来解决并发回收的困难</li>
+<li>时间长短取决于回收集的大小</li>
+</ul>
+</li>
+<li>初始引用更新<ul>
+<li>建立线程集合点，确保已经完成对象移动任务</li>
+<li>STW</li>
+</ul>
+</li>
+<li>并发引用更新<ul>
+<li>所有指向旧对象的引用修正到复制后的新地址</li>
+<li>与用户线程并发进行</li>
+<li>时间长短取决于内存中涉及的引用数量多少</li>
+<li>不需要沿着对象图搜索，只需要按照内存物理地址的顺序，线性的搜索出引用类型，把旧值改为新值</li>
+</ul>
+</li>
+<li>最终引用更新<ul>
+<li>修正存在于 GC Roots 中的引用</li>
+<li>停顿时间与GC Roots 正相关</li>
+</ul>
+</li>
+<li>并发清理<ul>
+<li>整个回收集中所有的Region已再无存活对象，回收这些Region的内存空间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>转发指针</p>
+<ul>
+<li>实现对象移动与用户程序并发的一种解决方案</li>
+<li>在对象头最前面增加一个新的引用字段，在正常不处于并发移动的情况下，该引用指向自己</li>
+<li>每次访问带来一次额外的转向开销</li>
+</ul>
+</li>
+<li><p>保证写操作只能发生在新复制的对象，而不是旧对象的内存中</p>
+<ul>
+<li>CAS操作保证并发时对象访问正确性</li>
+<li>在读、写屏障中都加入了额外的转发处理</li>
+</ul>
+</li>
+<li><p>并未实现最大停顿时间在十毫秒以内的目标，吞吐量方面出现了很明显的下降</p>
+</li>
+</ul>
+<h3 id="ZGC-收集器"><a href="#ZGC-收集器" class="headerlink" title="ZGC 收集器"></a>ZGC 收集器</h3><h4 id="背景-4"><a href="#背景-4" class="headerlink" title="背景"></a>背景</h4><ul>
+<li><strong>JDK11</strong>中新加入的具有实验性质的<strong>以低延迟为首要目标</strong>的垃圾收集器</li>
+<li>目标是在尽可能对吞吐量影响不太大的前提下，在任何堆内存的大小下都可以把垃圾回收的停顿时间限制在十毫秒以内的垃圾收集器</li>
+<li>基于 Region 内存布局，不设分代，使用了读屏障、染色指针和内存多重映射技术实现的可并发的标记-整理算法的垃圾收集器</li>
+<li>收集过程几乎全程可并发，短暂停顿只与 GC Roots  大小相关，而与堆大小无关</li>
+<li>达到以高吞吐量为目标的 Parallel Scavenge 的99%</li>
+</ul>
+<h4 id="基于-Region-内存布局"><a href="#基于-Region-内存布局" class="headerlink" title="基于 Region 内存布局"></a>基于 Region 内存布局</h4><ul>
+<li><p>ZGC 的 ZPAGE 具有动态性</p>
+</li>
+<li><p>动态创建和销毁</p>
+</li>
+<li><p>动态的区域容量大小</p>
+<ul>
+<li>大<ul>
+<li>Region 容量不固定，可动态变化，必须为 2MB 的整数倍</li>
+<li>放置 4MB 以上的大对象</li>
+<li>只存放一个大对象，不会被重分配</li>
+</ul>
+</li>
+<li>中<ul>
+<li>容量固定为 32MB</li>
+<li>放置大于 256 KB，小于 4MB 的对象</li>
+</ul>
+</li>
+<li>小<ul>
+<li>容量固定为2MB</li>
+<li>放置小于 256 KB 的小对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="并发整理算法"><a href="#并发整理算法" class="headerlink" title="并发整理算法"></a>并发整理算法</h4><ul>
+<li>转发指针和读屏障实现并发整理</li>
+</ul>
+<h5 id="染色指针技术"><a href="#染色指针技术" class="headerlink" title="染色指针技术"></a>染色指针技术</h5><ul>
+<li>直接将少量额外的信息存储在指针上的技术</li>
+<li>ZGC把标记信息记在引用对象的指针上，将高四位提取出来存储四个标志信息</li>
+<li>直接从指针看到引用对象的三色标记状态、是否进入了重分配集（被移动过）、是否能通过finalize()方法才能被访问到</li>
+<li>解决方案<ul>
+<li>如何使操作系统支持随意重新定义内存中某些指针的其中几位</li>
+<li>ZGC使用多重映射技术将多个不同的虚拟内存地址映射到同一物理内存地址上，是一种一对多映射</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>有 4TB 的内存限制</li>
+<li>不能支持 32 位平台</li>
+<li>不能支持压缩指针</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>一旦某个 Region 的存活对象被移走之后，这个 Region 立即就能够被释放和重用</li>
+<li>大幅减少在GC过程中内存屏障的使用数量，并未使用任何写屏障，只使用了读屏障</li>
+<li>作为一种可扩展的存储结构来记录更多与对象标记、重定位过程相关的数据，以便日后进一步提高性能</li>
+</ul>
+</li>
+<li>自愈能力<ul>
+<li>从引用上可知一个对象是否处于重分配集中</li>
+<li>并发访问时，会被预置的内存屏障截获，根据转发表将访问转发</li>
+<li>同时修正更新该引用的值，使其直接指向新对象</li>
+<li>只有第一次访问旧对象会陷入转发</li>
+</ul>
+</li>
+</ul>
+<h4 id="流程-7"><a href="#流程-7" class="headerlink" title="流程"></a>流程</h4><ul>
+<li>初始标记<ul>
+<li>STW</li>
+</ul>
+</li>
+<li>并发标记<ul>
+<li>遍历对象图做可达性分析的阶段</li>
+<li>更新染色指针中的Marked 0、Marked 1 标志位</li>
+</ul>
+</li>
+<li>最终标记<ul>
+<li>STW</li>
+</ul>
+</li>
+<li>并发预备重分配<ul>
+<li>统计本次收集过程要清理那些Region，组成重分配集</li>
+<li>重分配集中的对象会被重新复制到其他 Region 中，里面的 Region 会被释放</li>
+<li>每次回收扫描所有Region，省去记忆集维护成本</li>
+</ul>
+</li>
+<li>并发重分配<ul>
+<li>把重分配集中的存活对象复制到新的 Region 上</li>
+<li>为重分配集中的每个Region维护一个转发表，记录从旧对象到新对象的转向关系</li>
+<li>释放存活对象都复制完毕的Region</li>
+</ul>
+</li>
+<li>并发重映射<ul>
+<li>修正整个堆中指向重分配集中旧对象的所有引用</li>
+<li>因为自愈能力，这个步骤不是迫切执行的</li>
+<li>合并到下一次垃圾收集循环中的并发标记阶段完成（都要遍历所有对象）</li>
+<li>所有指针都被修正后，释放转发表</li>
+</ul>
+</li>
+</ul>
+<h4 id="缺点-5"><a href="#缺点-5" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>限制能承受的对象分配速率不会太高<ul>
+<li>并发收集时间很长，会产生大量浮动垃圾</li>
+</ul>
+</li>
+</ul>
+<h1 id="不同-JDK-下的默认垃圾收集器"><a href="#不同-JDK-下的默认垃圾收集器" class="headerlink" title="不同 JDK 下的默认垃圾收集器"></a>不同 JDK 下的默认垃圾收集器</h1><ul>
+<li>JDK7/JDK8<ul>
+<li>Parallel Scavenge（新生代）</li>
+<li>Parallel Old（老年代）</li>
+</ul>
+</li>
+<li>JDK9<ul>
+<li>G1</li>
+</ul>
+</li>
+</ul>
+<h1 id="相关面试题"><a href="#相关面试题" class="headerlink" title="相关面试题"></a>相关面试题</h1><ul>
+<li><p>你了解哪些收集器？详细谈谈G1的优点</p>
+</li>
+<li><p>说一下GC吧，什么时候进行Full GC呢？</p>
+</li>
+<li><p>讲讲你所了解的 JVM 垃圾收集算法，垃圾回收机制，垃圾回收算法，垃圾收集器详细解释</p>
+</li>
+<li><p>项目中查看垃圾回收</p>
+</li>
+<li><p>你们的环境使用什么 GC 收集器</p>
+</li>
+<li><p>什么时候对象会晋升到老年代</p>
+</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>《深入理解Java虚拟机》 第 3 版</li>
+<li>郑雨迪《深入拆解Java虚拟机》</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Interview/" rel="tag"># Interview</a>
+              <a href="/tags/GC/" rel="tag"># GC</a>
+              <a href="/tags/JVM/" rel="tag"># JVM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/05/%E8%B7%B3%E8%A1%A8/" rel="prev" title="跳表">
+                  <i class="fa fa-chevron-left"></i> 跳表
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lsinger</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
