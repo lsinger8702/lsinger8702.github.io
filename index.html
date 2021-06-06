@@ -116,18 +116,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -165,6 +165,115 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/06/MySQL-%E6%9E%B6%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/06/06/MySQL-%E6%9E%B6%E6%9E%84/" class="post-title-link" itemprop="url">MySQL 架构</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-06-06 21:35:04 / Modified: 23:23:19" itemprop="dateCreated datePublished" datetime="2021-06-06T21:35:04+08:00">2021-06-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="基础架构"><a href="#基础架构" class="headerlink" title="基础架构"></a>基础架构</h1><h2 id="一条-SQL-语句是如何执行的"><a href="#一条-SQL-语句是如何执行的" class="headerlink" title="一条 SQL 语句是如何执行的"></a>一条 SQL 语句是如何执行的</h2><ul>
+<li>第一步，你会先连接到这个数据库上，这时候接待你的就是连接器。连接器负责跟客户端建立连接、获取权限、维持和管理连接。</li>
+<li>MySQL 拿到一个查询请求后，会先到查询缓存看看，之前是不是执行过这条语句<ul>
+<li>查询能够直接在这个缓存中找到 key，那么这个 value 就会被直接返回给客户端</li>
+<li>否则执行语句</li>
+</ul>
+</li>
+<li>分析器对语句进行词法分析和语法分析</li>
+<li>优化器是在表里面有多个索引的时候，决定使用哪个索引；或者在一个语句有多表关联（join）的时候，决定各个表的连接顺序</li>
+</ul>
+<p><img src="https://static001.geekbang.org/resource/image/0d/d9/0d2070e8f84c4801adbfa03bda1f98d9.png" alt="img"></p>
+<ul>
+<li>大体来说，MySQL 可以分为 Server 层和存储引擎层两部分</li>
+<li>Server 层<ul>
+<li>包括连接器、查询缓存、分析器、优化器、执行器等</li>
+<li>涵盖 MySQL 的大多数核心服务功能</li>
+<li>所有的内置函数（如日期、时间、数学和加密函数等）</li>
+<li>所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等</li>
+</ul>
+</li>
+<li>存储引擎层<ul>
+<li>负责数据的存储和提取</li>
+<li>其架构模式是插件式的，支持 InnoDB、MyISAM、Memory 等多个存储引擎</li>
+<li>现在最常用的存储引擎是 InnoDB，它从 MySQL 5.5.5 版本开始成为了默认存储引擎</li>
+</ul>
+</li>
+<li>可以通过指定存储引擎的类型来选择别的引擎，比如在 create table 语句中使用 engine=memory, 来指定使用内存引擎创建表</li>
+<li>从图中不难看出，不同的存储引擎共用一个 Server 层</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/06/MySQL-%E6%9E%B6%E6%9E%84/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/06/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -190,7 +299,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-06-06 21:17:07 / Modified: 21:33:25" itemprop="dateCreated datePublished" datetime="2021-06-06T21:17:07+08:00">2021-06-06</time>
+      <time title="Created: 2021-06-06 21:17:07 / Modified: 21:38:05" itemprop="dateCreated datePublished" datetime="2021-06-06T21:17:07+08:00">2021-06-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -218,236 +327,14 @@
 <li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构</li>
 <li>在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口</li>
 </ul>
-<h3 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h3><ul>
-<li> Java 语言的类型可以分为两大类：基本类型（primitive types）和引用类型（reference types）</li>
-<li> Java 的<strong>基本类型是由 Java 虚拟机预先定义好的</strong></li>
-<li>引用类型细分为四种：类、接口、数组类和泛型参数<ul>
-<li>由于泛型参数会在编译过程中被擦除，因此 Java 虚拟机实际上只有前三种</li>
-<li><strong>数组类是由 Java 虚拟机直接在内存中动态构造的，但数组的元素类型最终还是要靠类加载器完成加载</strong></li>
-<li><strong>类、接口则有对应的字节流</strong></li>
-</ul>
-</li>
-<li><strong>《Java虚拟机规范》没有指明二进制字节流要从哪里、如何获取，这个动作放在虚拟机外部实现</strong><ul>
-<li>字节流最常见的形式是由 Java 编译器生成的 class 文件</li>
-<li>也可以在程序内部直接生成</li>
-<li>从网络中获取（例如网页中内嵌的小程序 Java applet）字节流</li>
-<li>这些不同形式的字节流，都会被加载到 Java 虚拟机中，成为类或接口</li>
-</ul>
-</li>
-</ul>
-<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><ul>
-<li>加载功能<ul>
-<li>通过一个类的全限定名来获取定义此类的二进制字节流</li>
-</ul>
-</li>
-<li>提供了命名空间的作用<ul>
-<li><strong>在 Java 虚拟机中，类的唯一性是由类加载器实例以及类的全名一同确定的</strong></li>
-<li>即便是同一串字节流，经由不同的类加载器加载，也会得到两个不同的类</li>
-<li>在大型应用中，我们往往借助这一特性，来运行同一个类的不同版本</li>
-</ul>
-</li>
-</ul>
-<h4 id="启动类加载器（bootstrap-class-loader）"><a href="#启动类加载器（bootstrap-class-loader）" class="headerlink" title="启动类加载器（bootstrap class loader）"></a>启动类加载器（bootstrap class loader）</h4><ul>
-<li>由 C++ 实现的，是虚拟机自身的一部分，没有对应的 Java 对象，因此在 Java 中只能用 null 来指代</li>
-<li>在 Java 9 之前<ul>
-<li>负责加载最为基础、最为重要的类，比如存放在 JRE 的 lib 目录下 jar 包中的类以及由虚拟机参数 -Xbootclasspath 指定的路径</li>
-</ul>
-</li>
-<li>Java 9 <ul>
-<li>引入了模块系统</li>
-<li>Java SE 中除了少数几个关键模块，比如说 java.base 是由启动类加载器加载之外，其他的模块均由平台类加载器所加载</li>
-</ul>
-</li>
-</ul>
-<h4 id="其它类加载器"><a href="#其它类加载器" class="headerlink" title="其它类加载器"></a>其它类加载器</h4><ul>
-<li>都是 java.lang.ClassLoader 的子类，因此有对应的 Java 对象，均由 Java 核心类库提供</li>
-<li>这些类加载器需要先由另一个类加载器，比如说启动类加载器，加载至 Java 虚拟机中，方能执行类加载</li>
-</ul>
-<h5 id="扩展类加载器（extension-class-loader）"><a href="#扩展类加载器（extension-class-loader）" class="headerlink" title="扩展类加载器（extension class loader）"></a>扩展类加载器（extension class loader）</h5><ul>
-<li>父类加载器是启动类加载器</li>
-<li>负责加载相对次要、但又通用的类，比如存放在 JRE 的 lib/ext 目录下 jar 包中的类以及由系统变量 java.ext.dirs 指定的类</li>
-<li>Java9 中，扩展类加载器被改名为平台类加载器（platform class loader）</li>
-</ul>
-<h5 id="应用类加载器（application-class-loader）"><a href="#应用类加载器（application-class-loader）" class="headerlink" title="应用类加载器（application class loader）"></a>应用类加载器（application class loader）</h5><ul>
-<li>父类加载器则是扩展类加载器</li>
-<li>负责加载应用程序路径下的类，指虚拟机参数 -cp/-classpath、系统变量 java.class.path 或环境变量 CLASSPATH 所指定的路径</li>
-<li>默认情况下，应用程序中包含的类便是由应用类加载器加载的</li>
-<li>getSystemClassLoader() 方法的返回值</li>
-</ul>
-<h5 id="自定义类加载器"><a href="#自定义类加载器" class="headerlink" title="自定义类加载器"></a>自定义类加载器</h5><ul>
-<li>实现特殊的加载方式<ul>
-<li>可以对 class 文件进行加密，加载时再利用自定义的类加载器对其解密</li>
-</ul>
-</li>
-<li>控制字节流的获取方式<ul>
-<li>重写 findClass() 或 loadClass() 方法</li>
-</ul>
-</li>
-</ul>
-<h3 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h3><h4 id="过程-2"><a href="#过程-2" class="headerlink" title="过程"></a>过程</h4><ul>
-<li>如果一个类收到了类加载请求，他首先不会自己加载，而是把这个请求委派给父类加载器</li>
-<li>每一层的类加载器都是如此，因此加载请求最终都会传送到最顶层的启动类加载器中</li>
-<li>只有当父类加载器反馈自己无法完成这个加载请求（它的搜索范围中没有找到所需的类）时，子类加载器才会尝试自己去完成加载</li>
-</ul>
-<h4 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h4><ul>
-<li>在 Java 虚拟机中，类的唯一性是由类加载器实例以及类的全名一同确定的</li>
-<li>Java中的类随着它的类加载器具备了一种带有优先级的层次关系</li>
-<li>保证核心类在各种类加载器环境中都能够保证是同一个类</li>
-</ul>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Loads the class with the specified &lt;a href=&quot;#name&quot;&gt;binary name&lt;/a&gt;.  The</span></span><br><span class="line"><span class="comment">    * default implementation of this method searches for classes in the</span></span><br><span class="line"><span class="comment">    * following order:</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * &lt;ol&gt;</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    *   &lt;li&gt;&lt;p&gt; Invoke &#123;<span class="doctag">@link</span> #findLoadedClass(String)&#125; to check if the class</span></span><br><span class="line"><span class="comment">    *   has already been loaded.  &lt;/p&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    *   &lt;li&gt;&lt;p&gt; Invoke the &#123;<span class="doctag">@link</span> #loadClass(String) loadClass&#125; method</span></span><br><span class="line"><span class="comment">    *   on the parent class loader.  If the parent is &#123;<span class="doctag">@code</span> null&#125; the class</span></span><br><span class="line"><span class="comment">    *   loader built into the virtual machine is used, instead.  &lt;/p&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    *   &lt;li&gt;&lt;p&gt; Invoke the &#123;<span class="doctag">@link</span> #findClass(String)&#125; method to find the</span></span><br><span class="line"><span class="comment">    *   class.  &lt;/p&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * &lt;/ol&gt;</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * &lt;p&gt; If the class was found using the above steps, and the</span></span><br><span class="line"><span class="comment">    * &#123;<span class="doctag">@code</span> resolve&#125; flag is true, this method will then invoke the &#123;<span class="doctag">@link</span></span></span><br><span class="line"><span class="comment">    * #resolveClass(Class)&#125; method on the resulting &#123;<span class="doctag">@code</span> Class&#125; object.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * &lt;p&gt; Subclasses of &#123;<span class="doctag">@code</span> ClassLoader&#125; are encouraged to override &#123;<span class="doctag">@link</span></span></span><br><span class="line"><span class="comment">    * #findClass(String)&#125;, rather than this method.  &lt;/p&gt;</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * &lt;p&gt; Unless overridden, this method synchronizes on the result of</span></span><br><span class="line"><span class="comment">    * &#123;<span class="doctag">@link</span> #getClassLoadingLock getClassLoadingLock&#125; method</span></span><br><span class="line"><span class="comment">    * during the entire class loading process.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span>  name</span></span><br><span class="line"><span class="comment">    *         The &lt;a href=&quot;#name&quot;&gt;binary name&lt;/a&gt; of the class</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span>  resolve</span></span><br><span class="line"><span class="comment">    *         If &#123;<span class="doctag">@code</span> true&#125; then resolve the class</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span>  The resulting &#123;<span class="doctag">@code</span> Class&#125; object</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span>  ClassNotFoundException</span></span><br><span class="line"><span class="comment">    *          If the class could not be found</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="keyword">boolean</span> resolve)</span><br><span class="line">       <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">synchronized</span> (getClassLoadingLock(name)) &#123;</span><br><span class="line">           <span class="comment">// First, check if the class has already been loaded</span></span><br><span class="line">           Class&lt;?&gt; c = findLoadedClass(name);</span><br><span class="line">           <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">               <span class="keyword">long</span> t0 = System.nanoTime();</span><br><span class="line">               <span class="keyword">try</span> &#123;</span><br><span class="line">                   <span class="keyword">if</span> (parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">                       c = parent.loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">                   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                       c = findBootstrapClassOrNull(name);</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">                   <span class="comment">// ClassNotFoundException thrown if class not found</span></span><br><span class="line">                   <span class="comment">// from the non-null parent class loader</span></span><br><span class="line">               &#125;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">                   <span class="comment">// If still not found, then invoke findClass in order</span></span><br><span class="line">                   <span class="comment">// to find the class.</span></span><br><span class="line">                   <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">                   c = findClass(name);</span><br><span class="line"></span><br><span class="line">                   <span class="comment">// this is the defining class loader; record the stats</span></span><br><span class="line">                   PerfCounter.getParentDelegationTime().addTime(t1 - t0);</span><br><span class="line">                   PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);</span><br><span class="line">                   PerfCounter.getFindClasses().increment();</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (resolve) &#123;</span><br><span class="line">               resolveClass(c);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> c;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="破坏双亲委派规则"><a href="#破坏双亲委派规则" class="headerlink" title="破坏双亲委派规则"></a>破坏双亲委派规则</h4><h5 id="自定义并调用-findClass-方法"><a href="#自定义并调用-findClass-方法" class="headerlink" title="自定义并调用 findClass() 方法"></a>自定义并调用 findClass() 方法</h5><ul>
-<li>双亲委派的逻辑实现在 loadClass() 方法中</li>
-<li>用户编写类加载逻辑时重写 findClass() 方法，直接调用findClass方法可以避开双亲委派的逻辑</li>
-</ul>
-<h5 id="线程上下文类加载器"><a href="#线程上下文类加载器" class="headerlink" title="线程上下文类加载器"></a>线程上下文类加载器</h5><ul>
-<li>解决基础类型要调用用户的代码的问题</li>
-<li>通过 java.lang.Thread 类的 setContextClassLoader() 方法设置类加载器，可以实现父类加载器请求子类加载器完成类加载的行为</li>
-<li>如果未设置，会从父线程继承一个</li>
-<li>全局范围都没有设置，默认就是应用程序类加载器</li>
-</ul>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>链接是将创建成的类合并至 Java 虚拟机中，使之能够执行的过程，分为验证、准备以及解析三个阶段</p>
-<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><ul>
-<li>确保被加载类能够满足《 Java 虚拟机规范》的约束条件，保证这些信息被当做代码运行后不会伤害虚拟机自身的安全</li>
-<li>通常而言，Java 编译器生成的类文件必然满足 Java 虚拟机的约束条件</li>
-<li>是一个非常重要但不是必须要执行的阶段<ul>
-<li>如果程序运行的全部代码以及被反复使用和验证过，再生产环境的实施阶段可以考虑使用 <code>-Xverify:none</code>参数来关闭大部分的类验证措施，以缩短类加载的时间</li>
-</ul>
-</li>
-</ul>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ul>
-<li>为被加载类的静态字段（类变量而非实例变量）分配内存并设置类变量初始值（数据类型的零值）的阶段</li>
-<li>这些变量所使用的内存在方法区中分配</li>
-<li>部分 Java 虚拟机会在此阶段构造其他跟类层次相关的数据结构，比如说用来实现虚方法的动态绑定的方法表</li>
-</ul>
-<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><ul>
-<li>将常量池内的符号引用解析成为实际引用的过程</li>
-<li>如果符号引用指向一个未被加载的类，或者未被加载类的字段或方法，那么解析将触发这个类的加载</li>
-<li>但未必触发这个类的链接以及初始化</li>
-<li>《Java 虚拟机规范》并没有要求在链接过程中完成解析</li>
-<li>《Java 虚拟机规范》仅规定了如果某些字节码使用了符号引用，那么在执行这些字节码之前，需要完成对这些符号引用的解析</li>
-<li>同一个符号引用可以进行多次解析</li>
-</ul>
-<h4 id="符号引用"><a href="#符号引用" class="headerlink" title="符号引用"></a>符号引用</h4><ul>
-<li>以一组符号来描述所引用的目标，与虚拟机实现的内存布局无关，引用的目标未必以及加载到内存中</li>
-<li>在 class 文件被加载至 Java 虚拟机之前，这个类无法知道其他类及其方法、字段所对应的具体地址，甚至不知道自己方法、字段的地址</li>
-<li>每当需要引用这些成员时，Java 编译器会生成一个符号引用</li>
-<li>在运行阶段，这个符号引用一般都能够无歧义地定位到具体目标上</li>
-<li>举例来说，对于一个方法调用，编译器会生成一个包含目标方法所在类的名字、目标方法的名字、接收参数类型以及返回值类型的符号引用，来指代所要调用的方法</li>
-</ul>
-<h4 id="直接引用"><a href="#直接引用" class="headerlink" title="直接引用"></a>直接引用</h4><ul>
-<li>直接指向目标的指针、相对偏移量或者是一个能够间接定位到目标的句柄，与JVM内存布局直接相关，引用的目标必然存在于虚拟机的内存中</li>
-<li>同一个符号引用在不同JVM实例上翻译出来的直接引用一般不相同</li>
-</ul>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>为标记为常量值的字段赋值，以及执行 &lt;clinit&gt; 方法的过程</p>
-<h3 id="lt-clinit-gt-方法"><a href="#lt-clinit-gt-方法" class="headerlink" title="&lt;clinit&gt; 方法"></a>&lt;clinit&gt; 方法</h3><ul>
-<li><p>在 Java 代码中，如果要初始化一个静态字段，我们可以在声明时直接赋值，也可以在静态代码块中对其赋值</p>
-</li>
-<li><p>常量值的初始化直接由 Java 虚拟机完成</p>
-<ul>
-<li>直接赋值的静态字段被 final 所修饰</li>
-<li>并且它的类型是基本类型或字符串时</li>
-</ul>
-</li>
-<li><p>除了常量值以外的直接赋值操作，以及所有静态代码块中的代码，则会被 Java 编译器置于同一方法中，并把它命名为 &lt;clinit&gt;</p>
-</li>
-<li><p>是 javac 编译器自动收集类中的所有变量的赋值操作和静态语句块中的语句合并产生，收集顺序由语句在源文件中出现的顺序决定</p>
-</li>
-</ul>
-<h3 id="顺序"><a href="#顺序" class="headerlink" title="顺序"></a>顺序</h3><h4 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h4><ul>
-<li>变量优先于块、静态优先于非静态。</li>
-<li>父类优先于派生类初始化。</li>
-<li>按照成员变量定义的顺序来进行初始化，即使变量定义散布于方法定义之中，它们仍然在任何方法（包括构造器）被调用前初始化。</li>
-</ul>
-<h4 id="按类型"><a href="#按类型" class="headerlink" title="按类型"></a>按类型</h4><p>对于静态变量、静态初始化块、变量、初始化块、构造器，它们的初始化顺序依次是</p>
-<ul>
-<li>静态变量、静态初始化块</li>
-<li>变量、初始化块</li>
-<li>构造器</li>
-</ul>
-<h4 id="有父类的情况"><a href="#有父类的情况" class="headerlink" title="有父类的情况"></a>有父类的情况</h4><ul>
-<li>父类静态变量</li>
-<li>父类静态代码块</li>
-<li>子类静态变量</li>
-<li>子类静态代码块</li>
-<li>父类非静态变量</li>
-<li>父类非静态代码块</li>
-<li>父类构造函数</li>
-<li>子类非静态变量</li>
-<li>子类非静态代码块</li>
-<li>子类构造函数</li>
-</ul>
-<p>###特征</p>
-<ul>
-<li><strong>Java 虚拟机会通过加锁来确保类的 &lt; clinit &gt; 方法仅被执行一次</strong>，没拿到锁的线程都要阻塞等待</li>
-<li>JVM 保证在子类的&lt;clinit&gt;方法执行前，父类的&lt;clinit&gt;方法已经执行完毕</li>
-<li>不是必须的，如果没有变量赋值操作，编译器不会生成</li>
-<li>接口中不能使用静态语句块，执行接口的&lt;clinit&gt;方法不需要先执行父接口的&lt;clinit&gt;方法，只有当父接口中定义的变量被使用时，父接口才会被初始化，实现类初始化也不会执行接口的&lt;clinit&gt;方法</li>
-<li>只有当初始化完成之后，类才正式成为可执行的状态</li>
-</ul>
-<h4 id="触发情况"><a href="#触发情况" class="headerlink" title="触发情况"></a>触发情况</h4><p>JVM 规范枚举了下述多种触发情况</p>
-<ul>
-<li>当虚拟机启动时，初始化用户指定的主类；</li>
-<li>当遇到用以新建目标类实例的 new 指令时，初始化 new 指令的目标类；</li>
-<li>当遇到调用静态方法的指令时，初始化该静态方法所在的类；</li>
-<li>当遇到访问静态字段的指令时，初始化该静态字段所在的类；</li>
-<li>子类的初始化会触发父类的初始化；</li>
-<li>如果一个接口定义了 default 方法，那么直接实现或者间接实现该接口的类的初始化，会触发该接口的初始化；</li>
-<li>使用反射 API 对某个类进行反射调用时，初始化这个类；</li>
-<li>当初次调用 MethodHandle 实例时，初始化该 MethodHandle 指向的方法所在的类</li>
-</ul>
-<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ul>
-<li><p>懒加载实现单例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyHolder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> LazyHolder.INSTANCE;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>由于类初始化是线程安全的，并且仅被执行一次</li>
-<li>因此程序可以确保多线程环境下有且仅有一个 Singleton 实例</li>
-</ul>
-</li>
-</ul>
-<h2 id="相关面试题"><a href="#相关面试题" class="headerlink" title="相关面试题"></a>相关面试题</h2><ul>
-<li>JVM 类加载过程/类加载机制<ul>
-<li>加载、连接、初始化</li>
-<li>加载过程的双亲委派模型</li>
-</ul>
-</li>
-<li>自定义类加载器吗，为什么要自定义类加载器<ul>
-<li>Java虚拟机没有要求从哪里、如何获取二进制字节流</li>
-<li>所以可以自定义类加载器实现特殊的加载方式，比如，可以对 class 文件进行加密，加载时再利用自定义的类加载器对其解密</li>
-<li>也可以控制字节流的获取方式，通过重写 findClass() 或 loadClass() 方法，可以从网络中或者其他方式获取二进制字节流</li>
-</ul>
-</li>
-<li>类加载器的双亲委派模型的作用，能重复加载某个类吗<ul>
-<li>在 Java 虚拟机中，类的唯一性是由类加载器实例以及类的全名一同确定的</li>
-<li>Java中的类随着它的类加载器具备了一种带有优先级的层次关系，所有的类加载都会被委派到顶层的启动类加载器中</li>
-<li>保证核心类在各种类加载器环境中都能够保证是同一个类</li>
-<li>以Object类为例，它存在于rt.jar中，无论用哪个类加载器来加载，最终都会委派给启动类加载器来加载</li>
-<li>不能重复加载一个类，在loadClass()方法中，会首先从内存中查找类是否已经被加载，如果是则直接返回内存中的类</li>
-</ul>
-</li>
-<li>类加载器的类的缓存，key是什么<ul>
-<li>defineClass 方法会加载类并缓存到 JVM 中</li>
-<li>类的全限定名</li>
-</ul>
-</li>
-<li>java类初始化的顺序 <ul>
-<li>父类静态变量</li>
-<li>父类静态代码块</li>
-<li>子类静态变量</li>
-<li>子类静态代码块</li>
-<li>父类非静态变量</li>
-<li>父类非静态代码块</li>
-<li>父类构造函数</li>
-<li>子类非静态变量</li>
-<li>子类非静态代码块</li>
-<li>子类构造函数</li>
-</ul>
-</li>
-<li>JVM类加载器特点</li>
-<li>双亲委派是什么，如何打破</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/06/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -504,7 +391,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-06 21:12:35" itemprop="dateModified" datetime="2021-06-06T21:12:35+08:00">2021-06-06</time>
+        <time title="Modified: 2021-06-06 21:37:04" itemprop="dateModified" datetime="2021-06-06T21:37:04+08:00">2021-06-06</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1288,112 +1175,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/10/29/%E3%80%8A%E7%9D%A1%E7%9C%A0%E9%9D%A9%E5%91%BD%E3%80%8B/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/11-%E6%9C%88%E6%8C%91%E6%88%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/29/11-%E6%9C%88%E6%8C%91%E6%88%98/" class="post-title-link" itemprop="url">11 月挑战</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2018-10-29 16:44:57" itemprop="dateCreated datePublished" datetime="2018-10-29T16:44:57+08:00">2018-10-29</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2018-12-01 16:45:43" itemprop="dateModified" datetime="2018-12-01T16:45:43+08:00">2018-12-01</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/challenges/" itemprop="url" rel="index"><span itemprop="name">challenges</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="专业"><a href="#专业" class="headerlink" title="专业"></a>专业</h2><ol>
-<li><p><del>过一遍 Python 入门 1</del></p>
-<p><del>《Python编程：从入门到实践》</del></p>
-<p>大概进度：最少一天一章</p>
-<p><strong>15h23min</strong></p>
-</li>
-<li><p>数学基础—概率论与统计</p>
-<p><a target="_blank" rel="noopener" href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/">MIT: Introduction to Probability and Statistics</a></p>
-<p>Ch 1~9 阅读并完成作业</p>
-<p>大概进度：三天一章</p>
-<p><strong>9h10min 未完成，看到 C8</strong></p>
-</li>
-<li><p><del>完成高级实训的论文</del></p>
-<p>一周至少读 3 篇相关论文并整理素材 <strong>没做到</strong></p>
-<p><strong>20h</strong></p>
-</li>
-<li><p><del>毕设开题报告</del></p>
-<p><strong>3h</strong></p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/29/11-%E6%9C%88%E6%8C%91%E6%88%98/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
