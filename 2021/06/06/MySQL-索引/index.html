@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="概念 索引是存储引擎用于可快速找到记录的一种数据结构 索引是在存储引擎层，不同存储引擎的索引工作方式不同  索引类型MySQL支持的索引类型有三种 B+ Tree 索引原理 所有值按顺序存储，每个叶子页到根的距离相同 加快访问数据的速度，不需要进行全表扫描，从索引的根节点开始进行向下层查找 比较节点页的值和要查找的值找合适的指针进入下层节点 直到找到指向被索引的数据的叶子节点   所有记录节点都是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 索引">
+<meta property="og:url" content="http://yoursite.com/2021/06/06/MySQL-%E7%B4%A2%E5%BC%95/index.html">
+<meta property="og:site_name" content="Lsinger&#39; s blog">
+<meta property="og:description" content="概念 索引是存储引擎用于可快速找到记录的一种数据结构 索引是在存储引擎层，不同存储引擎的索引工作方式不同  索引类型MySQL支持的索引类型有三种 B+ Tree 索引原理 所有值按顺序存储，每个叶子页到根的距离相同 加快访问数据的速度，不需要进行全表扫描，从索引的根节点开始进行向下层查找 比较节点页的值和要查找的值找合适的指针进入下层节点 直到找到指向被索引的数据的叶子节点   所有记录节点都是">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-06-06T15:39:56.000Z">
+<meta property="article:modified_time" content="2021-06-06T16:01:04.674Z">
+<meta property="article:author" content="Lsinger">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="DataBase">
+<meta property="article:tag" content="Storage">
+<meta property="article:tag" content="Interview">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2021/06/06/MySQL-%E7%B4%A2%E5%BC%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;default&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;06&#x2F;06&#x2F;MySQL-%E7%B4%A2%E5%BC%95&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;06&#x2F;MySQL-索引&#x2F;&quot;,&quot;title&quot;:&quot;MySQL 索引&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>MySQL 索引 | Lsinger' s blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lsinger' s blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Lsinger' s blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">索引类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Tree-%E7%B4%A2%E5%BC%95"><span class="nav-number">2.1.</span> <span class="nav-text">B+ Tree 索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">2.1.2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%90%E5%88%B6"><span class="nav-number">2.1.3.</span> <span class="nav-text">限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E7%B4%A2%E5%BC%95"><span class="nav-number">2.2.</span> <span class="nav-text">哈希索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%90%E5%88%B6-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E5%93%88%E5%B8%8C%E7%B4%A2%E5%BC%95"><span class="nav-number">2.2.3.</span> <span class="nav-text">自适应哈希索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%B4%A2%E5%BC%95%EF%BC%88R-Tree%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">空间数据索引（R-Tree）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#B-%E6%A0%91"><span class="nav-number">3.1.</span> <span class="nav-text">B+树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">3.1.1.</span> <span class="nav-text">特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.2.</span> <span class="nav-text">几种数据结构区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Tree-v-s-B-Tree"><span class="nav-number">3.2.1.</span> <span class="nav-text">B-Tree v.s. B+ Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Tree-v-s-Hash"><span class="nav-number">3.2.2.</span> <span class="nav-text">B+ Tree v.s. Hash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Tree-v-s-%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">3.2.3.</span> <span class="nav-text">B+ Tree v.s. 红黑树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.2.4.</span> <span class="nav-text">类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">相关面试题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lsinger</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/06/MySQL-%E7%B4%A2%E5%BC%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL 索引
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-06-06 23:39:56" itemprop="dateCreated datePublished" datetime="2021-06-06T23:39:56+08:00">2021-06-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-07 00:01:04" itemprop="dateModified" datetime="2021-06-07T00:01:04+08:00">2021-06-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>索引是存储引擎用于可快速找到记录的一种数据结构</li>
+<li>索引是在存储引擎层，不同存储引擎的索引工作方式不同</li>
+</ul>
+<h1 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h1><p>MySQL支持的索引类型有三种</p>
+<h2 id="B-Tree-索引"><a href="#B-Tree-索引" class="headerlink" title="B+ Tree 索引"></a>B+ Tree 索引</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
+<li>所有值按顺序存储，每个叶子页到根的距离相同</li>
+<li>加快访问数据的速度，不需要进行全表扫描，从索引的根节点开始进行向下层查找<ul>
+<li>比较节点页的值和要查找的值找合适的指针进入下层节点</li>
+<li>直到找到指向被索引的数据的叶子节点</li>
+</ul>
+</li>
+<li>所有记录节点都是按键值的大小顺序存放在同一层的叶子节点上，由各叶子节点指针进行连接</li>
+</ul>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>适用于顺序、全键值、键值范围或键前缀查找（只适用根据最左前缀查找）</li>
+</ul>
+<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><ul>
+<li>如果不是按索引的最左列开始查找，则无法使用索引</li>
+<li>不能跳过索引中的列</li>
+<li>如果查询中有某个列的范围查询，其右边所有列都无法使用索引优化查找</li>
+</ul>
+<h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><ul>
+<li>基于哈希表实现，只有精确匹配索引所有列的查询才有效</li>
+<li>对每行数据，引擎对所有的索引列计算一个哈希码</li>
+<li>哈希码存储在索引中，哈希表中保存指向每行数据的指针</li>
+<li>只有 Memory 引擎显示支持哈希索引，也是它的默认索引类型</li>
+</ul>
+<h3 id="限制-1"><a href="#限制-1" class="headerlink" title="限制"></a>限制</h3><ul>
+<li>不保存索引的值，所以不能使用索引的值来避免读取行</li>
+<li>并不是按照索引顺序存储，无法用于排序</li>
+<li>不支持部分索引列匹配查找</li>
+<li>只支持等值比较查询，不支持任何范围查询</li>
+<li>哈希冲突很多时，索引维护的代价很高</li>
+</ul>
+<h3 id="自适应哈希索引"><a href="#自适应哈希索引" class="headerlink" title="自适应哈希索引"></a>自适应哈希索引</h3><ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li><p>出现哈希冲突时，必须遍历链表中的所有行指针</p>
+</li>
+<li><p>必须在where子句中包含常量值来避免哈希冲突</p>
+</li>
+<li><p>innodb有一个特殊的功能叫做自适应哈希索引</p>
+<ul>
+<li>当某个索引值被使用的非常频繁时，会在内存中基于B树索引之上再创建哈希索引</li>
+<li>使用哈希值而不是键本身进行查找，要在查询的where语句中指定使用哈希函数</li>
+<li>根据哈希值做快速的整数比较找到索引条目，然后一一比较返回对应的行</li>
+</ul>
+</li>
+</ul>
+<h2 id="空间数据索引（R-Tree）"><a href="#空间数据索引（R-Tree）" class="headerlink" title="空间数据索引（R-Tree）"></a>空间数据索引（R-Tree）</h2><p>#####全文索引</p>
+<ul>
+<li>查找的是文本中的关键词</li>
+<li>类似于搜索引擎，而不是简单地where条件匹配</li>
+<li>可以同时创建全文索引和B-Tree不会有冲突</li>
+<li>适用于 MATCH AGAINST操作而不是 WHERE条件操作</li>
+</ul>
+<ul>
+<li></li>
+<li><p>Innodb</p>
+<ul>
+<li>聚集索引<ul>
+<li>按照每张表的主键构造一颗B+树，叶子节点（数据页）中存放的即为整张表的行记录数据<ul>
+<li>InnoDB存储引擎表是索引组织表，表中数据按照逐渐顺序存放</li>
+<li>数据是索引的一部分</li>
+<li>每个数据页通过一个双向链表进行链接</li>
+<li>只有一个聚集索引</li>
+<li>存储在物理上不连续，逻辑上连续</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>查看<a target="_blank" rel="noopener" href="https://lsinger8702.github.io/2021/06/05/%E6%A0%91/">B+树数据结构特性</a></p>
+<h2 id="几种数据结构区别"><a href="#几种数据结构区别" class="headerlink" title="几种数据结构区别"></a>几种数据结构区别</h2><h3 id="B-Tree-v-s-B-Tree"><a href="#B-Tree-v-s-B-Tree" class="headerlink" title="B-Tree v.s. B+ Tree"></a>B-Tree v.s. B+ Tree</h3><ul>
+<li>B+树是B树的一个升级版，B+树更充分的利用了节点的空间，让查询速度更加稳定，其速度完全接近于二分法查找</li>
+<li>B+树的层级更少，B+每个非叶子节点存储的关键字数更多，树的层级更少所以查询数据更快</li>
+<li>B+树查询速度更稳定，B+所有关键字数据地址都存在叶子节点上，所以每次查找的次数都相同所以查询速度要比B树更稳定</li>
+<li>B+树天然具备排序功能，B+树所有的叶子节点数据构成了一个有序链表，在查询大小区间的数据时候更方便，数据紧密性很高，缓存的命中率也会比B树高。</li>
+<li>B+树全节点遍历更快，B+树遍历整棵树只需要遍历所有的叶子节点即可，而不需要像B树一样需要对每一层进行遍历，这有利于数据库做全表扫描</li>
+<li>B树相对于B+树的优点是，如果经常访问的数据离根节点很近，而B树的非叶子节点本身存有关键字其数据的地址，所以这种数据检索的时候会要比B+树快</li>
+</ul>
+<h3 id="B-Tree-v-s-Hash"><a href="#B-Tree-v-s-Hash" class="headerlink" title="B+ Tree v.s. Hash"></a>B+ Tree v.s. Hash</h3><h3 id="B-Tree-v-s-红黑树"><a href="#B-Tree-v-s-红黑树" class="headerlink" title="B+ Tree v.s. 红黑树"></a>B+ Tree v.s. 红黑树</h3><h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><h1 id="相关面试题"><a href="#相关面试题" class="headerlink" title="相关面试题"></a>相关面试题</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>innodb的底层数据结构？MySQL为什么使用B+树，为什么用B+树不用B树不用红黑树不用hash？</li>
+<li>MySQL使用的索引结构，查找效率，查询时命中主键和普通值有什么区别？ </li>
+<li>多个索引会有多份数据吗、</li>
+<li>数据库的索引数据结构 ：哈希 、b 树、全文索引</li>
+<li>说说 Innodb 聚集索引</li>
+<li>索性失效的场景</li>
+<li>最左原则</li>
+<li>为什么要使用联合索引？对(a,b,c)建立联合索引，where a=3,b&gt;4,c=5能使用这个联合索引吗？为什么？</li>
+<li>MySQL索引与外键区别</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/DataBase/" rel="tag"># DataBase</a>
+              <a href="/tags/Storage/" rel="tag"># Storage</a>
+              <a href="/tags/Interview/" rel="tag"># Interview</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/06/MySQL-%E6%9E%B6%E6%9E%84/" rel="prev" title="MySQL 架构">
+                  <i class="fa fa-chevron-left"></i> MySQL 架构
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lsinger</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
