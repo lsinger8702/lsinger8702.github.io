@@ -28,7 +28,7 @@
 <meta property="og:description" content="基本理论ACID原子性（Atomicity） 事务最终的状态只有两种，全部执行成功和全部不执行，不会停留在中间某个环节  若处理事务的任何一项操作不成功，就会导致整个事务失败  一旦操作失败，所有操作都会被取消（即回滚），使得事务仿佛没有被执行过一样   一致性（Consistency） 是指事务操作前和操作后，数据满足完整性约束，数据库保持一致性状态  比如，用户 A 和用户 B 在银行分别有">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-06-06T09:35:52.000Z">
-<meta property="article:modified_time" content="2021-06-09T14:29:36.078Z">
+<meta property="article:modified_time" content="2021-06-09T14:31:09.476Z">
 <meta property="article:author" content="Lsinger">
 <meta property="article:tag" content="Interview">
 <meta property="article:tag" content="Distributed Protocol">
@@ -207,7 +207,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-09 22:29:36" itemprop="dateModified" datetime="2021-06-09T22:29:36+08:00">2021-06-09</time>
+        <time title="Modified: 2021-06-09 22:31:09" itemprop="dateModified" datetime="2021-06-09T22:31:09+08:00">2021-06-09</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -243,6 +243,8 @@
 <li><p>比如，用户 A 和用户 B 在银行分别有 800 元和 600 元，总共 1400 元，用户 A 给用户 B 转账 200 元，分为两个步骤，从 A 的账户扣除 200 元和对 B 的账户增加 200 元。一致性就是要求上述步骤操作后，最后的结果是用户 A 还有 600 元，用户 B 有 800 元，总共 1400 元，而不会出现用户 A 扣除了 200 元，但用户 B 未增加的情况（该情况，用户 A 和 B 均为 600 元，总共 1200 元）。 </p>
 </li>
 </ul>
+<span id="more"></span>
+
 <h3 id="隔离性（Isolation）"><a href="#隔离性（Isolation）" class="headerlink" title="隔离性（Isolation）"></a>隔离性（Isolation）</h3><ul>
 <li>指当系统内有多个事务并发执行时，多个事务同时使用相同的数据时，不会相互干扰，每个事务都有一个完整的数据空间，对其他并发事务是隔离的</li>
 </ul>
