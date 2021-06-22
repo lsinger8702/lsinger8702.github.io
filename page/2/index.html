@@ -116,18 +116,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -156,6 +156,263 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/02/Kafka-%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/06/02/Kafka-%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">Kafka 重要概念</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-06-02 22:34:29" itemprop="dateCreated datePublished" datetime="2021-06-02T22:34:29+08:00">2021-06-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-05 19:38:17" itemprop="dateModified" datetime="2021-06-05T19:38:17+08:00">2021-06-05</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Message-Queue/" itemprop="url" rel="index"><span itemprop="name">Message Queue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><ul>
+<li>Apache Kafka 是一款开源的消息引擎系统</li>
+<li>消息引擎系统是一组规范。企业利用这组规范在不同系统之间传递语义准确的消息，实现松耦合的异步式数据传递</li>
+</ul>
+<h1 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h1><ul>
+<li>Kafka 属于分布式的消息引擎系统，它的主要功能是提供一套完备的消息发布与订阅解决方案</li>
+<li>在 Kafka 中，发布订阅的对象是主题（Topic），你可以为每个业务、每个应用甚至是每类数据都创建专属的主题</li>
+<li>向主题发布消息的客户端应用程序称为生产者（Producer），生产者程序通常持续不断地向一个或多个主题发送消息</li>
+<li>订阅这些主题消息的客户端应用程序就被称为消费者（Consumer），消费者也能够同时订阅多个主题的消息</li>
+<li>生产者和消费者统称为客户端（Clients）</li>
+<li>可以同时运行多个生产者和消费者实例，这些实例会不断地向 Kafka 集群中的多个主题生产和消费消息</li>
+<li>Kafka 的服务器端由被称为 Broker 的服务进程构成，即一个 Kafka 集群由多个 Broker 组成，Broker 负责接收和处理客户端发送过来的请求，以及对消息进行持久化</li>
+<li>每个消费者在消费消息的过程中必然需要有个字段记录它当前消费到了分区的哪个位置上，这个字段就是消费者位移（Consumer Offset），每个消费者有着自己的消费者位移</li>
+<li>消息在分区中的位移称为分区位移，而把消费者端的位移称为消费者位移</li>
+</ul>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h2 id="三层消息架构"><a href="#三层消息架构" class="headerlink" title="三层消息架构"></a>三层消息架构</h2><ul>
+<li>第一层是主题层，每个主题可以配置 M 个分区，而每个分区又可以配置 N 个副本</li>
+<li>第二层是分区层，每个分区的 N 个副本中只能有一个充当领导者角色，对外提供服务；其他 N-1 个副本是追随者副本，只是提供数据冗余之用</li>
+<li>第三层是消息层，分区中包含若干条消息，每条消息的位移从 0 开始，依次递增</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/02/Kafka-%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/01/12-%E6%9C%88%E6%8C%91%E6%88%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lsinger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lsinger' s blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/12/01/12-%E6%9C%88%E6%8C%91%E6%88%98/" class="post-title-link" itemprop="url">12 月挑战</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2018-12-01 16:46:18 / Modified: 17:26:33" itemprop="dateCreated datePublished" datetime="2018-12-01T16:46:18+08:00">2018-12-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/challenges/" itemprop="url" rel="index"><span itemprop="name">challenges</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="专业"><a href="#专业" class="headerlink" title="专业"></a>专业</h2><p><strong>优先序列</strong></p>
+<ul>
+<li>爬虫<ul>
+<li>《Python 3 网络爬虫开发实战》看完<ul>
+<li>大概进度：平均每天 20 页</li>
+</ul>
+</li>
+<li>完成毕设的爬虫部分</li>
+</ul>
+</li>
+<li>LeetCode<ul>
+<li>做完 sort 和 List 的部分</li>
+<li>大概进度：easy 的话一天 3、4 题，medium、hard 一天 1 题</li>
+</ul>
+</li>
+<li>大数据<ul>
+<li>《Hadoop 权威指南》 第 I、II、III 部分<ul>
+<li>大概进度：平均每天 15 页</li>
+</ul>
+</li>
+<li>《Scala 学习手册》快速看完<ul>
+<li>大概进度：平均每天 1 章</li>
+</ul>
+</li>
+<li>Gitchat</li>
+</ul>
+</li>
+<li>数学基础——概率论<ul>
+<li><a target="_blank" rel="noopener" href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/">MIT: Introduction to Probability and Statistics</a> Ch 8~25 阅读并完成作业<ul>
+<li>大概进度：两天一章</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>NLP<ul>
+<li>《Python 自然语言处理实战》看完<ul>
+<li>大概进度：平均每天 10 页</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h2><ul>
+<li><p>阅读</p>
+<ul>
+<li>TPO 阅读——文化艺术  做完并且收集单词<ul>
+<li>大概进度：两天一篇</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>每天听一篇口语部分的听力</p>
+</li>
+<li><p>坚持背单词</p>
+</li>
+</ul>
+<h2 id="个人提升"><a href="#个人提升" class="headerlink" title="个人提升"></a>个人提升</h2><ul>
+<li><p>健康</p>
+<ul>
+<li>睡眠<ul>
+<li>23:45 上床</li>
+<li>6:30 起床</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>运动</p>
+<ul>
+<li>每周夜跑 3~4 次</li>
+<li>不夜跑的时候跳绳</li>
+</ul>
+</li>
+<li><p>饮食</p>
+<ul>
+<li>一周最多两次螺蛳粉 一次麦当劳 两周一次甜品 除此之外拒绝高糖和油炸</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -903,189 +1160,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/10/29/LeetCode-List%E7%B3%BB%E5%88%97/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/%E3%80%8ASpark%E5%BF%AB%E9%80%9F%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E3%80%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/29/%E3%80%8ASpark%E5%BF%AB%E9%80%9F%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E3%80%8B/" class="post-title-link" itemprop="url">《Spark快速大数据分析》</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2018-10-29 14:06:41 / Modified: 14:25:57" itemprop="dateCreated datePublished" datetime="2018-10-29T14:06:41+08:00">2018-10-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%93%E4%B8%9A%E4%B9%A6%E7%B1%8D%EF%BC%89/" itemprop="url" rel="index"><span itemprop="name">读书笔记（专业书籍）</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Spark-快速大数据分析"><a href="#Spark-快速大数据分析" class="headerlink" title="Spark 快速大数据分析"></a>Spark 快速大数据分析</h2><h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lsinger:bin lixinge$ ./pyspark</span><br><span class="line">Exception <span class="keyword">in</span> thread <span class="string">&quot;main&quot;</span> java.lang.UnsupportedClassVersionError: org/apache/spark/launcher/Main : Unsupported major.minor version 52.0</span><br></pre></td></tr></table></figure>
-
-<p>Java 版本过低，只支持 Java 8</p>
-<p>管理工具 jenv</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/29/%E3%80%8ASpark%E5%BF%AB%E9%80%9F%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E3%80%8B/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/%E3%80%8AHadoop-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lsinger">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lsinger' s blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/29/%E3%80%8AHadoop-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B/" class="post-title-link" itemprop="url">《Hadoop 权威指南》</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2018-10-29 14:03:50 / Modified: 14:25:48" itemprop="dateCreated datePublished" datetime="2018-10-29T14:03:50+08:00">2018-10-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%93%E4%B8%9A%E4%B9%A6%E7%B1%8D%EF%BC%89/" itemprop="url" rel="index"><span itemprop="name">读书笔记（专业书籍）</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Hadoop-权威指南"><a href="#Hadoop-权威指南" class="headerlink" title="Hadoop 权威指南"></a>Hadoop 权威指南</h1><h2 id="第一章-初识-Hadoop"><a href="#第一章-初识-Hadoop" class="headerlink" title="第一章 初识 Hadoop"></a>第一章 初识 Hadoop</h2><h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><ol>
-<li>大数据胜于好算法：无论算法多牛，基于小数据的推荐效果往往都不如基于大量可用数据的一般算法的推荐结果</li>
-</ol>
-<h3 id="数据的存储与分析"><a href="#数据的存储与分析" class="headerlink" title="数据的存储与分析"></a>数据的存储与分析</h3><ol>
-<li>硬盘的存储容量多年来不断提升，访问速度却没有与时俱进</li>
-<li>很简单的减少读取时间的办法是”从多个硬盘上读取数据“<ol>
-<li>硬件故障    <ol>
-<li>一旦使用很多硬件，其中个别硬件就很有可能发生故障</li>
-<li>为了避免数据丢失，最常见的做法是复制：系统保存数据的副本，如冗余硬盘阵列（RAID），HDFS</li>
-</ol>
-</li>
-<li>大数据分析任务需要以某种方式结合大部分数据来共同完成分析，即从一个硬盘读取的数据需要与从另外那些硬盘中读取的数据结合使用<ol>
-<li>各种分布式系统允许结合不同来源的数据进行分析，但保证其正确性是一个非常大的挑战</li>
-<li>MapReduce 提出一个编程模型，该模型抽象出这些硬盘读/写问题并将其转换为对一个数据集（由键值对组成）的计算</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/29/%E3%80%8AHadoop-%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
