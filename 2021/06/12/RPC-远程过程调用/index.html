@@ -20,19 +20,19 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
-<meta name="description" content="背景 RPC 框架有明显朝着更高层次（不仅仅负责调用远程服务，还管理远程服务）与插件化方向发展的趋势 不再选择自己去解决表示数据、传递数据和表示方法这三个问题 而是将全部或者一部分问题设计为扩展点，实现核心能力的可配置 再辅以外围功能，如负载均衡、服务注册、可观察性等方面的支持    常见框架&#x2F;协议 RMI（Sun&#x2F;Oracle） Thrift（Facebook&#x2F;Apache） Dubbo（阿里巴">
+<meta name="description" content="背景 RPC 框架有明显朝着更高层次（不仅仅负责调用远程服务，还管理远程服务）与插件化方向发展的趋势 不再选择自己去解决表示数据、传递数据和表示方法这三个问题 而是将全部或者一部分问题设计为扩展点，实现核心能力的可配置 再辅以外围功能，如负载均衡、服务注册、可观察性等方面的支持">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RPC 远程过程调用">
 <meta property="og:url" content="http://yoursite.com/2021/06/12/RPC-%E8%BF%9C%E7%A8%8B%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8/index.html">
 <meta property="og:site_name" content="Lsinger&#39; s blog">
-<meta property="og:description" content="背景 RPC 框架有明显朝着更高层次（不仅仅负责调用远程服务，还管理远程服务）与插件化方向发展的趋势 不再选择自己去解决表示数据、传递数据和表示方法这三个问题 而是将全部或者一部分问题设计为扩展点，实现核心能力的可配置 再辅以外围功能，如负载均衡、服务注册、可观察性等方面的支持    常见框架&#x2F;协议 RMI（Sun&#x2F;Oracle） Thrift（Facebook&#x2F;Apache） Dubbo（阿里巴">
+<meta property="og:description" content="背景 RPC 框架有明显朝着更高层次（不仅仅负责调用远程服务，还管理远程服务）与插件化方向发展的趋势 不再选择自己去解决表示数据、传递数据和表示方法这三个问题 而是将全部或者一部分问题设计为扩展点，实现核心能力的可配置 再辅以外围功能，如负载均衡、服务注册、可观察性等方面的支持">
 <meta property="og:locale">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/ac/2b/ac5f5236d972608fdb24c6eefce7e82b.jpg">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/2a/72/2a202f980458baca9fc50c53275c6772.jpg">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/b4/a5/b42e44968c3fdcdfe2acf96377f5b2a5.jpg">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/50/41/5042cf1b79e6b9233f2152e1e0aca741.jpg">
 <meta property="article:published_time" content="2021-06-12T13:01:04.000Z">
-<meta property="article:modified_time" content="2021-06-24T14:15:54.462Z">
+<meta property="article:modified_time" content="2022-07-17T16:45:39.351Z">
 <meta property="article:author" content="Lsinger">
 <meta property="article:tag" content="Interview">
 <meta property="article:tag" content="Distributed Transaction">
@@ -210,7 +210,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-24 22:15:54" itemprop="dateModified" datetime="2021-06-24T22:15:54+08:00">2021-06-24</time>
+        <time title="Modified: 2022-07-18 00:45:39" itemprop="dateModified" datetime="2022-07-18T00:45:39+08:00">2022-07-18</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -240,6 +240,8 @@
 </ul>
 </li>
 </ul>
+<span id="more"></span>
+
 <h1 id="常见框架-协议"><a href="#常见框架-协议" class="headerlink" title="常见框架/协议"></a>常见框架/协议</h1><ul>
 <li>RMI（Sun/Oracle）</li>
 <li>Thrift（Facebook/Apache）</li>
